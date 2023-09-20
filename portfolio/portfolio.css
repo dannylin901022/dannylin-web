@@ -1,0 +1,18 @@
+.card-column{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+.card{
+    width: 20vw;
+    padding: 5px;
+}
+.card-img{
+    width: 300px;
+    height: 200px;
+}
+
+#unity_hr{
+    height: 5px;
+    background-color: gray;
+}
