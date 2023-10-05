@@ -1,0 +1,19 @@
+#image1_size{
+    width: 10vw;
+    height: 20vh;
+    border:3px solid black;
+    padding:1px;
+}
+#image2-1_size,#image2-2_size{
+    width: 10vw;
+    height: 20vh;
+    border:3px solid white;
+    padding:1px;
+    background-color: black;
+}
+#image3_size{
+    width: 10vw;
+    height: 20vh;
+    border:3px solid black;
+    padding:1px;
+}

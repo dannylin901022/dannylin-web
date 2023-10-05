@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Be a football</title>
+
+    <link rel="stylesheet" href="../../portfolio.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+    <link href="./Be a football.css" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <nav class="navbar bg-dark navbar-dark p-3 navbar-expand-lg">
+        <div class="container">
+            <a href="../../../index.html" class="navbar-brand">
+                <h1>DL</h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarIcon">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarIcon">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">關於</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">履歷</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../../portfolio.html" class="nav-link">作品</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <div class="col-10 my-4 mx-5 px-5 d-flex flex-column justify-content-center">
+                <h1 style="font-weight: bold;">Be a football</h1>
+                <div class="d-flex flex-column">
+                    <div class="d-flex align-items-center">
+                        <img src="./title.PNG" style="height: 30vh;border:3px solid black;padding:1px">
+                        <div>
+                            <h1 class="mx-3">簡介</h1>
+                            <p class="mx-3"> 半夜剛看完世界盃的你，在比賽結束後倒頭就睡，夢中你變成了一顆足球，在足球場上躲避敵隊球員的阻攔、爭取分數、奔向球門！</p> 
+                            <h1 class="mx-3">遊戲玩法</h1>
+                        <ul>
+                            <li>
+                                玩家必須透過鍵盤(W、A、S、D)操控足球
+                            </li>
+                            <li>
+                                場上有”4個”得分點數需要收集，球門會在收集到第4個得分點數時出現
+                            </li>
+                            <li>
+                                玩家須躲避敵隊球員，被攔截到時會在重生點重生，並被累計死亡次數
+                            </li>
+                            <li>
+                                場上有一些道具，玩家觸碰到後會有短暫的特殊效果
+                            </li>
+                        </ul>
+                        </div>
+                    </div>
+                    <h2 class="mt-5">遊戲過程說明</h2>
+                    <div class="d-flex">
+                        <img src="./Scenes1.png" style="height: 30vh;width:30vw;border:3px solid black;padding:1px">
+                        <div class="d-flex flex-column">
+                            <h4 class="mx-3 size"> 練習關卡：</h4>
+                            <ul>
+                                <li>玩家點擊開始後，會先出現在練習關卡，目的是讓玩家熟悉操作，並了解遊戲基本玩法及部分特殊功能</li>
+                                <li>玩家會透過蒐集白色方塊來開啟球門，觸碰球門後即可進入下一關</li>
+                                <li>為增加可玩性，部分地板會隨機消失，等待幾秒後即會出現</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="d-flex mt-3">
+                        <img src="./Scenes2.png" style="height: 30vh;width:30vw;border:3px solid black;padding:1px">
+                        <div class="d-flex flex-column">
+                            <h4 class="mx-3 size"> 主要關卡：</h4>
+                            <ul>
+                                <li>玩家視角會改變，變成自動轉動的視角</li>
+                                <li>透過在場上尋找4個得分點數來開啟球門</li>
+                                <li>場上會有敵對球員攔截，觸碰到重生</li>
+                                <li>場上會出現道具，玩家觸碰後可獲得特殊效果</li>
+                                <li>不再有墜落重生機制，場地四周有隱形牆阻擋</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>  
+                <div class="d-flex my-3 flex-column">
+                    <h1 class="my-3">內容物件</h1>
+                    <table class="table">
+                        <tr>
+                            <th>
+                                <h3>圖片</h3>
+                            </th>
+                            <th>
+                                <h3>說明</h3>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td class="d-flex justify-content-center align-items-end"><img id="image1_size" src="./image1.png"></td>
+                            <td>
+                                <h4>足球</h4>玩家操控角色，必須操控足球蒐集得分點數
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="d-flex justify-content-center"><img class="image2_size" src="./image2-1.png">
+                                <img class="image2_size" src="./image2-2.png"></td>
+                            <td>
+                                <h4>敵隊球員</h4>會攔截足球，玩家碰到時會將足球返回重生點
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="d-flex justify-content-center"><img id="image3_size" src="./image3.png"></td>
+                            <td>
+                                <h4>得分點數</h4>玩家必須蒐集到”4個”得分點數，球門才會出現
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="d-flex justify-content-center"><img id="image3_size" src="./image4.png"></td>
+                            <td>
+                                <h4>彈力UP!</h4>玩家觸碰到後，會獲得短暫的彈力球效果
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="d-flex justify-content-center"><img id="image3_size" src="./image5.png"></td>
+                            <td>
+                                <h4>TIME STOP!</h4>玩家觸碰到後，敵隊球員會短暫停止行動
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>

@@ -1,0 +1,13 @@
+#image1_size,#image2_size,#image3_size,#image4_size{
+    width: 7vw;
+    height: 20vh;
+    border:3px solid black;
+    padding:1px;
+}
+.apple_size{
+    width: 5vw;
+    height: 10vh;
+    border:3px solid black;
+    padding:1px;
+    margin-left:10px;
+}

@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Doomsday Survival</title>
+    <title>Padoru bullet hell</title>
 
     <link rel="stylesheet" href="../../portfolio.css">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
-    <link href="./Doomsday Survival.css" rel="stylesheet">
+    <link href="./Padoru bullet hell.css" rel="stylesheet">
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
@@ -47,39 +47,35 @@
     <main>
         <div class="container">
             <div class="col-10 my-4 mx-5 px-5 d-flex flex-column justify-content-center">
-                <h1 style="font-weight: bold;">Doomsday Survival</h1>
+                <h1 style="font-weight: bold;">Padoru bullet hell</h1>
                 <div class="d-flex">
-                    <img src="./title.PNG" style="width: 30vw;border:3px solid black;padding:1px">
+                    <img src="./title.PNG" style="height: 30vh;border:3px solid black;padding:1px">
                     <div>
                         <h1 class="mx-3">簡介</h1>
-                        <p class="mx-3"> 你，是一名救護車駕駛，你必須在周圍充滿殭屍的環境中生存下來。沒有終點，所有的醫院都被摧毀了，你只能盡可能地存活更多時間。</p>
+                        <p class="mx-3"> 一年一度的聖誕節即將到來，那個熟悉的聲音在耳邊響起，沒錯，那就是padoru…</p>
                         <h1 class="mx-3">遊戲過程說明</h1>
-                        <p class="mx-3">
-                            玩家操控救護車移動，躲避或擊殺殭屍，在觸碰到殭屍時，玩家會損血，當血量歸零時，遊戲即結束。玩家透過發射子彈，將殭屍擊殺或擊碎石頭，盡可能在四周都是殭屍的環境中生存下去。</p>
+                        <p class="mx-3"> 玩家隨著劇情走向，最終會迎來不同結局，在通往HE的路線中，玩家必須通過彈幕關卡，選擇錯誤或彈幕關卡失敗，將導致劇情走向BE。</p>
                     </div>
                 </div>
                 <div class="d-flex my-3">
-                    <img src="./Scenes.png" style="width: 30vw;border:3px solid black;padding:1px">
+                    <img src="./Scenes.png" style="height: 30vh;border:3px solid black;padding:1px">
                     <div>
                         <h1 class="mx-3">遊戲玩法</h1>
                         <ul>
                             <li>
-                                玩家透過鍵盤或搖桿控制角色，滑鼠左鍵、右鍵及搖桿R1、L1可進行射擊(當有子彈的時候)
+                                玩家透過鍵盤方向鍵或WASD控制角色，按下Space可以使用特殊能力
                             </li>
                             <li>
-                                玩家擁有有限的生命，碰到敵殭屍會損血
+                                玩家持有3條生命，3條生命使用完即失敗
                             </li>
                             <li>
-                                殭屍會自動生成，你只能逃離，或是透過子彈將其擊殺
+                                敵方角色會放出彈幕攻擊，玩家必須閃躲並攻擊敵方角色
                             </li>
                             <li>
-                                場景中有子彈可以撿取，子彈可以用來擊碎石頭或擊殺殭屍，擊碎石頭可以開闢道路，但那可是會再生的石頭，一段時間後會再出現
+                                敵方角色血條清空或時間結束時，敵方角色血條會減少1條，總計3條
                             </li>
                             <li>
-                                撿取的子彈可以透過R1或滑鼠左鍵向前射擊，或是透過L1或滑鼠右鍵向後射擊
-                            </li>
-                            <li>
-                                玩家可以透過Start鍵或鍵盤的Enter來暫停遊戲
+                                此遊戲有劇情選項，進行選擇會迎向不同結局
                             </li>
                         </ul>
                     </div>
@@ -96,21 +92,36 @@
                             </th>
                         </tr>
                         <tr>
-                            <td class="d-flex justify-content-center"><img id="image1_size" src="./image1.jpg"></td>
+                            <td class="d-flex justify-content-center align-items-end"><img id="image1-1_size"
+                                    src="./image1-1.png">
+                                <img class="mx-2" id="image1-2_size" src="./image1-2.png">
+                            </td>
                             <td>
-                                <h4>玩家角色</h4>玩家操控此角色，躲避殭屍，按下R1、L1可進行射擊
+                                <h4>玩家角色</h4>玩家操控此角色，躲避彈幕，會自動攻擊
                             </td>
                         </tr>
                         <tr>
                             <td class="d-flex justify-content-center"><img id="image2_size" src="./image2.png"></td>
                             <td>
-                                <h4>敵方角色</h4>殭屍，會追著玩家跑，玩家碰到會損血
+                                <h4>敵方角色</h4>會放出彈幕攻擊，時間結束或血量歸零會減少1條生命
                             </td>
                         </tr>
                         <tr>
                             <td class="d-flex justify-content-center"><img id="image3_size" src="./image3.png"></td>
                             <td>
-                                <h4>子彈道具</h4>玩家撿取後可以獲得15顆子彈，可以用來擊殺殭屍或擊碎石頭
+                                <h4>NPC 1</h4>劇情角色，勞工1號
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="d-flex justify-content-center"><img id="image3_size" src="./image4.png"></td>
+                            <td>
+                                <h4>NPC 2</h4>劇情角色，勞工2號
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="d-flex justify-content-center"><img id="image3_size" src="./image5.png"></td>
+                            <td>
+                                <h4>NPC 3</h4>劇情角色，經歷過曾經的padoru事件
                             </td>
                         </tr>
                     </table>
