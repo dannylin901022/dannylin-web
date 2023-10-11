@@ -1,0 +1,23 @@
+#nav_btn {
+    background-color: rgba(0, 0, 0, 0);
+    border: 5px double rgba(255, 255, 255, 1);
+}
+#sidebar{
+    margin-left: -300px;
+    height: 80vh;
+    overflow: auto;
+    transition: 1s;
+}
+#sidebar.active{
+    margin-left: 0;
+}
+.font_size{
+    font-size: 18px;
+}
+.item{
+    text-decoration:none;
+    line-height: 30px;
+}
+.dp{
+    margin-bottom: 50px;
+}

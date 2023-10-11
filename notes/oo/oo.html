@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>物件導向軟體工程</title>
+
+    <link rel="stylesheet" href="./oo.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./oo.js"></script>
+</head>
+
+<body>
+    <nav class="navbar bg-dark navbar-dark p-3 navbar-expand-lg" style="position: fixed;width: 100vw;">
+        <button class="btn btn-primary" id="nav_btn" type="button">
+            導覽列
+        </button>
+        <div class="container">
+            <a href="../../index.html" class="navbar-brand">
+                <h1>DL</h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarIcon">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarIcon">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="../../about/about.html" class="nav-link">關於</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../../resume/resume.html" class="nav-link">經歷</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../../portfolio/portfolio.html" class="nav-link">作品</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../notes.html" class="nav-link">筆記</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="d-flex">
+        <div id="sidebar" class="dropdown mt-3" style="position: fixed;top:100px;">
+            <ul style="list-style-type: none;">
+                <li><a class="item" href="#Abstract_Factory">Abstract Factory</a></li>
+                <li><a class="item" href="#Bridge_Pattern">Bridge Pattern</a></li>
+                <li><a class="item" href="#Decorator_Pattern">Decorator Pattern</a></li>
+                <li><a class="item" href="#Strategy_Pattern">Strategy Pattern</a></li>
+                <li><a class="item" href="#Iterator_Pattern">Iterator Pattern</a></li>
+                <li><a class="item" href="#Command_Pattern">Command Pattern</a></li>
+                <li><a class="item" href="#Visitor_Pattern">Visitor Pattern</a></li>
+                <li><a class="item" href="#Memento_Pattern">Memento Pattern</a></li>
+                <li><a class="item" href="#Singleton_Pattern">Singleton Pattern</a></li>
+                <li><a class="item" href="#Observer_Pattern">Observer Pattern</a></li>
+                <li><a class="item" href="#Chain_of_Responsibility">Chain of Responsibility</a></li>
+                <li><a class="item" href="#Adapter_Pattern">Adapter Pattern</a></li>
+                <li><a class="item" href="#Flyweight_Pattern">Flyweight Pattern</a></li>
+                <li><a class="item" href="#Builder_Pattern">Builder Pattern</a></li>
+                <li><a class="item" href="#Template_Pattern">Template Pattern</a></li>
+                <li><a class="item" href="#Factory_Method">Factory Method</a></li>
+                <li><a class="item" href="#Proxy_Pattern">Proxy Pattern</a></li>
+                <li><a class="item" href="#Composite_Pattern">Composite Pattern</a></li>
+                <li><a class="item" href="#Prototype_Pattern">Prototype Pattern</a></li>
+                <li><a class="item" href="#Mediator_Pattern">Mediator Pattern</a></li>
+                <li><a class="item" href="#Facade_Pattern">Facade Pattern</a></li>
+
+            </ul>
+        </div>
+        <div style="margin-left:20vw;">
+            <main class="container d-flex flex-column align-items-center">
+                <main id="info_body">
+                    <div class="container text-center py-5">
+                        <h1>物件導向軟體工程</h1>
+                    </div>
+                </main>
+                <div class="col-12">
+                    <div id="top1">
+                        <div id="oo">
+                            <h1 class="mb-4">Design Pattern</h1>
+                            <div id="Abstract_Factory" class="dp">
+                                <h3>　　Abstract Factory</h3>
+                                <p class="mx-5 px-5 font_size">
+                                    使用時機：
+                                    <br>　　1. A system should be independent of how its products are created, composed,
+                                    and represented.
+                                    <br>　　系統應該從產品的創建、組合及表現中獨立出來
+
+                                    <br>　　2. A system should be configured with one of multiple families of products.
+                                    <br>　　一個系統應該被配置在產品系列中的其中一個
+
+                                    <br>　　3. A family of related product objects is designed to be used together, and
+                                    you need to enforce this constraint.
+                                    <br>　　一系列相關的產品物件被設計為一起使用，需要強制執行此約束
+
+                                    <br>　　4. Want to provide a class library of products, and want to reveal just their
+                                    interfaces, not their implementations.
+                                    <br>　　想提供產品的類別庫，且只想展示介面，而不是實作
+
+                                    <br><br>優點：
+                                    <br>　　1. It provides an uniform interface for the client to creating products of
+                                    different families.
+                                    <br>　　為客戶提供統一的界面來創建不同系列的產品
+
+                                    <br>　　2. It makes exchanging product families easy. It is easy to add new families
+                                    of products, provided that they share the same interface.
+                                    <br>　　它使交換產品系列變得容易。 很容易添加新的產品系列，只要它們共享相同的界面
+
+                                    <br>　　3. It promotes consistency among products.
+                                    <br>　　促進產品之間的一致性
+
+                                    <br><br>缺點：
+                                    <br>　　1. It is not easy to add a new family of products that require a different
+                                    product creation interface.
+                                    <br>　　添加需要不同產品創建界面的新產品系列並不容易
+
+                                    <br><br>範例：<a
+                                        href="https://skyyen999.gitbooks.io/-study-design-pattern-in-java/content/abstractFactory1.html">https://skyyen999.gitbooks.io/-study-design-pattern-in-java/content/abstractFactory1.html</a>
+                                </p>
+                            </div>
+                            <hr>
+                            <div id="Bridge_Pattern" class="dp">
+                                <h3>　　Bridge Pattern</h3>
+                                <p class="mx-5 px-5 font_size">
+                                    Decouple an abstraction from its implementation so that the two can vary
+                                    independently.
+                                    <br>將抽象和實作分離，以便兩者可以獨立
+
+                                    <br><br>使用時機：
+                                    <br>　　1. Want to avoid a permanent binding between an abstraction and its
+                                    implementation.
+                                    <br>　　想避免抽象及實作永久綁定
+                                    <br>　　2. Both the abstractions and their implementations should be extensible by
+                                    subclassing.
+                                    <br>　　抽象及實作都應該透過子類化來擴展
+                                    <br>　　3. Changes in the implementation of an abstraction should have no impact on
+                                    clients.
+                                    <br>　　抽象實作的變化應該要對客戶端沒有影響
+                                    <br>　　4. Want to hide the implementation of an abstraction completely from clients.
+                                    <br>　　想對客戶完全隱藏抽象的實作
+                                    <br>　　5. Want to share an implementation among multiple objects, and this fact
+                                    should be
+                                    hidden from the client.
+                                    <br>　　想在多個物件之間共享一個實作，且應該對客戶隱藏
+
+                                    <br><br>設計問題：
+                                    <br>　　1. Controller必須知道如何使用database
+                                    <br>　　2. Controller可能需要了解業務邏輯
+                                    <br>　　3. 由於每個controller都使用一個database，很多database的存取code會重複
+                                    <br>　　4. 使用不同類型的database，必須更改controller
+                                    <br>　　5. 如果database在不同機器上，controller必須能連上網
+                                    <br>　　6. 若所需的資訊分布在多個database中，controller須使用所有database
+
+                                </p>
+                            </div>
+                            <hr>
+                            <div id="Decorator_Pattern" class="dp">
+                                <h3>　　Decorator Pattern</h3>
+                                <p class="mx-5 px-5 font_size">
+                                    Attach additional responsibilities to an object dynamically. Decorators provide a
+                                    flexible alternative to subclassing for extending functionality.
+                                    <br>動態地將附加責任附加到物件。 裝飾器為擴展功能提供了一種靈活替代子類別的方法
+
+                                    <br><br>使用時機：(當想要增加類別的功能，但不想修改到現有類別的程式碼；或是要動態地添加新功能於類別上；或是該類別搭配不同的特性會有多種組合的情況)
+                                    <br>　　1. To add responsibilities to individual objects dynamically and
+                                    transparently, that is, without affecting other objects.
+                                    <br>　　動態地為單個物件新增責任，且不影響其他物件
+                                    <br>　　2. For responsibilities that can be withdrawn.
+                                    <br>　　對於可以撤銷的責任
+                                    <br>　　3. When extension by subclassing is impractical (too many subclasses–cannot be
+                                    subclassed).
+                                    <br>　　當透過子類別擴展不切實際時(太多子類無法作為子類)
+
+                                    <br><br>優點：
+                                    <br>　　動態地為某個類別提供多種額外的功能
+
+                                    <br><br>範例：<a
+                                        href="https://matthung0807.blogspot.com/2018/11/java-decorator-pattern.html">https://matthung0807.blogspot.com/2018/11/java-decorator-pattern.html</a>
+
+                                </p>
+                            </div>
+                            <hr>
+                            <div id="Strategy_Pattern" class="dp">
+                                <h3>　　Strategy Pattern</h3>
+                                <p class="mx-5 px-5 font_size">
+                                    有不同的行為
+
+                                    <br><br>使用時機：
+                                    <br>　　1. Many related classes differ only in their behavior. Strategies provide a
+                                    way to configure a class with one of many behaviors.
+                                    <br>　　許多相關類別僅在行為上有所不同。 策略模式提供了一種配置多種行為之一類別的方法。
+                                    <br>　　2. Need different variants of an algorithm. For example, you might define
+                                    algorithms reflecting different space/time trade-offs.
+                                    <br>　　需要算法的不同變體時。 例如，您可以定義反映不同空間/時間權衡的算法。
+                                    <br>　　3. An algorithm uses data that clients shouldn't know about. Use the Strategy
+                                    pattern to avoid exposing complex, algorithm-specific data structures.
+                                    <br>　　使用者不應該知道算法使用的資料時。 使用策略模式來避免暴露複雜的、特定於算法的資料結構。
+                                    <br>　　4. A class defines many behaviors, and these appear as multiple conditional
+                                    statements in its operations. Instead of many conditionals, move related conditional
+                                    branches into their own Strategy class.
+                                    <br>　　一個類別定義了許多行為，這些行為在其操作中表現為多個條件語句。 將相關的條件分支移到它們自己的策略類中，而不是許多條件。
+
+                                    <br><br>優點：
+                                    <br>　　靈活的替換不同的行為（演算法）
+                                    <br>　　策略拓展容易
+                                    <br>　　避免使用很多if else
+
+                                    <br><br>缺點：
+                                    <br>　　必須自行決定要使用哪種策略
+                                    <br>　　可能產生很多策略類
+
+                                    <br><br>範例：<a
+                                        href="https://skyyen999.gitbooks.io/-study-design-pattern-in-java/content/strategy.html">https://skyyen999.gitbooks.io/-study-design-pattern-in-java/content/strategy.html</a>
+
+                                </p>
+                            </div>
+                            <hr>
+                            <div id="Iterator_Pattern" class="dp">
+                                <h3>　　Iterator Pattern</h3>
+                                <p class="mx-5 px-5 font_size">
+                                    Iterator Pattern用途：
+                                    <br>　　1. Provides a way to access the elements of an aggregate object without
+                                    exposing its underlying representation.
+                                    <br>　　提供了一種在不暴露其底層表示的情況下訪問聚合對象的元素的方法
+                                    <br>　　2. Iterator pattern is to support multiple traversals of aggregate object.
+                                    <br>　　迭代器模式是支持聚合對象的多次遍歷
+                                    <br>　　3. It is to provide a uniform interface for traversing different aggregate
+                                    structures.
+                                    <br>　　為遍歷不同的聚合結構提供統一的接口
+
+                                    <br><br>缺點：
+                                    <br>　　無法動態新增刪除元素，因為使用 Iterator 的類別並不知道實作的機制，所以在任何時機點都有可能會破壞 Iterator 的正確性
+
+                                    <br><br>關注點分離，將如何使用元素的邏輯與如何巡訪的邏輯分開
+
+                                </p>
+                            </div>
+                            <hr>
+                            <div id="Command_Pattern" class="dp">
+                                <h3>　　Command Pattern</h3>
+                                <p class="mx-5 px-5 font_size">
+                                    優點：
+                                    <br>　　1. Each command object encapsulates an operation or request.
+                                    <br>　　每個命令物件都封裝了一個操作或請求
+                                    <br>　　2. The command pattern defines a uniform interface for executing different
+                                    operations.
+                                    <br>　　命令模式定義了用於執行不同操作的統一接口
+                                    <br>　　3. It decouples the client from the command objects.
+                                    <br>　　將客戶端與命令對象分離
+                                    <br>　　4. It is easy to introduce new command subclasses.
+                                    <br>　　很容易引入新的命令子類別
+                                    <br>　　5. Commands can be queued and executed at a later time.
+                                    <br>　　命令可以在一段時間後隊列和執行
+                                    <br>　　6. It supports undo and redo operations.
+                                    <br>　　支持復原和重做操作
+                                    <br>　　7. Commands can be composed to form composite commands using the composite
+                                    pattern.
+                                    <br>　　可以使用組合模式將命令組合以形成複合命令
+                                    <br>　　8. 將請求的物件和執行的物件分開
+                                    <br>　　9. 較容易的設計一個命令序列。
+                                    <br>　　10. 在需要的狀況下，可以較容易的將命令記入日誌。
+                                    <br>　　11. 允許接收請求的一方決定是否要否決請求。
+                                    <br>　　12. 可以容易的實現對請求的取消和重做。
+                                    <br>　　13. 由於加進新的具體命令類別不影響其他類別，因此增加新的具體命令類別很容易。
+
+                                    <br><br>範例：<a
+                                        href="https://ithelp.ithome.com.tw/articles/10204425">https://ithelp.ithome.com.tw/articles/10204425</a>
+
+                                </p>
+                            </div>
+                            <hr>
+                            <div id="Visitor_Pattern" class="dp">
+                                <h3>　　Visitor Pattern</h3>
+                                <p class="mx-5 px-5 font_size">
+                                    <br>　　1. Allows you to add methods to classes of different types without much
+                                    altering to those classes.
+                                    <br>　　允許您向不同類型的類別添加方法，而無需對這些類別進行太多更改
+                                    <br>　　2. Can make completely different methods depending on the class used.
+                                    <br>　　可以根據使用的類別製作完全不同的方法
+                                    <br>　　3. Allows you to define external classes that can extend other classes without
+                                    a majority of editing them.
+                                    <br>　　允許您定義可以擴展其他類別而無需進行大部分編輯的外部類別
+
+                                    <br><br>使用時機：
+                                    <br>　　1. An object structure contains many classes of objects with differing
+                                    interfaces, and you want to perform operations on these objects that depend on their
+                                    concrete classes.
+                                    <br>　　一個物件結構包含許多具有不同介面的物件類別，並且您希望對這些物件執行依賴於它們的具體類別的操作
+                                    <br>　　2. Many distinct and unrelated operations need to be performed on objects in
+                                    an object structure.
+                                    <br>　　需要對物件結構中的物件執行許多不同且不相關的操作
+                                    <br>　　3. The classes defining the object structure rarely change, but you often want
+                                    to define new operations over the structure.
+                                    <br>　　定義物件結構的類別很少改變，但你經常想在結構上定義新的操作
+                                    <br>　　4. 元素的個數是固定時
+                                    <br>　　5. 將處理和資料結構兩者分離開來
+                                    <br>　　6. 增加操作就等於是增加新的Visitor
+
+                                    <br><br>優點：
+                                    <br>　　1. higher cohesion：the visit methods of each concrete visitor implement one
+                                    functionality.
+                                    <br>　　更高的凝聚力：每個具體訪問者的visit方法實現一個功能
+                                    <br>　　2. support expert pattern：each concrete visitor class may store information
+                                    that is needed to fulfill the functionality, and the concrete visitor classes
+                                    collaborate with objects of the structure to fulfill the responsibility.
+                                    <br>　　支持專家模式：每個具體的訪問者類別都可以存儲實現功能所需的信息，且具體的訪問者類別與結構的物件協作以履行職責
+                                    <br>　　3. Easy to add analysis functions：simply add concrete visitor classes.
+                                    <br>　　易於添加分析功能：只需添加具體的訪客類
+                                    <br>　　4. Visitors can accumulate state as they visit each object of the class
+                                    structure.
+                                    <br>　　訪問者可以在訪問類別結構中的每個物件時累積狀態
+
+                                    <br><br>缺點：
+                                    <br>　　1. Adding a new class to the class structure is difficult：Need to add and
+                                    implement visit in each visitor class.
+                                    <br>　　在類別結構中添加一個新的類別是困難的：需要在每個訪問者類中添加並實現visit
+                                    <br>　　2. Breaking encapsulation of the class structure：A concrete visitor may need
+                                    to access to the internal states of the objects visited.
+                                    <br>　　打破類別結構的封裝：一個具體的訪問者可能需要存取訪問物件的內部狀態
+
+                                    <br><br>範例：<a
+                                        href="https://ithelp.ithome.com.tw/articles/10208766">https://ithelp.ithome.com.tw/articles/10208766</a>
+
+                                </p>
+                            </div>
+                            <hr>
+                            <div id="Memento_Pattern" class="dp">
+                                <h3>　　Memento Pattern</h3>
+                                <p class="mx-5 px-5 font_size">
+                                    <br>使用時機：
+                                    <br>　　1. A snapshot of (some portion of) an object's state must be saved so that it
+                                    can be restored to that state later
+                                    <br>　　必須保存物件狀態（某些部分）的快照，以便以後可以將其恢復到該狀態
+                                    <br>　　2. A direct interface to obtaining the state would expose implementation
+                                    details and break the object's encapsulation
+                                    <br>　　獲取狀態的直接介面會暴露實作細節並破壞物件的封裝
+
+                                    <br><br>參與者：
+                                    <br>　　Originator(發起者)：The object that knows how to save itself. Creates new Mementos
+                                    and assigns current values (internal state) to them. –uses the memento to restore
+                                    its internal state
+                                    <br>　　知道如何自救的對象。創建新的備忘錄並為其分配當前值（內部狀態），使用備忘錄恢復其內部狀態
+
+                                    <br>　　Caretaker(管理者)：The object that knows why and when the Originator needs to save
+                                    and restore itself. Responsible for the memento's safekeeping. Never operates on or
+                                    examines the contents of a memento.
+                                    <br>　　知道 Originator 為何以及何時需要保存和恢復自身的物件。負責保管備忘錄。從不操作或檢查備忘錄的內容
+
+                                    <br>　　Memento(備忘錄)：The memento may store as much or as little of the originator's
+                                    internal state as necessary at its originator's discretion.
+                                    <br>　　備忘錄可以根據其發起者的判斷，盡可能多或盡可能少地存儲發起者的內部狀態
+
+                                    <br><br>範例：<a
+                                        href="http://corrupt003-design-pattern.blogspot.com/2017/02/memento-pattern.html">http://corrupt003-design-pattern.blogspot.com/2017/02/memento-pattern.html</a>
+
+                                </p>
+                            </div>
+                            <hr>
+                            <div id="Singleton_Pattern" class="dp">
+                                <h3>　　Singleton Pattern</h3>
+                                <p class="mx-5 px-5 font_size">
+                                    <br>不要在 Singleton 裡寫複雜邏輯，Singleton 應該隨時保持單純
+                                    <br>Singleton 要解決的問題是唯一實例
+
+                                    <br><br>使用時機：
+                                    <br>　　1. There must be exactly one instance of a class, and it must be accessible to
+                                    clients from a well known access point
+                                    <br>　　一個類別必須只有一個實例，並且客戶端必須可以從眾所周知的訪問點訪問它
+                                    <br>　　2. The sole instance should be extensible by subclassing, and clients should
+                                    be able to use an extended instance without modifying their code
+                                    <br>　　當唯一的實例應該可以通過子類化進行擴展，並且客戶端應該能夠使用擴展的實例而不修改其程式碼
+
+                                    <br><br>優點：
+                                    <br>　　1. 簡單、方便。提供一個唯一的的入口來操作物件
+                                    <br>　　2. 確保資料的正確性，假設有一個物件存放著使用者的登入狀態，如果再建立另一個一樣的物件將無法確保他們都會有一樣的登入狀態
+
+                                    <br><br>範例：<a
+                                        href="https://ithelp.ithome.com.tw/articles/10221791">https://ithelp.ithome.com.tw/articles/10221791</a>
+
+                                </p>
+                            </div>
+                            <hr>
+                            <div id="Observer_Pattern" class="dp">
+                                <h3>　　Observer Pattern</h3>
+                                <p class="mx-5 px-5 font_size">
+                                    <br>Define a one-to-many dependency between objects so that when one object changes
+                                    state, all its dependents are notified and updated automatically
+                                    <br>定義物件之間的一對多依賴關係，這樣當一個物件改變狀態時，它的所有依賴項都會得到通知並自動更新
+
+                                    <br><br>Observer Pattern 實作的原理就是把獲取資料的部分抽離出來，並在資料改變時，同步送給所有的觀察者。
+                                    <br>且觀察者可以在任何時候決定是否要繼續接收資料
+
+                                    <br><br>使用時機：
+                                    <br>　　1. An abstraction has two aspects, one dependent on the other. Encapsulating
+                                    these aspects in separate objects lets you vary and reuse them independently
+                                    <br>　　一個抽象有兩個方面，一個依賴於另一個。 將這些方面封裝在單獨的物件中可以讓您獨立地改變和重用它們
+                                    <br>　　2. A change to one object requires changing others, and you don't know how
+                                    many objects need to be changed
+                                    <br>　　對一個物件的更改需要更改其他物件，而您不知道需要更改多少個物件
+                                    <br>　　3. An object should be able to notify other objects without making assumptions
+                                    about who these objects are. In other words, you don't want these objects tightly
+                                    coupled
+                                    <br>　　一個物件應該能夠通知其他物件，而無需假設這些物件是誰。 換句話說，你不希望這些物件緊密耦合
+                                    <br>　　4. 當多個 Class 都需要接收同一種資料的變化時，就適合使用 Observer Pattern
+
+                                    <br><br>Subject：
+                                    <br>　　1. knows its observers. Any number of Observer objects may observe a subject
+                                    <br>　　知道它的Observer，任意數量的Observer物件都可以觀察一個Subject
+                                    <br>　　2. provides an interface for attaching and detaching Observer objects
+                                    <br>　　提供一個介面，用於附加和分離觀察者物件
+
+                                    <br><br>Observer：
+                                    <br>　　defines an updating interface for objects that should be notified of changes
+                                    in a subject
+                                    <br>　　定義更新介面，該介面應該Subject主題更改的物件
+
+                                    <br><br>範例：<a
+                                        href="https://medium.com/enjoy-life-enjoy-coding/design-pattern-%E5%8F%AA%E8%A6%81%E4%BD%A0%E6%83%B3%E7%9F%A5%E9%81%93-%E6%88%91%E5%B0%B1%E5%91%8A%E8%A8%B4%E4%BD%A0-%E8%A7%80%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F-observer-pattern-feat-typescript-8c15dcb21622">https://medium.com/enjoy-life-enjoy-coding/design-pattern-%E5%8F%AA%E8%A6%81%E4%BD%A0%E6%83%B3%E7%9F%A5%E9%81%93-%E6%88%91%E5%B0%B1%E5%91%8A%E8%A8%B4%E4%BD%A0-%E8%A7%80%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F-observer-pattern-feat-typescript-8c15dcb21622</a>
+                                </p>
+                            </div>
+                            <hr>
+                            <div id="Chain_of_Responsibility" class="dp">
+                                <h3>　　Chain of Responsibility</h3>
+                                <p class="mx-5 px-5 font_size">
+                                    <br>避免耦合，將每個呼叫的要求透過鏈的概念傳遞
+                                    <br>每個邏輯流程會由多個handler串起
+                                    <br>會透過recrsive的方式詢問全部的handler
+
+                                    <br><br>使用時機：
+                                    <br>　　1. More than one object may handle a request, and the handler isn't known a
+                                    priori. The handler should be ascertained automatically
+                                    <br>　　多個對象可以處理一個請求，並且處理程序是先驗未知的。 應自動確定處理程序
+                                    <br>　　2. Want to issue a request to one of several objects without specifying the
+                                    receiver explicitly
+                                    <br>　　向多個對象之一發出請求而不明確指定接收者
+                                    <br>　　3. The set of objects that can handle a request should be specified
+                                    dynamically
+                                    <br>　　動態指定可以處理請求的物件集
+
+                                    <br><br>優點：
+                                    <br>　　1. 將邏輯物件化包裝
+                                    <br>　　2. 可以動態新增或刪減
+
+                                    <br><br>範例：<a
+                                        href="https://medium.com/bucketing/behavioral-patterns-chain-of-responsibility-pattern-81b27786758e">https://medium.com/bucketing/behavioral-patterns-chain-of-responsibility-pattern-81b27786758e</a>
+                                </p>
+                            </div>
+                            <hr>
+                            <div id="Adapter_Pattern" class="dp">
+                                <h3>　　Adapter Pattern</h3>
+                                <p class="mx-5 px-5 font_size">
+                                    <br>Connects incompatible components
+                                    <br>連接不兼容的組件
+                                    <br>It converts the interface of one component into another interface expected by the
+                                    other component
+                                    <br>它將一個組件的介面轉換為另一個組件所期望的另一個介面
+
+                                    <br><br>使用時機：
+                                    <br>　　1. Want to use an existing class, and its interface does not match the one you need
+                                    <br>　　使用一個現有的類別，它的介面與你需要的不匹配
+                                    <br>　　2. Want to create a reusable class that cooperates with unrelated or unforeseen
+                                    classes
+                                    <br>　　想創建一個與不相關或不可預見的類別合作的可重用類別
+                                    <br>　　3. Need to use several existing subclasses, but it's impractical to adapt their
+                                    interface by subclassing every one
+                                    <br>　　需要使用幾個現有的子類別，但是通過子類化每個介面來適應它們的介面是不切實際的
+
+                                    <br><br>優點：
+                                    <br>　　1. 符合單一職責原則
+                                    <br>　　2. 符合開放封閉原則，Adapter 讓原有的類別去適應了新的主程式，但並沒有改變原有的類別封裝好的行為
+
+                                    <br><br>範例：<a href="https://ithelp.ithome.com.tw/articles/10219666">https://ithelp.ithome.com.tw/articles/10219666</a>
+                                    <br>　　　<a href="https://ianjustin39.github.io/ianlife/design-pattern/adapter-pattern/#/_object-adapter--class-adapter">https://ianjustin39.github.io/ianlife/design-pattern/adapter-pattern/#/_object-adapter--class-adapter</a>
+
+                                    <br><br>物件適配器(Object Adapter)：
+                                    <br>　　將Adaptee放入Adapter中(將插頭放入轉接器中)
+
+                                    <br><br>類別適配器(Class Adapter)：
+                                    <br>　　透過多重繼承來實現，adapter同時繼承兩個以上的類別
+
+                                </p>
+                            </div>
+                            <hr>
+                            <div id="Flyweight_Pattern" class="dp">
+                                <h3>　　Flyweight Pattern</h3>
+                                <p class="mx-5 px-5 font_size">
+                                    <br>使用時機：
+                                    <br>　　1. an application uses a large number of objects
+                                    <br>　　一個應用程序使用了大量的物件
+                                    <br>　　2. storage costs are high because of the sheer quantity of objects
+                                    <br>　　由於物件數量龐大，存儲消耗很高
+                                    <br>　　3. most object state can be made extrinsic
+                                    <br>　　大多數物件的狀態都可以做成外部的
+                                    <br>　　4. many groups of objects may be replaced by relatively few shared objects once extrinsic state is removed
+                                    <br>　　一旦外部狀態被移除，許多物件組可能會被相對較少的共享物件所取代
+                                    <br>　　5. the application doesn't depend on object identity, since flyweight objects may be shared
+                                    <br>　　應用程序不依賴物件身份，因為輕量物件可以共享
+
+                                    <br><br>優點：
+                                    <br>　　1. Allow us to create a huge number of virtual objects
+                                    <br>　　允許創建大量的虛擬物件
+                                    <br>　　2. The pattern reduce memory footprint and speeds up our code
+                                    <br>　　該模式減少了內存佔用並加快了我們的程式碼速度
+                                    <br>　　3. The pattern simplifies our code
+                                    <br>　　該模式簡化了程式碼
+                                    <br>　　4. We can create very elegant code by combining the flyweight pattern with Composite, Singleton, Visitor, and other patterns
+                                    <br>　　可以通過將輕量模式與 Composite、Singleton、Visitor 和其他模式相結合來創建非常優雅的代碼
+
+                                    <br><br>範例：<a href="https://medium.com/bucketing/structural-patterns-flyweight-pattern-e8b9b83893fe">https://medium.com/bucketing/structural-patterns-flyweight-pattern-e8b9b83893fe</a>
+
+                                </p>
+                            </div>
+                            <hr>
+                            <div id="Builder_Pattern" class="dp">
+                                <h3>　　Builder Pattern</h3>
+                                <p class="mx-5 px-5 font_size">
+                                    <br>解決的問題：
+                                    <br>　　1. 拖太長的建構子 (telescoping constructor)
+                                    <br>　　2. 建構子內不需要的參數必須放 null
+
+                                    <br><br>使用時機：
+                                    <br>　　1. the algorithm for creating a complex object should be independent of the parts that make up the object and how they're assembled
+                                    <br>　　創建複雜物件的算法應該獨立於組成物件的部分以及它們的組裝方式
+                                    <br>　　2. the construction process must allow different representations for the object that's constructed
+                                    <br>　　建造過程必須允許對所建造的物件進行不同的表示
+                                    <br>　　3. if the manufacturing process of a product is complex, a concrete factory can delegate the product construction responsibility to a builder
+                                    <br>　　如果產品的製造過程複雜，具體工廠可以將產品的建造責任委託給建造者
+                                    <br>　　4. the design process and manufacturing process can change from product to product
+                                    <br>　　設計過程和製造過程可以因產品而異
+
+                                    <br><br>優點：
+                                    <br>　　1. Strict separation between data representation and the construction process
+                                    <br>　　數據表示和建造過程之間的嚴格分離
+                                    <br>　　2. The builder hides the representation and internal structure of the product from the supervisor
+                                    <br>　　建造者對管理者隱藏產品的表示和內部結構
+                                    <br>　　3. Convenient when a single product can be represented by several representations
+                                    <br>　　當一個產品可以由多個陳述表示時很方便
+                                    <br>　　4. Offer fine-grained control over construction process
+                                    <br>　　提供對建造過程的細度控制
+
+                                    <br><br>範例：<a href="https://medium.com/wenchin-rolls-around/%E8%A8%AD%E8%A8%88%E6%A8%A1%E5%BC%8F-%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F-builder-design-pattern-7c8eac7c9a7">https://medium.com/wenchin-rolls-around/%E8%A8%AD%E8%A8%88%E6%A8%A1%E5%BC%8F-%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F-builder-design-pattern-7c8eac7c9a7</a>
+
+                                </p>
+                            </div>
+                            <hr>
+                            <div id="Template_Pattern" class="dp">
+                                <h3>　　Template Pattern</h3>
+                                <p class="mx-5 px-5 font_size">
+                                    <br>優點：
+                                    <br>　　1. It defines the code skeleton with hook methods to provide varying behaviors implemented by subclasses
+                                    <br>　　它定義了帶有一些方法的代碼框架，以提供由子類別實現的不同行為
+                                    <br>　　2. It can be used to extract common code from the subclasses into a template method of the parent class to facilitate maintenance
+                                    <br>　　可用於將子類別中的公共程式碼提取到父類別的模板方法中，方便維護
+                                    <br>　　3. It reduces the effort required to implement the subclasses
+                                    <br>　　它減少了實作子類別所需的工作量
+                                    <br>　　4. The parent class may provide default implementations for the hook methods
+                                    <br>　　父類別可以為一些方法提供預設實作
+
+                                    <br><br>Important points about template method pattern：
+                                    <br>　　在父類別中的模板方法中調用子類別中的方法。不應覆蓋父類別中的模板方法，因此使其成為 final
+
+                                    <br><br>範例：<a href="https://medium.com/bucketing/behavioral-patterns-template-method-pattern-fb2a7766b501">https://medium.com/bucketing/behavioral-patterns-template-method-pattern-fb2a7766b501</a>
+
+                                </p>
+                            </div>
+                            <hr>
+                            <div id="Factory_Method" class="dp">
+                                <h3>　　Factory Method</h3>
+                                <p class="mx-5 px-5 font_size">
+                                    <br>使用時機：
+                                    <br>　　1. A class can’t anticipate the class of objects it must create
+                                    <br>　　一個類別不能預測它必須創建的物件類別
+                                    <br>　　2. A class wants its subclasses to specify the objects it creates
+                                    <br>　　一個類別希望它的子類別指定它創建的物件
+                                    <br>　　3. Classes delegate responsibility to one of several subclasses, and you want to localize the knowledge of which helper subclass is the delegate
+                                    <br>　　類別將責任委託給幾個子類別之一，並且您希望本地化有關哪個子類別是委託的知識
+
+                                    <br><br>需求時機：
+                                    <br>　　1. If there is an inheritance hierarchy, where a polymorphic creation is needed
+                                    <br>　　如果存在繼承層次結構，則需要多態創建
+                                    <br>　　2. If you end up writing lots of if/else blocks when deciding which concrete class to create
+                                    <br>　　如果您在決定創建哪個具體類別時編寫了大量if/else
+                                    <br>　　3. If you end up writing lots of switch statements when deciding which concrete class to create
+                                    <br>　　如果您在決定創建哪個具體類別時編寫了大量switch
+                                    <br>　　4. If you are unsure which concrete implementation of an interface to return
+                                    <br>　　如果您不確定要返回哪個介面的具體實作
+
+                                    <br><br>範例：<a href="https://carsonwah.github.io/factory-design-pattern.html">https://carsonwah.github.io/factory-design-pattern.html</a>
+
+                                </p>
+                            </div>
+                            <hr>
+                            <div id="Proxy_Pattern" class="dp">
+                                <h3>　　Proxy Pattern</h3>
+                                <p class="mx-5 px-5 font_size">
+                                    <br>使用時機：
+                                    <br>　　1. A remote proxy provides a local representative for an object in a different address space
+                                    <br>　　遠程代理為不同位址空間中的物件提供本地代表
+                                    <br>　　2. A virtual proxy creates expensive objects on demand
+                                    <br>　　虛擬代理按需求創建昂貴的物件
+                                    <br>　　3. A protection proxy controls access to the original object
+                                    <br>　　保護代理控制對原始物件的存取
+                                    <br>　　4. A smart reference is a replacement for a bare pointer that performs additional actions when an object is accessed.
+                                    <br>　　智慧代理是在訪問物件時執行附加操作的裸指針的替代品
+
+                                    <br><br>Remote proxy：
+                                    <br>　　1. providing a local presence for an object in a different address space
+                                    <br>　　為不同地址空間中的物件提供本地存在
+                                    <br>　　2. Operations on the proxies are delegated to a remote object and return values are passed through the proxy back to the client
+                                    <br>　　代理上的操作被委託給遠程物件，返回值通過代理傳遞回客戶端
+
+                                    <br><br>Virtual proxy：
+                                    <br>　　1. acting as a placeholder for an expensive object to be created later
+                                    <br>　　充當稍後創建的昂貴物件的佔位符
+
+                                    <br><br>Protection proxy：
+                                    <br>　　1. controlling access to another object according to access rights
+                                    <br>　　根據訪問權限控制對另一個物件的訪問
+                                    <br>　　2. Different clients may have different access levels for operating on an object
+                                    <br>　　不同的客戶端可能有不同的訪問級別來操作一個物件
+                                    <br>　　3. Read-only objects may be protected from unauthorized modifications this way
+                                    <br>　　唯讀對象可以通過這種方式受到保護，免受未經授權的修改
+                                    <br>　　4. Exceptions are thrown in such violation
+                                    <br>　　在這種違反情況下會拋出異常
+
+                                    <br><br>Smart reference proxy：
+                                    <br>　　1. performing additional actions when the original object is accessed
+                                    <br>　　在訪問原始物件時執行附加操作
+                                    <br>　　2. Locking / unlocking references to objects used from multiple threads
+                                    <br>　　鎖定/解鎖對從多個運作使用的物件的參考
+                                    <br>　　3. Reference counting, e.g., for resource management
+                                    <br>　　參考計數，例如，用於資源管理
+
+                                    <br><br>範例：<a href="https://ithelp.ithome.com.tw/articles/10205659">https://ithelp.ithome.com.tw/articles/10205659</a>
+                                    <br>　　　<a href="http://corrupt003-design-pattern.blogspot.com/2016/10/proxy-pattern.html">http://corrupt003-design-pattern.blogspot.com/2016/10/proxy-pattern.html</a>
+
+                                </p>
+                            </div>
+                            <hr>
+                            <div id="Composite_Pattern" class="dp">
+                                <h3>　　Composite Pattern</h3>
+                                <p class="mx-5 px-5 font_size">
+                                    <br>通常都是使用abstract class來作為component，且component需有所有leaf的方法(也可使用interface，但不常見)
+                                    <br><br>Composite屬於具象類別，除了實做component之外，也負責透過add與remove方法來記錄多個leaf
+                                    <br><br>Compose objects into tree structures to represent part-whole hierarchies
+                                    <br>將物件組合成樹結構以表示部分整體的層次
+
+                                    <br><br>優點：
+                                    <br>　　1. It makes the client simple
+                                    <br>　　它使客戶端變得簡單
+                                    <br>　　2. The client can treat composite objects and primitive objects uniformly
+                                    <br>　　客戶端可以統一處理組合物件和原始物件
+                                    <br>　　3. The client does not know if it is dealing with a composite or primitive object
+                                    <br>　　客戶端不知道它是在處理組合物件還是原始物件
+                                    <br>　　4. It is easy to add new kinds of composite or primitive component
+                                    <br>　　添加新的組合或原始組件很容易
+
+                                    <br><br>缺點：
+                                    <br>　　The client needs to ensure that integrity constraints are satisfied
+                                    <br>　　客戶需要確保滿足完整性約束
+
+                                    <br><br>範例：<a href="https://andyludeveloper.medium.com/design-pattern-%E7%B5%84%E5%90%88%E6%A8%A1%E5%BC%8F-composite-pattern-ca0d5e0309dc">https://andyludeveloper.medium.com/design-pattern-%E7%B5%84%E5%90%88%E6%A8%A1%E5%BC%8F-composite-pattern-ca0d5e0309dc</a>
+                                    <br>　　　<a href="https://ianjustin39.github.io/ianlife/design-pattern/composite-pattern/">https://ianjustin39.github.io/ianlife/design-pattern/composite-pattern/</a>
+
+                                    <br><br><strong style="color: red;">上課範例：child can’t add and remove child</strong>
+
+                                </p>
+                            </div>
+                            <hr>
+                            <div id="Prototype_Pattern" class="dp">
+                                <h3>　　Prototype Pattern</h3>
+                                <p class="mx-5 px-5 font_size">
+                                    <br>在clone時，將relationship也一起clone
+
+                                    <br><br>使用時機：
+                                    <br>　　1. A system should be independent of how its products are created, composed, and represented
+                                    <br>　　系統應該獨立於其產品的創建、組合和表示方式時
+                                    <br>　　2. When the classes to instantiate are specified at run-time
+                                    <br>　　當要實例化的類別在執行時期被指定時
+                                    <br>　　3. To avoid building a class hierarchy of factories that parallels the class hierarchy of products
+                                    <br>　　避免構建與的工廠層次的類別平行於產品層次的類別
+                                    <br>　　4. When instances of a class can have one of only a few different combinations of state
+                                    <br>　　當一個類別的實例可以有一個或只有一些不同組合的狀態
+
+                                    <br><br>優點：
+                                    <br>　　1. Reducing the number of classes
+                                    <br>　　減少類別的數量
+                                    <br>　　2. Easy to add/remove prototypes at run time
+                                    <br>　　易於在運行時期增加或減少原型
+                                    <br>　　3. As an alternative to abstract factory
+                                    <br>　　作為抽象工廠模式的替代
+                                    <br>　　4. Avoiding the factory hierarchy parallel to the product hierarchy
+                                    <br>　　避免工廠層次與產品層次平行
+
+                                    <br><br>缺點：
+                                    <br>　　1. Each subclass of Prototype must implement the clone operation
+                                    <br>　　Prototype的每個子類別都必須實作克隆操作	
+                                    <br>　　2. Implementing clone may be difficult if the component objects do not support cloning
+                                    <br>　　如果組件對像不支持克隆，實作克隆可能很困難
+                                    <br>　　3. Implementing clone may be difficult if there are circular references
+                                    <br>　　如果存在循環引用，實作克隆可能很困難
+
+                                    <br><br>Shallow cloning 淺克隆：
+                                    <br>　　Shallow cloning copies the top level of a tree, but anything pointed to from that top level (e.g., object properties) remains shared by both copies
+                                    <br>　　淺克隆複製樹的頂層，但從頂層指向的任何內容（例如，物件特性）仍由兩個複製品共享
+                                    <br><br>Deep cloning 深克隆：
+                                    <br>　　Deep cloning copies all levels of the tree, leaving no links between the source and the copy
+                                    <br>　　深度克隆複製樹的所有級別，在來源和複製品之間不留下任何鏈接
+
+                                    <br><br>範例：<a href="https://ithelp.ithome.com.tw/articles/10221129">https://ithelp.ithome.com.tw/articles/10221129</a>
+
+                                </p>
+                            </div>
+                            <hr>
+                            <div id="Mediator_Pattern" class="dp">
+                                <h3>　　Mediator Pattern</h3>
+                                <p class="mx-5 px-5 font_size">
+                                    <br>Define an object that encapsulates how a set of objects interact. Mediator promotes loose coupling by keeping objects from referring to each other explicitly, and it lets you vary their interaction independently
+                                    <br>定義一個物件，該物件封裝一組對像如何交互。 調解器通過防止對象相互顯式引用來促進鬆散耦合，它允許您獨立地改變它們的交互
+
+                                    <br><br>使用時機：
+                                    <br>　　1. a set of objects communicate in well-defined but complex ways. The resulting interdependencies are unstructured and difficult to understand
+                                    <br>　　一組物件以定義明確但複雜的方式進行通信。 由此產生的相互依存關係是非結構化的並且難以理解
+                                    <br>　　2. reusing an object is difficult because it refers to and communicates with many other objects
+                                    <br>　　重用一個物件是困難的，因為它引用許多其他物件並與之溝通
+                                    <br>　　3. a behavior that's distributed between several classes should be customizable without a lot of subclassing
+                                    <br>　　分佈在幾個類別之間的行為應該是可定制的，而不需要大量的子類化
+
+                                    <br><br><strong style="color: red;">Everything call mediator, mediator control everything</strong>
+
+                                    <br><br>範例：<a href="https://ithelp.ithome.com.tw/articles/10225660">https://ithelp.ithome.com.tw/articles/10225660</a>
+
+                                </p>
+                            </div>
+                            <hr>
+                            <div id="Facade_Pattern" class="dp">
+                                <h3>　　Facade Pattern</h3>
+                                <p class="mx-5 px-5 font_size">
+                                    <br>Provide a unified interface to a set of interfaces in a subsystem. Facade defines a higher-level interface that makes the subsystem easier to use
+                                    <br>為子系統提供統一的介面。 Facade定義了一個更高級的接口，使子系統更易於使用
+
+                                    <br><br>使用時機：
+                                    <br>　　1. want to provide a simple interface to a complex subsystem. A facade can provide a simple default view of the subsystem that is good enough for most clients
+                                    <br>　　想為複雜的子系統提供一個簡單的介面。 Facade可以提供一個簡單的子系統預設圖，這對大多數客戶端來說已經足夠了
+                                    <br>　　2. there are many dependencies between clients and the implementation classes of an abstraction
+                                    <br>　　客戶端和一個抽象的實作類別之間有很多依賴關係
+                                    <br>　　3. use a facade to define an entry point to each subsystem level. If subsystems are dependent, then you can simplify the dependencies between them by making them communicate with each other solely through their facades
+                                    <br>　　使用外觀定義每個子系統級別的入口點。 如果子系統是相互依賴的，那麼您可以通過使它們僅通過外觀相互通信來簡化它們之間的依賴關係
+
+                                    <br><br>優點：
+                                    <br>　　1. It hides the complex interactions from the client
+                                    <br>　　向客戶端隱藏了複雜的交互
+                                    <br>　　2. It makes the system components easier to reuse
+                                    <br>　　使系統組件更易於重用
+                                    <br>　　3. It reduces the coupling between the client and the system components
+                                    <br>　　降低了客戶端和系統組件之間的耦合
+                                    <br>　　4. It reduces the impact of changes to the system components
+                                    <br>　　減少了更改對系統組件的影響
+                                    <br>　　5. The client can still access to the system components
+                                    <br>　　客戶端仍然可以訪問系統組件
+
+                                    <br><br>範例：<a href="https://ithelp.ithome.com.tw/articles/10227186">https://ithelp.ithome.com.tw/articles/10227186</a>
+
+                                </p>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+
+</html>
