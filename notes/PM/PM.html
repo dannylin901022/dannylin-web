@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>專案管理</title>
+
+    <link rel="stylesheet" href="./PM.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./PM.js"></script>
+</head>
+
+<body>
+    <nav class="navbar bg-dark navbar-dark p-3 navbar-expand-lg" style="position: fixed;width: 100vw;">
+        <button class="btn btn-primary" id="nav_btn" type="button">
+            導覽列
+        </button>
+        <div class="container">
+            <a href="../../index.html" class="navbar-brand">
+                <h1>DL</h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarIcon">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarIcon">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="../../about/about.html" class="nav-link">關於</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../../resume/resume.html" class="nav-link">經歷</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../../portfolio/portfolio.html" class="nav-link">作品</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../notes.html" class="nav-link">筆記</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="d-flex">
+        <div id="sidebar" class="dropdown mt-3" style="position: fixed;top:100px;">
+            <h4 style="margin-left: 10px;">依照上課週次分類</h4>
+            <ul style="list-style-type: none;">
+                <li class="li_item"><a class="item" href="#Week1">Week1</a></li>
+                <li><a class="item" href="#Week2">Week2</a></li>
+                <li><a class="item" href="#Week3">Week3</a></li>
+                <li><a class="item" href="#Week4">Week4</a></li>
+                <li><a class="item" href="#Week5">Week5</a></li>
+                <li><a class="item" href="#Week6">Week6</a></li>
+                <li><a class="item" href="#Week7">Week7</a></li>
+                <li><a class="item" href="#Week8">Week8</a></li>
+                <li><a class="item" href="#Week9">Week9</a></li>
+                <li><a class="item" href="#Week10">Week10</a></li>
+                <li><a class="item" href="#Week11">Week11</a></li>
+            </ul>
+        </div>
+        <div style="margin-left:20vw;">
+            <main class="container d-flex flex-column align-items-center">
+                <main id="info_body">
+                    <div class="container text-center py-5">
+                        <h1>專案管理</h1>
+                    </div>
+                </main>
+                <div class="col-12">
+                    <div id="top1">
+                        <div id="PM">
+                            <h1 class="mb-4">專案管理</h1>
+                            <div id="Week1" class="dp">
+                                <h3>　　Week1</h3>
+                                <p class="mx-5 px-5 font_size">
+                                    <br>Project：完成需求
+                                    <br>Program：完成所有需求
+
+                                    <br><br>Project Defined(專案定義)：
+                                    <br>　　A temporary endeavor undertaken to create a unique product, service, or result
+                                    <br>　　為創造獨特的產品、服務、結果所做的短暫努力
+
+                                    <br><br>Major Characteristics of a Project(專案的主要特點)：
+                                    <br>　　1. Has an established objective
+                                    <br>　　有確立的目標
+                                    <br>　　2. Has a defined life span with a beginning and an end
+                                    <br>　　有生命週期(具有開始及結束)
+                                    <br>　　3. Involves several departments and professionals
+                                    <br>　　涉及一些部門及專業人士
+                                    <br>　　4. Involves doing something never been done before
+                                    <br>　　涉及之前從未做過的事
+                                    <br>　　5. Has specific time, cost, and performance requirements
+                                    <br>　　有特定時間、成本、表現需求
+
+                                    <br><br>Program Defined(計畫定義)：
+                                    <br>　　A group of related projects designed to accomplish a common goal over an extended period of time
+                                    <br>　　在較長的時間內完成共同目標的一組相關專案
+
+                                    <br><br>Program Management Defined(計劃管理定義)：
+                                    <br>　　A process of managing a group of ongoing, interdependent, related projects in a coordinated way to achieve strategic objectives
+                                    <br>　　以協調的方式管理一組正在進行的、相互依賴的、相關的項目以實現戰略目標的過程
+
+                                    <br><br><span><img src="./img1.png" class="img_size"></span>
+                                    <br>Project Life Cycle：
+                                    <br>　　Defining：Goals(目標)、Specifications(規範)、Tasks(任務)、Responsibilities(職責)
+                                    <br>　　Planning：Schedules(時程)、Budgets(預算)、Resources(資源)、Risks(風險)、Staffing(人員)
+                                    <br>　　Executing：Status reports(狀態報告)、Changes(變化)、Quality(質量)、Forecasts(預測)
+                                    <br>　　Closing：Train customer(培訓顧客)、Transfer documents(傳輸文檔)、Release resources(發布資源)、Evaluation(評估)、Lessons learned(經驗學習)
+
+                                    <br><br>Project Manager：
+                                    <br>　　Must induce the right people at the right time to address the right issues and make the right decisions
+                                    <br>　　必須在正確的時間引導正確的人解決正確的問題並做出正確的決定
+
+                                    <br><br>A Socio-Technical Approach：
+                                    <br>　　Technical Dimension(技術)：
+                                    <br>　　　　Consists of the formal, disciplined, purely logical parts of the process
+                                    <br>　　　　包含正式、有紀律、純邏輯部分的過程
+                                    <br>　　　　Includes planning, scheduling, and controlling projects
+                                    <br>　　　　包含計畫、排程、專案控制
+                                    <br><br>　　Sociocultural Dimension(社會)
+                                    <br>　　　　Centers on creating a temporary social system within a larger organizational environment that combines the talents of a divergent set of professionals working to complete the project
+                                    <br>　　　　在更大的組織環境中創建臨時社會系統來結合不同的專業人員完成該專案
+
+                                </p>
+                            </div>
+                            <hr>
+                            <div id="Week2" class="dp">
+                                <h3>　　Week2</h3>
+                                <p class="mx-5 px-5 font_size">
+                                    <br>Two main reasons project managers need to understand their organization’s mission and strategy：
+                                    <br>項目經理需要了解組織的任務及策略的兩個主要原因
+                                    <br>　　1. Make appropriate decisions and adjustments
+                                    <br>　　做出適當的決定和調整
+                                    <br>　　2. Be effective project advocates
+                                    <br>　　成為有效的專案提倡者
+
+                                    <br><br>Strategic Management Defined：(策略管理定義)
+                                    <br>　　1. Process of assessing “what we are” and deciding and implementing “what we intend to be and how we are going to get there"
+                                    <br>　　評估”定位”以及決定”方向及方法的過程
+                                    <br>　　2. A continuous, iterative process aimed at developing an integrated and coordinated long-term plan of action
+                                    <br>　　一個持續的、跌代的過程，發展一個綜合且協調的長期計劃
+                                    <br>　　3. Requires strong links among mission, goals, objectives, strategy, and implementation
+                                    <br>　　需要在任務、目標、目的、策略、實作中緊密連結
+
+                                    <br><br>Four Activities of the Strategic Management Process：
+                                    <br>　　1. Review and define the organizational mission (what we want to become)
+                                    <br>　　審查和定義組織任務
+                                    <br>　　2. Analyze and formulate strategies (what needs to be done)
+                                    <br>　　分析和制定策略
+                                    <br>　　3. Set objectives to achieve strategies (where a firm is headed、when it is going to get there)
+                                    <br>　　設定目標以實現策略
+                                    <br>　　4. Implement strategies through projects (how strategies will be realized)
+                                    <br>　　通過專案實施策略
+
+                                    <br><br>Characteristics of Objectives：(目標特質)
+                                    <br><span><img src="./img2.png" class="img_size"></span>
+                                    <br><br>Implementation of projects without a strong priority system linked to strategy create problems：(在沒有策略優先權系統的情況下實作專案會產生問題)
+                                    <br>　　　　1. The Implementation Gap
+                                    <br>　　　　實作差距
+                                    <br>　　　　2. Organization Politics
+                                    <br>　　　　組織政策
+                                    <br>　　　　3. Resource Conflicts and Multitasking
+                                    <br>　　　　資源衝突和多任務處理
+
+                                    <br><br>Project Classification：(專案分類)
+                                    <br>　　compliance projects(合規專案)、strategic projects(策略專案)、operational projects(運行專案)
+                                    <br><span><img src="./img3.png" class="img_size"></span>
+ 
+                                    <br><br>Phase Gate Model：
+                                    <br>　　A series of gates that a project must pass through in order to be completed
+                                    <br>　　專案必須通過才能完成的一系列閘門
+                                    <br>　　ensure that the organization is investing time and resources on worthwhile projects
+                                    <br>　　確保組織在有價值的專案上投入時間和資源
+                                    <br>　　Each gate is associated with a project phase and represents a decision point
+                                    <br>　　每個閘門都與一個專案相關聯且每一階段代表一個決策點
+                                    <br>　　A gate can lead to three possible outcomes: go (proceed), kill(cancel), or recycle (revise and resubmit)
+                                    <br>　　一個閘門可以導致三種可能的結果：go(繼續)、kill(取消)或recycle(修改並重新提交)
+
+                                    <br><br>Selection Criteria：(選擇標準<衡量標準>) 
+                                    <br>　　Financial Criteria：(財務標準)
+                                    <br>　　　　Payback Model：
+                                    <br>　　　　　　定義：
+                                    <br>　　　　　　　　衡量獲得專案投資回報所需的時間
+                                    <br>　　　　　　　　是最簡單、應用最廣泛的模型
+                                    <br>　　　　　　　　強調現金流
+                                    <br>　　　　　　缺點：
+                                    <br>　　　　　　　　忽略貨幣的時間價值
+                                    <br>　　　　　　　　不考慮盈利
+                                    <br><span><img src="./img4.png" class="img_size"></span>
+
+                                    <br><br><br>　　　　Net Present Value (NPV)：
+                                    <br>　　　　　　定義：
+                                    <br>　　　　　　　　使用最低期望回報率來計算所有淨現金流入的現值
+                                    <br>　　　　　　　　期望更高的正 NPV
+                                    <br>　　　　　　　　更現實，考慮貨幣的時間價值、現金流量和盈利能力
+                                    <br><span><img src="./img5.png" class="img_size"></span>
+		
+                                    <br><br>　　Nonfinancial Criteria：(非財務標準)
+                                    <br>　　　　衡量策略目標的範例：
+                                    <br>　　　　　　爭取更大的市場份額
+                                    <br>　　　　　　使競爭對手難以進入市場
+
+                                    <br><br>　　Multi-Criteria Selection：(多標準選擇)
+                                    <br>　　　　Checklist Models：
+                                    <br>　　　　　　使用問題用列表的方式來審查潛在的專案並確定接受與否
+                                    <br>　　　　　　不同類型的專案在選擇時具有更大的靈活性
+		
+                                    <br><br>Multi-Weighted Scoring Models：
+                                    <br>　　使用多個加權選擇標準來評估專案
+                                    <br>　　包括定性和/或定量標準
+                                    <br>　　允許與其他潛在專案進行比較
+ 
+                                    <br><br>Applying a Selection Model：
+                                    <br>　　1. Project Classification：(專案分類)
+                                    <br>　　　　確定專案是否符合組織戰略
+                                    <br>　　　　選擇模型(加權評分標準模型)
+                                    <br>　　2. Sources and Solicitation of Project Proposals(專案建議的來源和徵集)
+                                    <br>　　3. Ranking Proposal and Selection of Projects：(排名提案和專案選擇)
+                                    <br>　　　　根據可行性、對策略目標的潛在貢獻以及是否適合當前專案組合來評估每個提案
+                                    <br>　　　　根據給定的選擇標準和當前的投資組合拒絕或接受專案
+
+                                </p>
+                            </div>
+                            <hr>
+                            <div id="Week3" class="dp">
+                                <h3>　　Week3</h3>
+                                <p class="mx-5 px-5 font_size">
+                                    <br>Project Management Structures：(專案管理結構)
+                                    <br>　　Functional manager(職能經理)：依功能來分組，例如組員都是網路專長，那組長即為functional manager
+                                    <br><br>　　Project manager(專案經理)：依專案來分組，例如蓋房子的專案，組員要有會水電的，土木的，裝潢的，組長就是project manager
+                                    <br><br>　　Matrix manager(矩陣經理)：組長兼任以上兩種角色
+
+                                    <br><br>Functional organization：(功能組織)
+                                    <br>　　1. 最高管理層決定實施專案，並將專案的不同部分分配到適當的位置
+                                    <br>　　2. 通過正常的管理保持協調
+                                    <br>　　3. 當一個功能在完成專案的過程中能起到作用或對專案的成功具有利益時，使用該結構
+                                    <br>　　優點：
+                                    <br>　　　　1. 較無變化
+                                    <br>　　　　2. 靈活性高
+                                    <br>　　　　3. 深入的專業知識
+                                    <br>　　　　4. 簡易的專案後過渡
+                                    <br>　　缺點：
+                                    <br>　　　　1. 缺乏重點
+                                    <br>　　　　2. 整合力不足
+                                    <br>　　　　3. 實作較為緩慢
+                                    <br>　　　　4. 缺乏所有權
+                                    <br><span><img src="./img6.png" class="img_size"></span>
+	
+                                    <br><br>Dedicated project teams：(專門的專案團隊)
+                                    <br>　　1. 作為獨立於上級組織其餘部分的單位運作
+                                    <br>　　2. 指定一名專案經理來召集專門從事該項目的核心專家組
+                                    <br>　　3. 專案經理須從公司內外招聘必要的人員
+                                    <br>　　4. 在以該專案為主要業務形式的項目化組織中，整個組織的重點在於支持專案團隊
+                                    <br>　　5. Projectitis被視為該結構的負面維度。專案成員和組織的其他成員之間可能會形成we-they attitude，產生不同的群體
+                                    <br>　　優點：
+                                    <br>　　　　1. 簡單
+                                    <br>　　　　2. 快速
+                                    <br>　　　　3. 內聚
+                                    <br>　　　　4. 跨功能整合
+                                    <br>　　缺點：
+                                    <br>　　　　1. 費用高
+                                    <br>　　　　2. 容易產生內部紛爭
+                                    <br>　　　　3. 技術能力容易遭到限制
+                                    <br>　　　　4. 專案後過渡較為困難
+                                    <br><span><img src="./img7.png" class="img_size"></span>
+
+                                    <br><br>Matrix structure：(矩陣結構)
+                                    <br>　　1. 是一種混合組織形式
+                                    <br>　　　　(1) 通常有兩條控制鏈，一條沿著功能性，另一條沿著專案本身
+                                    <br>　　　　(2) 項目參與者同時向職能經理和專案經理報告
+                                    <br>　　2. Matrix structure重點在於優化資源利用
+                                    <br>　　　　(1) 個人能從事多個項目並能夠完成職責
+                                    <br>　　　　(2)	通過創建和合理化專案經理的權限來實現更大的整合
+                                    <br>　　　　(3)	提供功能/技術知識和專案需求的重點
+                                    <br>　　優點：
+                                    <br>　　　　1. 有效率
+                                    <br>　　　　2. 突出專案重點
+                                    <br>　　　　3. 更輕鬆的專案後過渡
+                                    <br>　　　　4. 靈活性較高
+                                    <br>　　缺點：
+                                    <br>　　　　1. 功能失調的衝突
+                                    <br>　　　　2. 內鬥
+                                    <br>　　　　3. 產生較大的壓力
+                                    <br>　　　　4. 執行較緩慢
+                                    <br><span><img src="./img8.png" class="img_size"></span>
+ 
+                                    <br><br>Matrix Form：
+                                    <br>　　1. Weak matrix(弱矩陣)：對於技術簡單的項目適合採用弱矩陣型組織
+                                    <br>　　　　(1)	只是有一個專案經理負責協調項目活動
+                                    <br>　　　　(2)	職能經理負責管理他們的工作
+                                    <br>　　　　(3)	專案經理負責制定進度表和清單，收集有關工作狀態的信息，並促進專案的完成
+                                    <br>　　在這種組織形式里，項目可能只有一個全職人員，即項目經理，項目成員不是直接從職能部門調派過來，而是利用他們在職能部門為項目提供服務。
+                                    <br><br>　　2. Balanced matrix(平衡矩陣)：對於有中等技術複雜程度而且周期較長的項目，適合採用平衡型矩陣組織
+                                    <br>　　　　(1)	專案經理負責定義需要完成的工作。專案經理需制定完成項目的總體計劃，整合不同專業的貢獻，設定時間表，監控進度等
+                                    <br>　　　　(2)	職能經理注重於如何完成任務。職能經理負責根據專案經理設定的標準和時間表分配人員並執行他們的工作
+                                    <br>　　平衡矩陣中對各項目均任命專案經理，並且賦予他應有的職權及責任，專案經理以對部門及該部門中主要工作(或重要)人員的管理為主，由職能經理負責各個職能項目團隊中一般人員的管理。
+                                    <br><br>　　3. Strong matrix(強矩陣)：對於技術複雜而且時間相對緊迫的項目，適合採用強矩陣組織
+                                    <br>　　　　(1)	專案經理控制項目的大部分方面，包括範圍權衡和職能人員的分配。專案經理控制專家何時做什麼以及做什麼，並對重大項目決策擁有最終決定權。
+                                    <br>　　　　(2)	職能經理對他們的員工擁有所有權，並根據需要進行諮詢
+                                    <br>　　強矩陣組織結構在系統原有的職能組織結構的基礎上，由系統的最高領導任命對專案全權負責的專案經理，專案經理直接向最高領導負責
+
+                                    <br><br>Project Management Office(PMO)：
+                                    <br>　　是組織或部門內監督和支持專案執行的集中單位
+                                    <br>　　在幫助矩陣系統成長為更有效的專案交付平台方面發揮著關鍵作用
+                                    <br>　　分為不同種類：
+                                    <br>　　　　1. Weather station：跟踪和監控專案績效
+                                    <br>　　　　2. Control tower：改善專案執行
+                                    <br>　　　　3. Resource pool：為組織提供專案經理和專業人員
+                                    <br>　　　　4. Command and control center：對專案有直接的權力
+
+                                    <br><br>正確的專案管理結構判斷時須考量的項目：
+                                    <br>　　組織方面：
+                                    <br>　　　　1. 專案管理對公司的成功有多重要
+                                    <br>　　　　2. 多少百分比的核心工作涉及專案
+                                    <br>　　　　3. 可用的資源有多少
+                                    <br>　　專案方面：
+                                    <br>　　　　1. 專案規模
+                                    <br>　　　　2. 策略重要性
+                                    <br>　　　　3. 新穎性和創新需求
+                                    <br>　　　　4. 整合需求(涉及的部門數量)
+                                    <br>　　　　5. 環境複雜性(外部接口數量)
+                                    <br>　　　　6. 預算和時間限制
+                                    <br>　　　　7. 資源需求的穩定性
+
+                                    <br><br>Organizational Culture：(組織文化)
+                                    <br>　　1. 是一個共享規範、信念、價值觀和假設的系統，從而創造共享的意義
+                                    <br>　　2. 反映組織的個性
+                                    <br>　　3. 組織中執行的重要功能：
+                                    <br>　　　　(1)	為成員提供認同感
+                                    <br>　　　　(2)	幫助管理系統合理化
+                                    <br>　　　　(3)	闡明並加強行為標準
+                                    <br>　　　　(4)	幫助建立社會秩序
+
+                                </p>
+                            </div>
+                            <hr>
+                            <div id="Week4" class="dp">
+                                <h3>　　Week4</h3>
+                                <p class="mx-5 px-5 font_size">
+                                    <br>Project Scope：(專案範圍)
+                                    <br>　　1. 是對專案最終結果或任務的定義(ex：為客戶/顧客提供的產品或服務)
+                                    <br>　　2. 以具體、有形和及可衡量的方式定義要實現的結果
+
+                                    <br><br>Purposes of the Project Scope Statement：(專案範圍說明書的目的)
+                                    <br>　　1. 為最終用戶明確定義可交付成果
+                                    <br>　　2. 直接關注客戶和專案參與者的專案目的
+                                    <br>　　3. 供專案所有者和專案參與者發布和使用，用於規劃和衡量專案
+                                    <br>　　內容應該完全包含專案章程有關專案範圍的所有資訊，如在發展專案範圍說明書之間，對專案章程有疑問，應該與專案資助人討論並釐清疑點。
+
+                                    <br><br>專案範圍說明書包括：
+                                    <br>　　1. 產品範疇說明書－描述專案所要產生的產品或服務
+                                    <br>　　2. 允收條件－所有交付標的應該達到的標準，也就是驗收的標準
+                                    <br>　　3. 專案排除事項－專案範圍除了專案該做的之外，還要釐清專案不該做的
+                                    <br>　　4. 限制條件－一定要遵守的事項
+                                    <br>　　5. 假設事項－專案在規劃時會需要對未來不確定的事情先做一假設，否則無法進行後續規劃
+
+                                    <br><br>Project Scope Checklist：(專案範圍清單)
+                                    <br>　　1. Project objective 專案目標
+                                    <br>　　2. Product scope description 產品範圍說明
+                                    <br>　　3. Justification 理由
+                                    <br>　　4. Deliverables 可交付成果
+                                    <br>　　5. Milestones 里程碑
+                                    <br>　　6. Technical requirements 技術需求
+                                    <br>　　7. Limits and exclusions 限制及排斥
+                                    <br>　　8. Acceptance criteria 驗收標準
+
+                                    <br><br>Scope Statements：(範圍說明書)
+                                    <br>　　1. 是一個簡短的、一至兩頁的範圍關鍵元素摘要，是每個元素的擴展文檔
+                                    <br>　　2. 也稱為工作說明書(SOWs)
+
+                                    <br><br>Project Charter：(專案章程)
+                                    <br>　　1. 是授權專案經理啟動和領導專案的文件
+                                    <br>　　2. 包括簡短的範圍描述以及風險限制、業務案例、支出限制等項目
+
+                                    <br><br>Scope Creep：(範圍蔓延)
+                                    <br>　　專案範圍是否有隨時間擴展的趨勢(通常是通過改變需求、規範和優先級)
+                                    <br>　　一個變更引發了另一個變更，且因為已經做了第一個變更，只好做下一個，然而，一個又一個接踵而至，直至難以辨別專案的範疇為何
+                                    <br>　　原因：
+                                    <br>　　　　1. Poor requirement analysis需求分析不佳
+                                    <br>　　　　2. Not involving users early enough沒有及早讓用戶參與
+                                    <br>　　　　3. Underestimating project complexity低估專案的複雜性
+                                    <br>　　　　4. Lack of change control 缺乏變更控制
+                                    <br>　　　　5. Gold plating 鍍金：對專案不一定有加分效果，但可能因多餘的事情而造成成本的增加、範圍的增加等
+
+                                    <br><br>專案經理的三個權衡標準：
+                                    <br>　　1. Cost(budget) 成本(預算)
+                                    <br>　　2. Time(schedule) 時間(進度)
+                                    <br>　　3. Performance(scope) 績效(範圍)
+                                    <br><span><img src="./img9.png" class="img_size" style="width:300px;"></span>
+
+                                    <br><br>專案經理可以通過專案的優先級矩陣來管理專案權衡：
+                                    <br>　　1. Constrain(約束)：原始參數是固定的
+                                    <br>　　2. Enhance(增進)：一個標準應該被優化
+                                    <br>　　3. Accept(接受度)：可以容忍不符合原始參數的標準
+
+                                    <br><br>Work Breakdown Structure(WBS)：(工作分解結構)
+                                    <br>　　1. 是具有不同詳細程度的專案的分層大綱
+                                    <br>　　2. 識別專案中涉及的產品和工作要素
+                                    <br>　　3. 定義最終可交付成果(專案本身)與其子項目之可交付成果的關係
+                                    <br>　　4. 作為跟踪成本和工作績效的框架
+                                    <br>　　5. 適合用來設計和建構具有切實成果的專案
+
+                                    <br><br>WBS的功能：
+                                    <br>　　1. 向專案經理保證所有產品和工作要素都已識別，將專案與當前組織整合，並建立控制基礎
+                                    <br>　　2. 促進在專案生命週期內對組織中各個級別的成本、時間和技術性能進行評估
+                                    <br>　　3. 提供適合每個組織級別信息的管理
+                                    <br>　　4. 幫助專案經理計劃、安排和編列專案預算
+                                    <br>　　5. 幫助開發組織分解結構(OBS)，將專案責任分配給組織單位和個人
+                                    <br>　　6. 提供將較小工作的預算和實際成本總計為較大工作元素的機會
+                                    <br>　　7. 定義溝通渠道並協助理解和協調專案的許多部分
+
+                                    <br><br>Work Package：(工作包)
+                                    <br>　　1. WBS中的最低層
+                                    <br>　　2. 是一種具有明確起點和終點、消耗資源、表示成本的短期任務
+                                    <br>　　3. 不應超過10個工作日或一個報告期
+                                    <br>　　4. 應盡可能獨立於同專案中的其他工作包
+                                    <br>　　5. 是用於計劃、進度安排和控制專案的基本單位
+
+                                    <br><br>WBS中的各個工作包：
+                                    <br>　　what：定義工作
+                                    <br>　　how long：確定完成工作包的時間
+                                    <br>　　cost：確定完成工作包的分時預算
+                                    <br>　　how much：完成工作包所需的資源
+                                    <br>　　who：標識負責工作單元的人
+                                    <br>　　how well：確定用於衡量進展的監測點
+
+                                    <br><br>Organization Breakdown Structure(OBS)：組織分解結構
+                                    <br>　　1. 描述公司如何組織以履行工作職責
+                                    <br>　　2. 提供一個框架來總結組織單位的工作績效
+                                    <br>　　3. 確定負責工作包的組織單位
+                                    <br>　　4. 將組織單位與成本控制帳戶聯繫起來
+
+                                    <br><br>Process Breakdown Structure(PBS)：過程分解結構
+                                    <br>　　用於面向過程的專案(process-oriented project)
+
+                                    <br><br>Process-oriented projects：
+                                    <br>　　1. 是一個”最終結果是一系列步驟和階段的產物”的專案
+                                    <br>　　2. 是一個隨時間發展的專案，每個階段都會影響下一階段
+                                    <br>　　3. 是一個由績效要求而非計劃驅動的專案
+
+                                    <br><br>Responsibility Matrix(RM)：責任矩陣
+                                    <br>　　1. 也稱為線性責任圖
+                                    <br>　　2. 總結要完成的任務以及誰負責項目中的哪個內容
+                                    <br>　　3. 列出所有專案活動和負責每項活動的參與者
+                                    <br>　　4. 闡明需要協調的單位和個人之間的接口
+                                    <br>　　5. 為專案中的所有參與者提供查看其職責並將其分配達成一致的方法
+                                    <br>　　6. 闡明每個參與者權力的範圍或類型
+
+                                </p>
+                            </div>
+                            <hr>
+                            <div id="Week5" class="dp">
+                                <h3>　　Week5</h3>
+                                <p class="mx-5 px-5 font_size">
+                                    <br>Project Estimating：(專案評估)
+                                    <br>　　定義：
+                                    <br>　　　　1. 是預測或評估完成專案可交付成果的時間和成本的過程
+                                    <br>　　　　2. 是一種權衡，平衡高準確性的好處與確保提高準確性需耗費的成本
+                                    <br>　　類型：
+                                    <br>　　　　Top-down：評估模擬、群體共識或數學關係
+                                    <br>　　　　Bottom-up：對工作分解結構中的元素進行評估
+
+                                    <br><br>Factors Influencing the Quality of Estimates：(影響評估質量的因素)
+                                    <br>　　1. Planning Horizon 計畫水平
+                                    <br>　　2. Project Complexity 專案複雜度
+                                    <br>　　3. People-Project Structure and Organization 人與專案的結構與組織
+                                    <br>　　4. Padding Estimates 填充評估
+                                    <br>　　5. Organizational Culture 組織文化
+
+                                    <br><br>Estimating Guidelines for Times, Costs, and Resources：(時間、成本和資源的估算準則)
+                                    <br>　　1. Responsibility 責任
+                                    <br>　　2. The use of several people to estimate 多人評估
+                                    <br>　　3. Normal conditions 正常情況
+                                    <br>　　4. Time units 時間單位
+                                    <br>　　5. Independence 獨立性
+                                    <br>　　6. Contingencies 突發性
+                                    <br>　　7. Risk assessment added to the estimate to avoid surprises to stakeholders 
+                                    <br>　　將風險添加到評估中以避免給利益相關者帶來意外
+
+                                    <br><br>Top-Down Estimates：
+                                    <br>　　通常來自使用經驗或信息來確定專案持續時間和總成本
+                                    <br>　　有時，高層管理人員對用於完成專案的組成活動知之甚少
+
+                                    <br><br>Bottom-Up Estimates：
+                                    <br>　　在專案被詳細定義之後進行
+                                    <br>　　將工作包和相關成本匯總到主要可交付成果來檢查WBS中的成本要素
+                                    <br>　　將低成本、高效的方法與任何強加的限制進行比較
+
+                                    <br><br>定義專案的方式：
+                                    <br>　　1. 進行粗略的Top-down評估
+                                    <br>　　2. 發展WBS/OBS
+                                    <br>　　3. 進行Bottom-up評估
+                                    <br>　　4. 制定時間表和預算
+                                    <br>　　5. 協調Top-down和Bottom-up評估之間的差異
+
+                                    <br><br>評估方式的耗時及成本：
+                                    <br>　　Top-Down：
+                                    <br>　　　　1. Consensus Method 共識法
+                                    <br>　　　　2. Ratio Method 比率法
+                                    <br>　　　　3. Apportion Method 分配法
+                                    <br>　　　　4. Function Point Methods for Software and System Projects軟體及系統專案的功能點方法
+                                    <br>　　　　5. Learning Curves 學習曲線
+                                    <br>　　Bottom-Up：
+                                    <br>　　　　1. Template Method 模板法
+                                    <br>　　　　2. Parametric Procedures Applied to Specific Tasks 應用於特定任務的參數程序
+                                    <br>　　　　3. Range Estimating 範圍評估
+
+                                    <br><br>Level of Detail：(詳細程度)
+                                    <br>　　WBS的詳細程度因以下因素而異：
+                                    <br>　　　　1. 專案的複雜性
+                                    <br>　　　　2. 控制需求
+                                    <br>　　　　3. 專案規模、成本和持續時間
+                                    <br>　　Excessive detail：(過多的細節)
+                                    <br>　　　　1. 強調部門成果而不是可交付成果
+                                    <br>　　　　2. 創建無效率的工作
+                                    <br>　　Inadequate detail：(細節不足)
+                                    <br>　　　　未能滿足結構的需要
+
+                                    <br><br>Types of Costs：(成本類型)
+                                    <br>　　Direct Costs：(直接成本)
+                                    <br>　　　　明確負責特定的工作包(ex：勞動力、材料、設備等)
+                                    <br>　　Direct Project Overhead Costs：(直接專案間接成本)
+                                    <br>　　　　可以綁定到專案可交付成果或工作包(ex：專案經理的薪水、專案團隊的臨時租賃空間、用品等)
+                                    <br>　　General and Administrative Overhead Costs：(一般和行政(G&A)間接費用)
+                                    <br>　　　　不直接關係到特定專案(ex：廣告、會計、高級管理人員薪酬等)
+
+                                    <br><br>Refining Estimates：(精煉評估)
+                                    <br>　　調整評估的原因：
+                                    <br>　　　　1. 交互成本隱藏在評估中
+                                    <br>　　　　2. 正常條件不適用
+                                    <br>　　　　3. 專案出現問題
+                                    <br>　　　　4. 專案範圍和計劃發生變化
+                                    <br>　　　　5. 進行策略性的虛假陳述
+
+                                    <br><br>Mega Projects：(大型專案)
+                                    <br>　　定義：
+                                    <br>　　　　1. 是大型、複雜的企業，通常需要耗費大量資金與時間並涉及多個私人和公共利益相關者
+                                    <br>　　　　Ex：高鐵、機場、奧運會等
+                                    <br>　　　　2. 經常遭遇雙重打擊(禍不單行)
+                                    <br>　　　　Ex：專案成本遠高於預期，且未能充分發揮專案應提供的效益
+                                    <br>　　　　3. 有時被稱為” white elephant”
+                                    <br>　　　　原因：專案超出預算，低於價值，維護專案的成本超過了收益
+
+                                    <br><br>Reference Class Forecasting(RCF)：(參考類別預測)
+                                    <br>　　定義：
+                                    <br>　　　　是一種由考慮到在過去所採取的類似行動的成果和其結果的預測方法
+                                    <br>　　優點：
+                                    <br>　　　　1. 外部經驗資料減輕了人為偏見
+                                    <br>　　　　2. 政策、策略和促進力量很難忽視外部的RCF資訊
+                                    <br>　　　　3. 可作為資助大型專案的實際檢查
+                                    <br>　　　　4. 為專案應急基金提供基礎
+
+                                </p>
+                            </div>
+                            <hr>
+                            <div id="Week6" class="dp">
+                                <h3>　　Week6</h3>
+                                <p class="mx-5 px-5 font_size">
+                                    <br>Project Network：(專案網路)(時序圖sequence diagram)
+                                    <br>　　定義：
+                                    <br>　　　　1. 是一個流程圖，描述必須完成的專案活動、邏輯順序、活動的相互依賴性、活動開始和結束的時間及通過網絡的關鍵路徑(最長路徑)
+                                    <br>　　　　2. 為安排勞動力和設備提供基礎
+                                    <br>　　　　3. 加強專案利益相關者之間的溝通
+                                    <br>　　　　4. 提供專案持續時間的估計
+                                    <br>　　　　5. 為現金流量預算提供基礎
+                                    <br>　　　　6. 確認”關鍵”活動，需要優先執
+                                    <br>　　　　7. 顯示需考慮壓縮專案工期的活動
+                                    <br>　　　　8. 幫助制定並遵守專案計劃
+
+                                    <br><br>Project Network Terminology：(專案網路術語)
+                                    <br>　　1. Activity(活動)：專案中需要時間但可能不需要資源的元素
+                                    <br>　　2. Parallel activities(平行活動)：可以同時進行的活動
+                                    <br>　　3. Burst activity(突發活動)：一個活動後有多個活動緊跟其後(不止一個從它指出的依賴箭頭)
+                                    <br><span>　　<img src="./img10.png" class="img_size" style="width:200px;"></span>
+                                    <br>　　4. Merge activity(合併活動)：一項活動在其前面有多個活動(多個箭頭指向它)
+                                    <br><span>　　<img src="./img11.png" class="img_size" style="width:200px;"></span>
+                                    <br>　　5. Path(路徑)：一系列相互關聯、相互依賴的活動
+                                    <br>　　6. Critical path(關鍵路徑)：通過網絡持續時間最長的路徑
+ 
+                                    <br><br>兩種繪製方法：
+                                    <br>　　Activity-on-Node(AON)：使用節點來描述活動
+                                    <br>　　Activity-on-Arrow(AOA)：使用箭頭來描述活動
+                                    <br><span><img src="./img12.png" class="img_size"></span>
+
+                                    <br><br>開發專案網路的基本規則：
+                                    <br>　　1. 網路流程圖通常從左指向右
+                                    <br>　　2. 一項活動只有在所有之前的相關活動都完成後才能開始
+                                    <br>　　3. 網路的箭頭表示前例和流程，可以相互交叉
+                                    <br>　　4. 每項活動都有唯一的標示號碼
+                                    <br>　　5. 後方活動的標示號碼必須大於之前的任何活動的標示號碼
+                                    <br>　　6. 不允許循環、條件語句
+                                    <br>　　7. 在有多個開始的情況下，可以使用一個公共開始節點作為網路中一個明確的專案起點
+
+                                    <br><br>Network Computation Process：(網路計算過程)
+                                    <br>　　Forward Pass：(正向運算)
+                                    <br>　　　　1. How soon can the activity start ? (early start—ES)
+                                    <br>　　　　活動多久可以開始
+                                    <br>　　　　2. How soon can the activity finish? (early finish—EF)
+                                    <br>　　　　活動多久可以結束
+                                    <br>　　　　3. How soon can the project finish? (expected time—TE)
+                                    <br>　　　　專案多久可以完成
+                                    <br><br>　　Backward Pass：(反向運算)
+                                    <br>　　　　1. How late can the activity start? (late start—LS)
+                                    <br>　　　　活動最遲什麼時候開始
+                                    <br>　　　　2. How late can the activity finish? (late finish—LF)
+                                    <br>　　　　活動最遲多久結束
+                                    <br>　　　　3. Which activities represent the critical path? (critical path—CP)
+                                    <br>　　　　哪些活動代表關鍵路徑
+                                    <br>　　　　4. How long can the activity be delayed? (slack or float—SL)
+                                    <br>　　　　活動可以延遲多長時間
+ 
+                                    <br><br>Forward Pass Computation：(正向運算)
+                                    <br>　　1. 沿著網路中的每條路徑添加活動時間(ES+ Duration<持續時間> = EF)
+                                    <br>　　2. 將EF帶到下一個活動，並設置為ES
+                                    <br>　　3. 若下一個後續活動是合併活動，所有前置活動中最大EF將會被選擇
+
+                                    <br><br>Backward Pass Computation：(反向運算)
+                                    <br>　　1. 從專案結束活動沿每條路徑減去活動時間(LF - Duration<持續時間> = LS)
+                                    <br>　　2. 將LS帶到下一個活動，並設置為LF
+                                    <br>　　3. 若下一個後續活動是突發活動，所有後續活動中最小LS將會被選擇
+
+                                    <br><br>Slack Times：(寬鬆時間)(在不影響專案期限下，特定專案可以最晚開始或完成的時間)
+                                    <br>　　Total Slack：
+                                    <br>　　　　1. 定義活動可以延遲的時間量，而不是延遲專案的時間量
+                                    <br>　　　　2. 在不影響專案結束日期的情況下，一項活動可以超過其最早完成日期多長時間
+                                    <br>　　　　3. LS和ES的差(LS-ES=SL)或LF和EF的差(LF-EF=SL)
+
+                                    <br>　　Free Slack：
+                                    <br>　　　　1. 在不延遲後續活動的情況下可以延遲活動的時間量
+                                    <br>　　　　2. 在不影響任何後續活動的最早開始日期的情況下，一項活動可以超過其最早完成日期多長時間
+                                    <br>　　　　3. 允許靈活地安排資源
+                                    <br>　　　　4. 發生在活動鏈末尾的活動，且有一個合併活動
+
+                                    <br><br>Critical Path：(關鍵路徑)
+                                    <br>　　1. 網路路徑是否具有最少的共同寬鬆度(slack)
+                                    <br>　　2. 是通過活動網路的最長路徑
+                                    <br>　　3. 是整個專案可以完成的最短時間，且會影響完成時間
+                                    <br>　　4. 建議選用優秀人才
+                                    <br>　　5. 風險評估時要特別注意的部分
+                                    <br>　　6. 其他經理要求”借用”人員或設備時，忽略的部分
+                                    <br>　　7. 當沒有時間監控所有活動時，作為可以查看的地方
+
+                                    <br><br>Sensitivity：(靈敏度)
+                                    <br>　　1. Network sensitivity(網路靈敏度)是專案啟動後原始關鍵路徑發生變化的可能性
+                                    <br>　　2. 只有一個關鍵路徑和具有大量鬆弛的非關鍵活動的網路排程將被標記為”不靈敏”
+
+                                    <br><br>Extended Network Techniques：(擴展網路技術)
+                                    <br>　　Laddering：(階梯式)
+                                    <br>　　　　活動被分成幾個部分，以便後續活動可以更快地開始而不耽誤工作
+                                    <br>　　Use of Lags to Reduce Schedule Detail and Project Duration：(透過停滯的方式減少排程細節和專案持續時間)
+                                    <br>　　　　1. 停滯是相關活動延遲開始或結束的最短時間
+                                    <br>　　　　2. 冗長的活動被分解，以減少後續活動開始的延遲
+                                    <br>　　　　3. 停滯可用於約束完成到開始、開始到開始、完成到完成、開始到完成等組合關係
+
+                                    <br><br>Hammock Activity：(吊床活動)
+                                    <br>　　1. 跨越專案的一部分
+                                    <br>　　2. 持續時間在網路規劃制定後確定
+                                    <br>　　3. 在分配和控制間接專案成本方面非常有用
+                                    <br>　　4. 用於聚合專案的各個部分，以便於獲得專案特定部分的正確詳細資訊
+
+                                </p>
+                            </div>
+                            <hr>
+                            <div id="Week7" class="dp">
+                                <h3>　　Week7</h3>
+                                <p class="mx-5 px-5 font_size">
+                                    <br>Risk Defined(風險定義)：
+                                    <br>　　1. 不確定的事件或條件，如果發生，會對項目目標產生積極或消極的影響
+                                    <br>　　2. 再多的計劃也無法避免或控制風險
+
+                                    <br><br>Risk Management Defined(風險管理定義)：
+                                    <br>　　嘗試確認專案實施時可能發生的潛在或不可預見的問題點
+                                    <br>　　1. What can go wrong (risk event)
+                                    <br>　　什麼可能出錯（風險事件）
+                                    <br>　　2. How to minimize the risk event’s impact (consequences) 
+                                    <br>　　如何將風險影響降到最低（結果）
+                                    <br>　　3. What can be done before an event occurs (anticipation)
+                                    <br>　　事件發生前可以做什麼（預期）
+                                    <br>　　4. What to do when an event occurs (contingency plans)
+                                    <br>　　事件發生時該怎麼辦（應急計劃）
+                                    <br><span><img src="./img13.png" class="img_size"></span>
+ 
+                                    <br><br>風險管理的好處：
+                                    <br>　　1. 主動而非被動的方法
+                                    <br>　　2. 減少意外和負面結果
+                                    <br>　　3. 準備專案經理採取適當的行動
+                                    <br>　　4. 提高按時、在預算範圍內實現專案目標並達到所需績效的機會
+
+                                    <br><br>定義專案風險：
+                                    <br>　　1. Risk Identification(風險識別)：
+                                    <br>　　　　(1) 通過集思廣益和其他問題識別技術識別可能影響專案的所有可能風險
+                                    <br>　　　　(2)	關注可能產生後果的事件，而不是專案目標
+                                    <br>　　　　(3)	結合使用風險分解結構（RBS）和工作分解結構（WBS）來識別和分析風險
+                                    <br>　　　　(4)	先識別風險的廣面，再檢查具體領域
+                                    <br>　　　　(5)	使用風險概況（問題列表）來解決專案中傳統的不確定性領域
+
+                                    <br><br>　　2. Risk Assessment(風險評估)：
+                                    <br>　　　　(1)	根據每個風險事件的重要性概率和影響進行評估
+                                    <br>　　　　(2)	使用風險評估表評估風險事件的嚴重程度、發生概率及其檢測難度
+                                    <br>　　　　(3)	使用風險嚴重性矩陣確定要解決的風險的優先級
+                                    <br>　　　　Failure Mode and Effects Analysis (FMEA) 故障模式和影響分析：
+                                    <br>　　　　　　Risk Value = Impact x Probability x Detection
+                                    <br>　　　　　　風險值 = 影響 x 概率 x 檢測
+                                    <br>　　　　(4)	概率分析使用統計技術來評估項目風險：
+                                    <br>　　　　　　Decision trees, net present value (NPV), program evaluation and review technique (PERT), PERT simulation
+                                    <br>　　　　　　決策樹、淨現值 (NPV)、項目評估和審查技術 (PERT)、PERT 模擬
+
+                                    <br><br>　　3. Risk Response Development(風險應對發展)：
+                                    <br>　　　　(1)	Mitigating Risk(降低風險)：
+                                    <br>　　　　　　降低事件發生的可能性
+                                    <br>　　　　　　減少不利事件對項目的影響
+                                    <br>　　　　(2)	Avoiding Risk(迴避風險)：
+                                    <br>　　　　　　改變專案計劃以消除風險或條件
+                                    <br>　　　　(3)	Transferring Risk(轉移風險)：
+                                    <br>　　　　　　將風險轉嫁給另一方 
+                                    <br>　　　　(4)	Escalating Risk(升級風險)：
+                                    <br>　　　　　　將威脅通知組織內的適當人員
+                                    <br>　　　　(5)	Retaining Risk(保留風險)：
+                                    <br>　　　　　　有意識地決定接受事件發生的風險
+
+                                    <br><br>　　4. Risk Response Control(風險應對控制)：
+                                    <br>　　　　(1)	Risk Register(風險登記)：
+                                    <br>　　　　　　詳細說明所有已識別的風險，包括描述、類別、發生概率、影響、反應、應急計劃、所有者和當前狀態
+                                    <br>　　　　(2)	風險控制
+                                    <br>　　　　包含：執行風險應對策略、監控觸發事件、啟動應急計劃、關注新風險
+                                    <br>　　　　(3)	建立變更管理系統
+                                    <br>　　　　內容包含：
+                                    <br>　　　　　　1. 監控、跟踪和報告風險
+                                    <br>　　　　　　2. 營造開放的組織環境
+                                    <br>　　　　　　3. 重複風險識別/評估練習
+                                    <br>　　　　　　4. 分配和記錄管理風險的責任
+
+                                    <br><br>Contingency Planning(應急計畫)：
+                                    <br>　　定義：
+                                    <br>　　　　1. 如果可能預見的風險事件成為現實，將使用替代計劃
+                                    <br>　　　　2. 減少或減輕風險事件負面影響的行動計劃
+                                    <br>　　　　3. 不是初始實施計劃的一部分，只有在確認風險後才會生效
+
+                                    <br><br>風險類型及適當的應急計畫：
+                                    <br>　　1. Technical Risks(技術風險)：
+                                    <br>　　　　選擇的技術失敗時，備份策略
+                                    <br>　　　　評估是否可以解決技術不確定性
+                                    <br>　　2. Schedule Risks(進度風險)：
+                                    <br>　　　　加速或”破壞”專案以使其重回正軌
+                                    <br>　　　　並行安排活動或使用start-to-start lag relationship
+                                    <br>　　　　用最優秀的人來完成高風險的任務
+                                    <br>　　3. Cost Risks(成本風險)：
+                                    <br>　　　　審查價格，避免以一筆過的價格覆蓋價格風險的陷阱
+                                    <br>　　4. Funding Risks(資金風險)：
+                                    <br>　　　　評估資金減少的風險(項目削減)
+
+                                    <br><br>Opportunity Management(機會管理)：
+                                    <br>　　定義：
+                                    <br>　　　　對項目目標產生積極影響的事件
+                                    <br>　　類型：
+                                    <br>　　　　1. Exploit(開發)：
+                                    <br>　　　　尋求消除與機會相關的不確定性，以確保它一定會發生
+                                    <br>　　　　2. Share(分享)：
+                                    <br>　　　　將機會的部分或全部所有權分配給最有能力為專案利益抓住機會的另一方
+                                    <br>　　　　3. Enhance(增進)：
+                                    <br>　　　　採取行動增加機會的可能性和/或積極影響
+                                    <br>　　　　4. Escalate(升級)：
+                                    <br>　　　　將機會通知組織內的適當人員
+                                    <br>　　　　5. Accept(接受)：
+                                    <br>　　　　願意在機會出現時利用它，但不採取行動去追求它
+
+                                    <br><br>Contingency Funding and Time Buffers(應急資金與時間緩衝)：
+                                    <br>　　Contingency Funds(應急資金)：
+                                    <br>　　　　是否有資金覆蓋專案風險：已識別和未知
+                                    <br>　　　　類型：
+                                    <br>　　　　　　1. 應急儲備：涵蓋已識別的風險並分配給專案的特定部分或可交付成果
+                                    <br>　　　　　　2. 管理儲備：涵蓋未識別的風險並分配給與整個專案相關的風險
+
+                                    <br><br>　　Time Buffers(時間緩衝)：
+                                    <br>　　　　是否有大量時間用於緩衝專案中的潛在延遲
+
+                                    <br><br>Change Control Management(變更控制管理)：
+                                    <br>　　變更原因：
+                                    <br>　　　　1. 專案範圍變更
+                                    <br>　　　　2. 應急計劃的實施
+                                    <br>　　　　3. 改進變化
+	
+                                    <br><br>　　變更管理系統包含：
+                                    <br>　　　　1. 確定提議的變更
+                                    <br>　　　　2. 列出變更進度和預算的預期影響
+                                    <br>　　　　3. 正式審查、評估和批准或不批准變更
+                                    <br>　　　　4. 協商並解決變更、條件和成本的衝突
+                                    <br>　　　　5. 與受影響的各方溝通變化
+                                    <br>　　　　6. 分配實施變更的責任
+                                    <br>　　　　7. 調整總進度和預算
+                                    <br>　　　　8. 追蹤所有要實施的變更
+
+                                    <br><br>變更控制管理的好處：
+                                    <br>　　1. 正式流程不建議無關緊要的更改
+                                    <br>　　2. WBS和績效指標的完整性得到維護
+                                    <br>　　3. 追蹤應急和管理儲備的分配和使用
+                                    <br>　　4. 明確實施責任
+                                    <br>　　5. 所有相關方都可以看到更改的效果
+                                    <br>　　6. 監控變更的實施
+                                    <br>　　7. 範圍變更將迅速反映在基線和績效指標中
+
+                                </p>
+                            </div>
+                            <hr>
+                            <div id="Week8" class="dp">
+                                <h3>　　Week8</h3>
+                                <p class="mx-5 px-5 font_size">
+                                    <br>Resources and Priorities(資源及優先事項)：
+                                    <br>　　在分配資源之前，專案網路不是時間表
+                                    <br>　　　　1. 專案提案中的敘述總是多於可用資源
+                                    <br>　　　　2. 只有在資源可用的情況下，專案優先級團隊才會添加新專案
+                                    <br>　　成本估算在按時間分段之前不是預算：
+                                    <br>　　　　資源分配完成後，就可以為專案制定預算計劃
+
+                                    <br><br>Resource Smoothing(資源平滑)：
+                                    <br>　　涉及嘗試通過延遲非關鍵活動(使用slack)來降低資源需求來平衡對資源的不同需求，從而在專案週期內資源充足時提高資源利用率
+
+                                    <br><br>Resource-Constrained Scheduling(資源限制排程)：
+                                    <br>　　當資源不足以滿足需求時發生。 一些活動的延遲啟動必須推遲，專案的持續時間可能會增加
+
+                                    <br><br>Technical or Logical Constraints(技術或邏輯約束)：
+                                    <br>　　與專案活動必發生的網路順序相關
+
+                                    <br><br>Resource Constraints(資源限制)：
+                                    <br>　　1. 當資源的缺失、短缺或獨特的相互關係和相互作用特徵需要對專案活動進行特定排序時發生
+                                    <br>　　2. 注意資源依賴優先於技術依賴
+                                    <br>　　3. 資源限制的類型：
+                                    <br>　　　　(1)	People		人
+                                    <br>　　　　(2)	Materials	材料
+                                    <br>　　　　(3)	Equipment	設備
+
+                                    <br><br>Time-Constrained Project(時間限制專案)：
+                                    <br>　　1. 必須在規定的日期前完成
+                                    <br>　　2. 時間是固定的，資源是靈活的。如果需要，可以添加資源以確保專案在特定日期之前完成
+
+                                    <br><br>Resource-Constrained Project(資源限制專案)：
+                                    <br>　　1. 不能超過可用資源
+                                    <br>　　2. 資源固定，時間靈活。如果資源不足，推遲專案也是可以接受的
+ 
+                                    <br><br>Limiting Assumptions(限制假設)：
+                                    <br>　　1. 不允許分裂(Splitting)活動：中斷一項任務的工作，將資源分配給另一項任務一段時間，然後再分配給原來的任務
+                                    <br>　　2. 用於活動的資源級別無法更改
+
+                                    <br><br>Risk Assumptions(風險假設)：
+                                    <br>　　1. 最鬆懈的活動帶來的風險最小
+                                    <br>　　2. 靈活性的降低不會增加風險
+                                    <br>　　3. 活動的性質(難易度)不會增加風險
+
+                                    <br><br>Time-Constrained Project細項：
+                                    <br>　　1. 定義：
+                                    <br>　　　　(1)	必須在規定的日期前完成
+                                    <br>　　　　(2)	注重資源利用需要
+                                    <br>　　　　(3)	使用資源平滑技術來平衡對資源的需求
+                                    <br>　　2. Smoothing Techniques(平滑技術)：
+                                    <br>　　　　通過使用正鬆弛來減少需求並填補資源的低谷，而不延遲整個專案，從而延遲非關鍵活動
+                                    <br>　　3. 平滑資源需求的目標：
+                                    <br>　　　　(1)	減少資源需求的高峰期
+                                    <br>　　　　(2)	減少專案生命週期內的資源數量
+                                    <br>　　　　(3)	最小化資源需求的波動
+                                    <br>　　4. 平滑資源需求的負面影響：
+                                    <br>　　　　(1)	因減少鬆弛而失去靈活性
+                                    <br>　　　　(2)	由於鬆弛減少，創建更多關鍵活動或接近關鍵的活動
+
+                                    <br><br>Resource-Constrained Project細項：
+                                    <br>　　1. 資源在數量或可用性上是有限的
+                                    <br>　　2. 可通過遵循優先級規則使用heuristics(經驗法則)安排活動：
+                                    <br>　　　　(1)	最小鬆弛
+                                    <br>　　　　(2)	最少持續時間
+                                    <br>　　　　(3)	最低活動標識號
+                                    <br>　　3. 並行方法用於應用heuristics(啟發式)：從項目時間開始，當所需資源超過可用資源時，按照優先級規則首先保留活動
+
+                                    <br><br>資源限制排程的影響：
+                                    <br>　　1. 減少鬆弛，降低靈活性
+                                    <br>　　2. 增加關鍵活動的數量
+                                    <br>　　3. 對於關鍵活動，因為資源限制被添加到技術限制中，增加了排程複雜性
+                                    <br>　　4. 可能讓傳統的關鍵路徑不再有意義
+                                    <br>　　5. 可以打破順序並使網路具有一組脫節的關鍵活動
+                                    <br>　　6. 可能導致並行活動變成順序活動
+                                    <br>　　7. 可以將活動從關鍵更改為非關鍵
+
+                                    <br><br>Splitting Tasks(分裂任務)：
+                                    <br>　　1. 是一種排程技術，用於獲得更好的專案進度或提高資源利用率
+                                    <br>　　2. 涉及中斷工作並將資源發送到另一個活動一段時間，然後讓資源恢復原始活動的工作
+                                    <br>　　3. 如果所涉及的工作不包括大量的啟動或關閉成本，則可能會有用處
+                                    <br>　　4. 被認為是專案未能如期完成的主要原因
+
+                                    <br><br>排程資源的好處：
+                                    <br>　　1. 留出時間考慮合理的替代方案
+                                    <br>　　2. 提供準備”具有日期的時間分段工作包”預算所需的信息
+
+                                    <br><br>Multi project Resource Schedules(多專案資源排程)：
+                                    <br>　　1. 問題：
+                                    <br>　　　　(1)	總體進度延誤：共享資源會引起連鎖反應，一個專案的延遲會導致其他專案的延遲
+                                    <br>　　　　(2)	資源利用效率低下：多個專案的不同進度和要求會造成總體資源需求的高峰和低谷
+                                    <br>　　　　(3)	資源瓶頸：多個專案所需的關鍵資源短缺導致延誤和進度延期
+                                    <br>　　2. 解決方法：
+                                    <br>　　　　(1)	創建專案辦公室或部門來監督跨多個專案的資源調度
+                                    <br>　　　　(2)	使用項目優先系統：資源先到先得
+                                    <br>　　　　(3)	將單一專案視為一個大專案的一部分，並使排程啟發式適應這個大型專案
+                                    <br>　　　　(4)	利用專案管理軟體優先分配資源
+                                    <br>　　　　(5)	外包專案以減少內部管理的專案數量
+                                    <br>　　　　(6)	僱用臨時工以加快某些落後於計劃的活動
+                                    <br>　　　　(7)	在內部資源不足以滿足所有專案需求的高峰期時，承包專案工作
+
+                                    <br><br>使用資源計劃制定專案成本基準：
+                                    <br>　　原因：
+                                    <br>　　　　1. 確定專案是否按時、提前或落後於計劃，是否超出或低於預算成本
+                                    <br>　　　　2. 評估花費的資金及完成了多少工作：項目成本基準(planned value, PV)
+                                    <br>　　創建Time-Phased Budget(時間分段預算)：
+                                    <br>　　　　1. 將每個工作包分配給一個負責人或部門並交付
+                                    <br>　　　　2. 使用Earned Value(EV,掙值)比較計劃的進度和成本
+                                    <br>　　　　3. 生成現金流量表和資源使用計劃
+
+                                </p>
+                            </div>
+                            <hr>
+                            <div id="Week9" class="dp">
+                                <h3>　　Week9</h3>
+                                <p class="mx-5 px-5 font_size">
+                                    <br>Crash：用於縮短活動或專案的持續時間，超出正常情況下可以完成的時間
+
+                                    <br><br>縮短專案期間的理由：
+                                    <br>　　1. 上市時間壓力
+                                    <br>　　2. 不可預見的延誤
+                                    <br>　　3. 激勵契約
+                                    <br>　　4. 強加的最後期限和契約承諾
+                                    <br>　　5. 管理費用
+                                    <br>　　6. 將資源重新分配給其他專案的壓力
+
+                                    <br><br>加速專案完成的選項：
+                                    <br>　　資源不受限制時：
+                                    <br>　　　　1. 添加資源
+                                    <br>　　　　2. 外包專案工作
+                                    <br>　　　　3. 安排加班
+                                    <br>　　　　4. 建立核心專案團隊
+                                    <br>　　資源受限時：
+                                    <br>　　　　1. 提高專案團隊效率
+                                    <br>　　　　2. 快速追踪
+                                    <br>　　　　3. 使用關鍵鏈管理
+                                    <br>　　　　4. 縮小專案範圍
+                                    <br>　　　　5. 妥協質量
+
+                                    <br><br>Project Indirect Costs(專案間接成本)：
+                                    <br>　　1. 無法與任何特定工作包或活動相關聯的成本
+                                    <br>　　Ex：監督、管理、顧問和利息等管理費用
+                                    <br>　　2. 隨時間直接變化的成本
+
+                                    <br><br>Project Direct Costs(專案直接成本)：
+                                    <br>　　1. 直接分配給工作包和活動的成本
+                                    <br>　　Ex：勞動力、材料、設備等
+                                    <br>　　2. 代表正常成本(正常時間的低成本、高效方法)
+
+                                    <br><br>Cost-Duration Graph(成本期間圖)：
+                                    <br>　　用於比較額外成本替代方案的收益
+                                    <br>　　實作步驟：
+                                    <br>　　　　1. 查找選定專案持續時間的總直接成本
+                                    <br>　　　　2. 查找選定專案持續時間的總間接成本
+                                    <br>　　　　3. 將直接和間接成本相加
+
+                                    <br><br>確定要縮短的活動：
+                                    <br>　　尋找可以在單位時間成本增加最少的情況下縮短的關鍵活動
+                                    <br>　　假設：
+                                    <br>　　　　1. 成本-時間關係是線性的
+                                    <br>　　　　2. 正常時間假定低成本、高效率的方法來完成活動
+                                    <br>　　　　3. Crash time代表了一個限制：在現實條件下可能的最大時間減少
+                                    <br>　　　　4. 斜率表示單位時間的成本
+                                    <br>　　　　5. 所有加速必定發生在normal and crash times
+                                    <br><span>　　　　<img src="./img14.png" class="img_size" style="width: 300px;"></span>
+
+                                    <br><br>Practical Considerations(實際考量)：
+                                    <br>　 1. 使用專案成本
+                                    <br>　 2. 持續時間圖
+                                    <br>　 3. Crash times：線性假設
+                                    <br>　 4. 重新選擇Crash的活動
+                                    <br>　 5. 減少時間的決定和敏感性
+ 
+                                    <br><br>削減成本的常用選項：
+                                    <br>　 1. 縮小專案範圍
+                                    <br>　 2. 讓所有者承擔更多責任
+                                    <br>　 3. 外包專案活動甚至整個專案
+                                    <br>　 4. 執行Brainstorm，思考成本節約選項
+
+                                </p>
+                            </div>
+                            <hr>
+                            <div id="Week10" class="dp">
+                                <h3>　　Week10</h3>
+                                <p class="mx-5 px-5 font_size">
+                                    <br>Project monitoring system：(專案監控系統)
+                                    <br>　　包含：
+                                    <br>　　　　1. 確定要收集的資料
+                                    <br>　　　　2. 確定收集資料的方式、時間和人員
+                                    <br>　　　　3. 資料分析
+                                    <br>　　　　4. 報告當前發展
+
+                                    <br><br>收集資料時考慮的要點：
+                                    <br>　　1. 專案在進度和成本方面的現狀如何？
+                                    <br>　　2. 完成該專案需要多少費用？
+                                    <br>　　3. 專案什麼時候完成？
+                                    <br>　　4. 現在是否存在需要解決的潛在問題？
+                                    <br>　　5. 成本或進度超支的原因是什麼、誰的問題以及問題點在哪裡？
+                                    <br>　　6. 如果專案中途出現成本超支，我們可以預測完成時的超支嗎？
+
+                                    <br><br>收集資料及分析時的考量：
+                                    <br>　　1. 專案團隊、承包商、專案經理等會收集資料嗎？
+                                    <br>　　2. 資料是否會從某種形式的替代資料中以電子方式導出？
+                                    <br>　　3. 報告週期應該是一小時、一天、一周還是其他？
+                                    <br>　　4. 是否有收集資料的儲存位置，是否有人負責資料的傳播？
+
+                                    <br><br>Project Control：(專案控制)
+                                    <br>　　定義：
+                                    <br>　　　　將實際績效與計劃進行比較以識別偏差、評估可能的其他方案並採取適當的矯正措施的過程
+                                    <br>　　步驟：
+                                    <br>　　　　1. Setting a baseline plan　設定基線計劃
+                                    <br>　　　　2. Measuring progress and performance　衡量進度和績效
+                                    <br>　　　　3. Comparing plan against actual　計劃與實際比較
+                                    <br>　　　　4. Taking action　採取行動
+
+                                    <br><br>表示進度的工具：
+                                    <br>　　1. Gantt chart(甘特圖)：最受青睞、最常用、最易懂
+                                    <br>　　2. Control chart(控制圖)：用於繪製專案關鍵路徑上的計劃時間和實際時間之間的差異
+                                    <br>　　3. Milestone(里程碑)：用於讓更多的遠端利益相關者了解專案的進展情況，標誌著主要成就的重大專案事件
+
+                                    <br><br>甘特圖範例：
+                                    <br><span><img src="./img15.png" class="img_size"></span>
+
+                                    <br><br>控制圖範例：
+                                    <br><span><img src="./img16.png" class="img_size"></span>
+ 
+                                    <br><br>Earned Value Management(EVM)：(掙值管理)
+                                    <br>　　定義：(項目的掙值管理是用與進度計劃、成本預算、實際成本相聯繫的三個獨立的變數，進行、項目績效測量的一種方法。)
+                                    <br>　　　　1. 是一種結合範圍、進度和資源測量來評估專案績效和進度的方法
+                                    <br>　　　　2. 使用幾個首字母簡寫和方程式進行分析
+                                    <br>　　　　3. 使用從WBS、Project network和schedule(進度表)中開發的資料
+                                    <br>　　　　4. 從提供計劃工作的計劃預算值 (PV)。 然後可以與實際計劃的進度和成本進行比較
+
+                                    <br><br>定義成本/進度系統：
+                                    <br>　　1. 使用 WBS 定義工作：
+                                    <br>　　包含
+                                    <br>　　　　(1)	範圍
+                                    <br>　　　　(2)	工作包
+                                    <br>　　　　(3)	可交付成果
+                                    <br>　　　　(4)	組織單位
+                                    <br>　　　　(5)	資源
+                                    <br>　　　　(6)	每個工作包的預算
+
+                                    <br><br>　　2. 制定工作和資源計劃：
+                                    <br>　　　　(1)	為活動安排資源
+                                    <br>　　　　(2)	將時間階段的工作打包成一個網絡
+
+                                    <br><br>　　3. 使用活動中包含的工作包製定時間分段預算，稱為計劃預算成本 (PV)
+                                    <br><br>　　4. 在工作包級別，收集已執行工作的實際成本，已完成工作的實際成本 稱為(AC)。完成原始預算金額的多個百分比以獲得掙值 (EV)
+                                    <br><br>　　5. 計算進度差異 (SV = EV – PV) 和成本差異 (CV = EV – AC)
+
+                                    <br><br>Baseline(基線)：是績效評估的基準
+                                    <br>Baseline(基線)(PV)的目的：
+                                    <br>　　1. 衡量和報告進展
+                                    <br>　　2. 預估現金流量
+
+                                    <br><br>將成本分配給Baseline的規則：
+                                    <br>　　1. 成本被放置在Baseline中，完全按照預期
+                                    <br>　　2. 完成百分比是最常用的。 熟悉每項任務的人估計任務已完成的百分比或任務剩餘的百分比
+
+                                    <br><br>Baseline中包含：
+                                    <br>　　1. 成本賬戶(cost accounts)的總和，每個account是該account中工作包的總和
+                                    <br>　　2. 三種直接成本通常包括在Baseline中：勞動力、設備和材料
+
+                                    <br><br>Variance Analysis(變異分析)的方法：
+                                    <br>　　比較earned value(掙值)與預期的進度值及實際費用
+
+                                    <br><br>評估專案的當前狀態需要三個元素：
+                                    <br>　　1. Planned cost of the work scheduled (PV)：排定工作的計劃成本
+                                    <br>　　2. Budgeted cost of the work completed (EV)：已完成工作的預算成本
+                                    <br>　　3. Actual cost of the work completed (AC)：完成工作的實際成本
+
+                                    <br><br>計算schedule variance(進度差異)(SV)和cost variance(成本差異)(CV)：
+                                    <br>　　正向差表示理想條件，負向差表示已經發生的問題或變化
+
+                                    <br><br>Cost variance(成本差異)：CV = EV – AC
+                                    <br>　　評估在專案生命週期的任何時候，完成的工作成本是否高於或低於計劃成本
+
+                                    <br><br>Schedule variance(進度差異)：SV = EV – PV
+                                    <br>　　1. 對迄今為止計劃的專案中的所有工作包進行總體評估。
+                                    <br>　　2. 不包含關鍵路徑信息
+                                    <br>　　3. 以金額而不是時間來衡量
+
+                                    <br><br>Variance at completion(完成時的差異)：VAC = BAC – EAC
+                                    <br>　　表示專案完成時的成本是否與計劃的不同
+
+                                    <br><br>監測指標：
+                                    <br>　　Performance Indexes(效能指標)：
+                                    <br>　　　　1. Cost performance index (費用績效指標)：CPI = EV / AC
+                                    <br>　　　　衡量迄今為止完成的工作的成本效率
+                                    <br>　　　　2. Scheduling performance index(進度績效指標)：SPI = EV / PV
+                                    <br>　　　　衡量迄今為止的排程效率
+
+                                    <br><br>Project Percent Complete Indexes(專案完成百分比指標)：
+                                    <br>　　1. Percent complete index budgeted costs(完成指數預算成本百分比)：PCIB = EV / BAC
+                                    <br>　　2. Percent complete index actual costs(完成指數實際成本百分比)：PCIC = AC / EAC
+                                    <br>　　3. Management reserve index(管理儲備金)：MRI = CV / MR
+                                    <br>　　反映已被成本超支吸收的管理儲備金額
+
+                                    <br><br>Additional Earned Value(額外掙值)：
+                                    <br>　　適用於短期活動和/或小成本活動
+                                    <br>　　0/100 rule：
+                                    <br>　　　　假設在工作包完成時獲得了100%的預算
+                                    <br>　　50/50 rule：
+                                    <br>　　　　允許在開始時賺取工作包預算值的50%，50%在完成時賺取
+                                    <br>　　Percent complete with weighted monitoring gates(完成加權監控門的百分比)：
+                                    <br>　　　　使用主觀估計的完成百分比並結合有形的監控點
+
+                                    <br><br>預測最終專案成本：
+                                    <br>　　用於修改未來專案成本估算的方法：
+                                    <br>　　　　1. Revised estimated cost at completion(EACre)(修訂後的估計完工成本)：
+                                    <br>　　　　允許該領域的專家更改原始baseline持續時間和成本
+                                    <br>　　　　2. Forecasted total cost at completion(EACf)( 預計完工總成本)：
+                                    <br>　　　　使用迄今為止的實際成本加上的效率指數(CPI = EV / AC)應用於剩餘專案工作
+
+                                </p>
+                            </div>
+                            <hr>
+                            <div id="Week11" class="dp">
+                                <h3>　　Week11</h3>
+                                <p class="mx-5 px-5 font_size">
+                                    <br>Project closure(專案收尾)：
+                                    <br>　　種類：
+                                    <br>　　　　1. Normal
+                                    <br>　　　　2. Premature(過早)
+                                    <br>　　　　3. Perpetual(永久)
+                                    <br>　　　　4. Failed project
+                                    <br>　　　　5. Changed priority(更改的優先事項)
+
+                                    <br><br>專案收尾的活動：
+                                    <br>　　1. 得到客戶的交貨驗收
+                                    <br>　　2. 關閉資源並釋放給新的用途
+                                    <br>　　3. 重新分配專案組成員
+                                    <br>　　4. 關閉賬戶並查看所有賬單是否已支付
+                                    <br>　　5. 向客戶交付專案
+                                    <br>　　6. 創建最終報告
+
+                                    <br><br>Project Audits(專案審計)：
+                                    <br>　　內容：
+                                    <br>　　　　1. 使用績效指標和預測資料
+                                    <br>　　　　2. 檢查專案是否成功並審查選擇該專案的原因
+                                    <br>　　　　3. 包含重新評估專案在組織優先事項中的作用
+                                    <br>　　　　4. 包含對組織文化的檢查，以確保有利於正在實施的專案類型
+                                    <br>　　　　5. 可以在專案進行中或專案完成後執行：
+                                    <br>　　　　進行中專案審計：在專案早期進行，以允許糾正性變更並專注於專案進度和績效
+                                    <br>　　　　專案後審計：包含更多細節和深度，並強調改進未來專案的管理
+
+                                    <br><br>專案審計執行要點：
+                                    <br>　　1. 理念必須是專案審計而不是專挑弱點或純粹找麻煩
+                                    <br>　　2. 減少對參與專案的個人或團體的評論
+                                    <br>　　3. 審計活動應該對人的情緒和反應敏感
+                                    <br>　　4. 資料的準確性必須是可驗證的
+                                    <br>　　5. 高級管理層應要宣布並支持專案審計
+                                    <br>　　6. 專案審計的目的不是起訴，而是學習和保存已犯錯誤中有價值的組織資源
+                                    <br>　　7. 專案審計應快速完成
+ 
+                                    <br><br>專案審計過程：
+                                    <br>　　1. Initiation and Staffing(啟動及人員配置)：
+                                    <br>　　　　審核過程的啟動主要取決於組織和專案規模
+                                    <br>　　　　結果必須代表專案的獨立外部觀點
+                                    <br>　　2. Data Collection and Analysis(資料收集與分析)：
+                                    <br>　　　　收集信息和數據，從組織和專案團隊的角度回答問題
+                                    <br>　　3. Reporting(報告)：
+                                    <br>　　　　該報告須從當前或已完成的專案中獲取所需的更改和經驗教訓
+
+                                    <br><br>Project Retrospectives(專案回顧)：
+                                    <br>　　定義：
+                                    <br>　　　　在確定專案經驗教訓方面的具體努力
+                                    <br>　　包含：
+                                    <br>　　　　1. 通過對專案活動的分析來領導專案團隊
+                                    <br>　　　　2. 使用幾個側重於專案運營以及組織文化如何影響項目成功或失敗的問卷調查
+                                    <br>　　　　3. 與專案團隊成員、專案經理和其他利益相關者進行一對一的訪問，以更深入地研究因果影響
+                                    <br>　　　　4. 帶領團隊回顧會議
+                                    <br>　　　　5. 與團隊合作開發一個系統，為不同的收件人確定信息的優先級
+
+                                    <br><br>Maturity Model(成熟度模型)：
+                                    <br>　　1. 所有成熟度模型的目的是使組織能夠評估他們在實施最佳最法的進展並轉向改進
+                                    <br>　　2. 專案成熟度模型從組織範圍的角度來看更具包容性
+                                    <br>　　3. 專案管理協會開發的專案成熟度模型的一部分稱為 OPM3
+                                    <br>　　分為：初始、可重複、定義、管理和優化5個級別
+
+                                    <br><br>Post-implementation Evaluation(實作後評估)：
+                                    <br>　　評估專案團隊、團隊成員和專案經理的執行情況
+                                    <br>　　根據特定標準評估：
+                                    <br>　　　　1. 團隊評估
+                                    <br>　　　　2. 個人、團隊成員和專案經理績效評估
+                                    <br>　　　　3. 個別評論
+ 
+                                    <br><br>Team Evaluation(團隊評估)：
+                                    <br>　　1. 根據時間、成本和規範(範圍)以及客戶/最終用戶滿意度達到專案目標
+                                    <br>　　2. 使用由顧問、人力資源部工作人員或電子郵件管理的調查
+                                    <br>　　3. 使用調查結果評估團隊的發展、優勢和劣勢，以及可應用於未來專案工作的經驗教訓
+
+                                    <br><br>Individual, Team Member, and Project Manager Performance Review(個人、團隊成員和專案經理績效評估)：
+                                    <br>　　績效評估職責：
+                                    <br>　　　　Functional organization(職能組織)：個人區域經理
+                                    <br>　　　　Balanced matrix(平衡矩陣)：專案經理和區域經理共同
+                                    <br>　　　　Project matrix and project organizations(專案矩陣和專案組織)：專案經理
+                                    <br><br>　　績效評估的重要功能：
+                                    <br>　　　　發展：確定個人的優勢和劣勢，製定提高績效的行動計劃
+                                    <br>　　　　評估：評估個人的表現如何，以確定薪水或績效調整
+
+                                </p>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+
+</html>
