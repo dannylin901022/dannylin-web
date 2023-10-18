@@ -6,10 +6,9 @@
 }
 
 .chart {
-    height: 120px !important;
-    ;
-    width: 120px !important;
-    ;
+    height: 80px !important;
+    width: 80px !important;
+    margin: 5px 0 5px 0;
 }
 
 .chart_td {
@@ -35,13 +34,16 @@ table td {
     width: 20em;
     border-style: outset solid solid outset;
     border-width: 20px;
-    border-top-color: #cccccc;
-    border-left-color: #999999;
-    border-bottom-color: #444444;
-    border-right-color: #666666;
+    border-top-color: #f5dd53;
+    border-left-color: #faa82d;
+    border-bottom-color: #a75c0c;
+    border-right-color: #cd8108;
     box-shadow: 5px 5px 5px gray;
 }
 
 div hr {
-    border-top: 10px double #ee9933;
+    border-top: 20px double #000000;
+}
+#title_hr{
+    border-top: 5px solid #000000;
 }

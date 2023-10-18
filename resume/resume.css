@@ -4,3 +4,29 @@
     align-items: center;
     justify-content: center;
 }
+#sub_title_hr{
+    height: 5px;
+    background-color: gray;
+}
+.image{
+    width: 20vw;
+    height: 20vh;
+    border:3px solid black;
+    padding:1px;
+    margin-top: 5px;
+}
+.image_2{
+    width: 12vw;
+    height: 40vh;
+    border:3px solid black;
+    padding:1px;
+    margin-left: 10px;
+}
+.left{
+    display: flex;
+    flex-direction: column;
+}
+.sub_hr{
+    height: 3px;
+    background-color: rgb(0, 0, 0);
+}
