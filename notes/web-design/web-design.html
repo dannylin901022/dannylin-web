@@ -56,7 +56,7 @@
                 <li><a class="item" href="#HTML">HTML</a></li>
                 <li><a class="item" href="#CSS">CSS</a></li>
                 <li><a class="item" href="#Java_Script">Java_Script</a></li>
-                <li><a class="item" href="#Vue.js">Vue.js</a></li>
+                <li><a class="item" href="#Vue">Vue.js</a></li>
                 <li><a class="item" href="#Js_Fetch_Data">Js Fetch Data</a></li>
             </ul>
         </div>
@@ -233,6 +233,103 @@
                                         </tr>
                                     </table>
                                     <hr style="width: 200%;">
+
+                                    <div id="#Vue" class="dp">
+                                        <h3>　　Vue.js(此區還未有深入了解)</h3>
+
+                                        <p class="mx-5 px-5 font_size">
+                                            <br><span style="font-size: 25px;">Vue框架使用方式</span>
+                                        </p>
+                                        <p class="mx-5 px-5">const vm = Vue.createApp({
+                                            <br>　data(){
+                                                <br>　　return{}
+                                            <br>　},
+                                            <br>　methods:{
+                                                <br>　　method_name(){}
+                                            <br>　},
+                                            <br>　mounted:function(){
+                                                <br>　
+                                            <br>　}
+                                            <br>})mount('#id')
+                                            <br>此為基本框架，id為框架覆蓋範圍，如最外層div為mount id，在該div中的元件就可使用該Vue框架
+                                            <br>Ex：可透過window.vm = vm的方式，使其他程式也可使用Vue框架內的資料及方法
+                                        </p>
+
+                                        <p class="mx-5 px-5 font_size">
+                                            <br><span style="font-size: 25px;">語法筆記</span>
+                                        </p>
+
+                                        <table>
+                                            <tr>
+                                                <th class="table_title">語法</th>
+                                                <th style="text-align: center;">用途</th>
+                                            </tr>
+                                            <tr>
+                                                <td class="table_title">data()</td>
+                                                <td>搭配return，可用於儲存程式中使用的資料，可在methods中使用this.***來使用資料<br>
+                                                    在HTML中，可透過使用v-model，在內文中用{{***}}的方式來使用儲存的資料</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="table_title">methods</td>
+                                                <td>以Vue框架，在HTML中置入方法，可透過簡寫"@click=method_name"的方式來呼叫方法</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="table_title">mounted</td>
+                                                <td>目前個人已知的使用方式：可用於在Vue框架被綁定創建時，使用mounted中的程式</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <hr style="width: 200%;">
+
+                                    <div id="#Js_Fetch_Data" class="dp">
+                                        <h3>　　Fetch Data</h3>
+
+                                        <p class="mx-5 px-5 font_size">
+                                            <br><span style="font-size: 25px;">基本語法</span>
+                                        </p>
+                                        <p class="mx-5 px-5">var data = {};
+                                            <br>await fetch(url,{
+                                            <br>　method: "GET",
+                                            <br>　headers{<br>　　"Content-Type": "application/json",<br>　　Accept: "application/json",<br>　}<br>})
+                                            <br>.then((response) => {
+                                                <br>　return response.json();　　//If data is JSON file
+                                            <br>})
+                                            <br>.then((response) => {
+                                                <br>　data = response;
+                                            <br>})
+                                            <br>.catch((error) => { })
+                                        </p>
+
+                                        <p class="mx-5 px-5 font_size">
+                                            <br><span style="font-size: 25px;">語法筆記</span>
+                                        </p>
+
+                                        <table>
+                                            <tr>
+                                                <th class="table_title">語法</th>
+                                                <th style="text-align: center;">用途</th>
+                                            </tr>
+                                            <tr>
+                                                <td class="table_title">GET(預設)</td>
+                                                <td>用於獲取API所傳輸之資料</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="table_title">POST</td>
+                                                <td>透過API傳遞資料給後端，新增資料時可使用，並獲取回傳值
+                                                    <br>需在headers下方增加body，如body: JSON.stringify(data)，data為要傳輸之資料，須符合傳輸資料之格式</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="table_title">PUT</td>
+                                                <td>透過API，修改後端已存在的資料，不會有回傳值</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="table_title">DELETE</td>
+                                                <td>透過API，刪除後端資料，不會有回傳值</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <hr style="width: 200%;">
+                                    
                                 </div>
                             </div>
                         </div>
