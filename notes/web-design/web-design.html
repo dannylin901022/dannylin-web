@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>網頁程式設計</title>
+
+    <link rel="stylesheet" href="./web-design.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./web-design.js"></script>
+</head>
+
+<body>
+    <nav class="navbar bg-dark navbar-dark p-3 navbar-expand-lg" style="position: fixed;width: 100vw;">
+        <button class="btn btn-primary" id="nav_btn" type="button">
+            導覽列
+        </button>
+        <div class="container">
+            <a href="../../index.html" class="navbar-brand">
+                <h1>DL</h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarIcon">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarIcon">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="../../about/about.html" class="nav-link">關於</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../../resume/resume.html" class="nav-link">經歷</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../../portfolio/portfolio.html" class="nav-link">作品</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../notes.html" class="nav-link">筆記</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="d-flex">
+        <div id="sidebar" class="dropdown mt-3" style="position: fixed;top:100px;">
+            <ul style="list-style-type: none;">
+                <li><a class="item" href="#HTML">HTML</a></li>
+                <li><a class="item" href="#CSS">CSS</a></li>
+                <li><a class="item" href="#Java_Script">Java_Script</a></li>
+                <li><a class="item" href="#Vue.js">Vue.js</a></li>
+                <li><a class="item" href="#Js_Fetch_Data">Js Fetch Data</a></li>
+            </ul>
+        </div>
+        <div style="margin-left:20vw;">
+            <main class="container d-flex flex-column align-items-center">
+                <main id="info_body">
+                    <div class="container text-center py-5">
+                        <h1>網頁程式設計</h1>
+                    </div>
+                </main>
+                <div class="col-12">
+                    <div id="top1">
+                        <div id="m-media">
+                            <h1 class="mb-4">網頁程式設計　<a href="https://codepen.io/DannyLin/"
+                                    style="font-size: 20px;text-decoration: none;">CodePen 練習</a></h1>
+
+                            <div id="HTML" class="dp">
+                                <h3>　　HTML</h3>
+                                <p class="mx-5 px-5 font_size">
+                                    <br><span style="font-size: 25px;">語法筆記</span>
+                                </p>
+                                <table>
+                                    <tr>
+                                        <th class="table_title">語法</th>
+                                        <th style="text-align: center;">用途</th>
+                                    </tr>
+                                    <tr>
+                                        <td class="table_title">DOCTYPE</td>
+                                        <td>告訴瀏覽器頁面是用什麼標籤語言編成，使瀏覽器正確解讀網頁</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="table_title">style</td>
+                                        <td>設計內容樣式，詳細：<a href="#CSS" style="text-decoration: none;">CSS</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="table_title">
+                                            < html>
+                                        </td>
+                                        <td>標示文件的開始及結束，所有東西都要包含在裡面</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="table_title">
+                                            < head>
+                                        </td>
+                                        <td>表示標頭位置，該區不會出現在頁面中</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="table_title">
+                                            < title>
+                                        </td>
+                                        <td>網頁(分頁)標題</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="table_title">
+                                            < body>
+                                        </td>
+                                        <td>網頁內容呈現區塊</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="table_title">
+                                            < h1>
+                                        </td>
+                                        <td>定義字體大小，h1最大；h6小</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="table_title">
+                                            < p>
+                                        </td>
+                                        <td>放置文字段落，並可在段落中呈現文字，一個< p>為一個段落</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="table_title">
+                                            < br>
+                                        </td>
+                                        <td>強制換行</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="table_title">
+                                            < hr>
+                                        </td>
+                                        <td>生成水平線</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="table_title">
+                                            < a>
+                                        </td>
+                                        <td>超連結，href：指定連結網址；target：指定開啟方式<br>target=_blank：開在新分頁；target=_parent：當成網頁上的一個畫面；target=_self：以目前頁面開啟
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="table_title">
+                                            < table>
+                                        </td>
+                                        <td>生成表格<br>　tr：生成橫列；<br>　th：標示表格title；<br>　td：標示表格儲存格</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="table_title">
+                                            < ul>
+                                        </td>
+                                        <td>製作清單列表<br>　ul：無序列表；<br>　ol：有序列表；<br>　li：標示個別項目</td>
+                                    </tr>
+                                </table>
+                                <hr style="width: 200%;">
+
+                                <div id="CSS" class="dp">
+                                    <h3>　　CSS</h3>
+                                    <p class="mx-5 px-5 font_size">
+                                        <br><span style="font-size: 25px;">屬性筆記</span>
+                                    </p>
+                                    <table>
+                                        <tr>
+                                            <th class="table_title">屬性</th>
+                                            <th style="text-align: center;">用途</th>
+                                        </tr>
+                                        <tr>
+                                            <td class="table_title">background</td>
+                                            <td>設定項目背景<br>　color：設定顏色；<br>　image：設置背景圖片...</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="table_title">
+                                                font
+                                            </td>
+                                            <td>設定文字樣式<br>　size：設定文字大小<br>　family：設定字體<br>　去除font，純用color：設定文字顏色<br>　weight：設定文字粗細
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="table_title">
+                                                text
+                                            </td>
+                                            <td>設定排版<br>　decoration：underline 加底線、none 無底線<br>　align：文字對齊(center置中、left靠左、right靠右)
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="table_title">
+                                                border
+                                            </td>
+                                            <td>設定邊框<br>　width：邊框寬度<br>　style：邊框樣式(單線：solid、雙線：double、虛線：dashed)<br>　color：邊框顏色
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="table_title">
+                                                padding
+                                            </td>
+                                            <td>設定內部邊距
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="table_title">
+                                                margin
+                                            </td>
+                                            <td>設定外部邊距
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="table_title">
+                                                display
+                                            </td>
+                                            <td>元件顯示<br>　block：區塊顯示(預設)<br>　none：不顯示(移除區塊)<br>　flex：設定flex排版
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="table_title">
+                                                flex
+                                            </td>
+                                            <td>justify-content：橫列對齊方式<br>align-items：垂直對齊方式<br>flex-direction：flex排列方式(row：橫向、column：垂直)
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="table_title">
+                                                CSS動作
+                                            </td>
+                                            <td>hover：滑鼠移動到元件上時動作<br>active：滑鼠點擊元件時動作
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <hr style="width: 200%;">
+                                </div>
+                            </div>
+                        </div>
+            </main>
+        </div>
+    </div>
+</body>
+
+</html>

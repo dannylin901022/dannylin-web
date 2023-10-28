@@ -1,0 +1,56 @@
+#nav_btn {
+    background-color: rgba(0, 0, 0, 0);
+    border: 5px double rgba(255, 255, 255, 1);
+}
+
+#sidebar {
+    margin-left: -400px;
+    height: 80vh;
+    overflow: auto;
+    transition: 1s;
+}
+
+#sidebar.active {
+    margin-left: 0;
+}
+
+.font_size {
+    font-size: 18px;
+}
+
+.item {
+    text-decoration: none;
+    line-height: 30px;
+}
+
+.dp {
+    margin-bottom: 50px;
+}
+
+.img_size {
+    width: 300px;
+}
+
+table th {
+    font-size: 25px;
+    border: 1px solid black;
+}
+
+table td {
+    border: 1px solid black;
+    height: 60px;
+}
+
+table tr {
+    border: 1px solid black;
+}
+
+table {
+    margin-left: 17%;
+    width: 100%;
+}
+
+.table_title {
+    width: 100px;
+    text-align: center;
+}

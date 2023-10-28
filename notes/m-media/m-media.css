@@ -1,0 +1,36 @@
+#nav_btn {
+    background-color: rgba(0, 0, 0, 0);
+    border: 5px double rgba(255, 255, 255, 1);
+}
+#sidebar{
+    margin-left: -400px;
+    height: 80vh;
+    overflow: auto;
+    transition: 1s;
+}
+#sidebar.active{
+    margin-left: 0;
+}
+.font_size{
+    font-size: 18px;
+}
+.item{
+    text-decoration:none;
+    line-height: 30px;
+}
+.dp{
+    margin-bottom: 50px;
+}
+.img_size{
+    width: 300px;
+}
+.img_size2{
+    width: 300px;
+    margin-left: 10px;
+}
+table th{
+    font-size: 25px;
+}
+table{
+    margin-left: 10%;
+}
