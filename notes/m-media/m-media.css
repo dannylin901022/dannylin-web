@@ -26,11 +26,30 @@
 }
 .img_size2{
     width: 300px;
-    margin-left: 10px;
+    /* margin-left: 10px; */
 }
-table th{
+table th {
     font-size: 25px;
+    border: 1px solid black;
 }
-table{
-    margin-left: 10%;
+
+table td {
+    border: 1px solid black;
+    height: 60px;
+    text-align: center;
+    padding: 1% 0;
+}
+
+table tr {
+    border: 1px solid black;
+}
+
+table {
+    margin: 0px auto;
+    width: 70%;
+}
+
+.table_title {
+    width: 100px;
+    text-align: center;
 }
