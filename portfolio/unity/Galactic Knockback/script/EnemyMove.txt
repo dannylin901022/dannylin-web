@@ -1,0 +1,109 @@
+using UnityEngine;
+
+
+public class EnemyMove : MonoBehaviour
+{
+    private int move = 0, first = 0;
+    public float hp,max;
+    public Boundary boundary;
+    private Vector3 pos = new Vector3();
+    private Rigidbody rb;
+    public GameController GC;
+    public bool firstmove = false, moveOK = false, start_f = true;
+    private WeaponController wc;
+    public GameObject bar_bg;
+    public GameObject bar;
+  
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        rb = this.GetComponent<Rigidbody>();
+        GameObject gameControllerObject = GameObject.FindWithTag("GameController");
+        if (gameControllerObject != null)
+        {
+            pos = this.transform.position;
+            GC = gameControllerObject.GetComponent<GameController>();
+        }
+        wc = this.GetComponent<WeaponController>();
+        hp = max;
+        
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (GC.start)
+        {
+            move++;
+            if (firstmove == true)
+            {
+                if (pos.z <= 10.5f)
+                {
+                    moveOK = true;
+                    firstmove = false;
+                }
+                else
+                {
+                    pos = this.transform.position;
+                    if (pos.z > 10.5f)
+                        this.gameObject.transform.localPosition = Vector3.MoveTowards(this.gameObject.transform.localPosition, new Vector3(0, 0, 10.5f), 5 * Time.deltaTime);
+                }
+            }
+            if (moveOK == true)
+            {
+                rb.velocity = pos * 0;
+                wc.start_shot = true;
+                if (start_f)
+                {
+                    bar_bg.SetActive(true);
+                    bar.transform.localPosition = new Vector3((-440 + 290 * (hp / max)), 0.0f, 0.0f);
+                    start_f = false;
+                }
+
+                if (move > 120 && move % 240 == 0)
+                {
+                    pos = new Vector3(Random.Range(-4.5f, 4.5f), 0, 0);
+
+                }
+                float r = Random.Range(-5, 5);
+                if (move > 120 && move % 240 <= 120)
+                {
+                    rb.velocity = pos * r;
+                    rb.position = new Vector3(Mathf.Clamp(rb.position.x, boundary.xMin, boundary.xMax), 0.0f, 10.5f);
+                }
+                if (rb.position.x <= -4.5f || rb.position.x >= 4.5f)
+                {
+                    rb.velocity = pos * -r;
+                    rb.position = new Vector3(Mathf.Clamp(rb.position.x, boundary.xMin, boundary.xMax), 0.0f, 10.5f);
+                }
+
+
+
+            }
+            if (GC.getScore() >= 200 && this.gameObject.name == "M1")
+            {
+                first++;
+                if (first == 1)
+                {
+                    firstmove = true;
+                }
+
+            }
+            if (GC.getScore() >= 500 && this.gameObject.name == "M4")
+            {
+                GameObject M1 = GameObject.Find("M1");
+                if (M1 == null)
+                {
+                    first++;
+                }
+                if (first == 1)
+                {
+                    firstmove = true;
+                }
+
+            }
+        }
+    }
+}

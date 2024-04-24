@@ -1,0 +1,26 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class WeaponController : MonoBehaviour
+{
+    public GameObject shot;
+    public Transform shotSpawn;
+    public float fireRate,delay;
+    public bool start_shot = false;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        InvokeRepeating("Shooting", delay, fireRate);
+    }
+
+    void Shooting()
+    {
+        if (start_shot)
+        {
+            Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+            GetComponent<AudioSource>().Play();
+        } 
+    }
+}

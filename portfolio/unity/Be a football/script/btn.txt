@@ -1,0 +1,32 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class btn : MonoBehaviour
+{
+    public GameObject panel;
+
+    public void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+    }
+    public void Btn_Next(){
+        panel.SetActive(false);
+        Time.timeScale = 1;
+        SceneManager.LoadScene("Game2");
+    }
+    public void Btn_Restart()
+    {
+        panel.SetActive(false);
+        Time.timeScale = 1;
+        SceneManager.LoadScene("SampleScene");
+    }
+    public void Btn_Quit()
+    {
+        Application.Quit();
+    }
+}

@@ -1,0 +1,50 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ChangeColor : MonoBehaviour
+{
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    { 
+        if(this.gameObject.name == "M1")
+        {
+            GetComponent<MeshRenderer>().material.color = Color.Lerp(new Color(255f / 255f, 0f / 255f, 0f / 255f, 255f / 255), new Color(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f), Mathf.PingPong(Time.time * 2, 1));
+        }
+        if (this.gameObject.name == "M2(Clone)")
+        {
+            GetComponent<MeshRenderer>().material.color = Color.Lerp(new Color(255f / 255f, 128f / 255f, 0f / 255f, 255f / 255), new Color(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f), Mathf.PingPong(Time.time * 2, 1));
+        }
+        if (this.gameObject.name == "M3(Clone)")
+        {
+            GetComponent<MeshRenderer>().material.color = Color.Lerp(new Color(255f / 255f, 255f / 255f, 0f / 255f, 255f / 255), new Color(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f), Mathf.PingPong(Time.time * 2, 1));
+        }
+        if (this.gameObject.name == "M4")
+        {
+            GetComponent<MeshRenderer>().material.color = Color.Lerp(new Color(0f / 255f, 255f / 255f, 255f / 255f, 255f / 255), new Color(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f), Mathf.PingPong(Time.time * 2, 1));
+        }
+        if (this.gameObject.name == "M5(Clone)")
+        {
+            GetComponent<MeshRenderer>().material.color = Color.Lerp(new Color(0f / 255f, 0f / 255f, 255f / 255f, 255f / 255), new Color(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f), Mathf.PingPong(Time.time * 2, 1));
+        }
+        if (this.gameObject.name == "M6(Clone)")
+        {
+            GetComponent<MeshRenderer>().material.color = Color.Lerp(new Color(0f / 255f, 0f / 255f, 128f / 255f, 255f / 255), new Color(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f), Mathf.PingPong(Time.time * 2, 1));
+        }
+        if (this.gameObject.name == "M7(Clone)")
+        {
+            GetComponent<MeshRenderer>().material.color = Color.Lerp(new Color(255f / 255f, 0f / 255f, 255f / 255f, 255f / 255), new Color(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f), Mathf.PingPong(Time.time * 2, 1));
+        }
+        if (this.gameObject.name == "Start")
+        {
+            GetComponent<MeshRenderer>().material.color = Color.Lerp(new Color(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255), new Color(255f / 255f, 255f / 255f, 255f / 255f, 0f / 255f), Mathf.PingPong(Time.time * 2, 1));
+        }
+    }
+}

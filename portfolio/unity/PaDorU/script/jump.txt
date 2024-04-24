@@ -1,0 +1,123 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UI;
+
+public class jump : MonoBehaviour
+{
+    private float jump_force = 18f;
+    private float fall = 15f;
+    private float low = 15f;
+    private float downTime;
+    private bool jupmed = true;
+    public Text text,end_text;
+    private float score = 0;
+    private bool time_stop = false;
+    public AudioSource au;
+
+    public GameObject score_area, end;
+
+    //public AudioClip ac;
+
+    private Rigidbody2D rb;
+    void Start()
+    {
+        rb = this.gameObject.GetComponent<Rigidbody2D>();
+        au = this.gameObject.GetComponent<AudioSource>();
+        end.SetActive(false);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (!time_stop)
+        {
+            score += 0.1f;
+            text.text = "Score: " + String.Format("{0:0000000}", Convert.ToInt16(score));
+        }
+        Touch touch;
+        if (jupmed)
+        {
+        if (Input.touchCount > 0)
+        {
+            touch = Input.GetTouch(0);
+            if (touch.phase == TouchPhase.Began)
+            {
+                    downTime = Time.time;
+            }
+            if (touch.phase == TouchPhase.Ended)
+            {
+                    float time;
+                    //time = Time.time - downTime + 1.2f; //電腦
+                    time = Time.time - downTime + 1.5f; //手機
+                    if (time >= 2f)
+                        time = 2f;
+                    rb.velocity = Vector2.up * jump_force * time;
+                    au.Play();
+                }
+        }
+        if (Input.GetKeyDown("w") || Input.GetKeyDown("up") || Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown("space"))
+        {
+            downTime = Time.time;
+        }
+        if (Input.GetKeyUp("w") || Input.GetKeyUp("up") || Input.GetKeyUp(KeyCode.Mouse0) || Input.GetKeyUp("space"))
+        {
+                float time;
+                //time = Time.time - downTime + 1.2f; //電腦
+                time = Time.time - downTime + 1.5f; //手機
+                if (time >= 2f)
+                    time = 2f;
+                rb.velocity = Vector2.up * jump_force * time;
+                au.Play();
+            }
+
+        
+
+        if (rb.velocity.y < 0)
+        {
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (fall - 1) * Time.deltaTime;
+        }
+        else if (rb.velocity.y > 0)
+        {
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (low - 1) * Time.deltaTime;
+        }
+            jupmed = false;
+        }
+
+        if (!jupmed)
+        {
+            if (Input.touchCount > 0)
+            {
+                touch = Input.GetTouch(0);
+                if (touch.phase == TouchPhase.Began)
+                {
+                    rb.velocity = Vector2.down * jump_force * 5f;
+                }
+            }
+            if (Input.GetKeyDown("s") || Input.GetKeyDown("down") || Input.GetKeyDown(KeyCode.Mouse1))
+            {
+                rb.velocity = Vector2.down * jump_force * 5f;
+            }
+        }
+
+        if(this.gameObject.transform.position.y <= -1.75f && jupmed ==false)
+        {
+            jupmed = true;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "disability")
+        {
+            end.SetActive(true);
+            score_area.SetActive(false);
+            end_text.text = "Score: " + (int)score;
+            Time.timeScale = 0;
+            time_stop = true;
+        }
+    }
+}

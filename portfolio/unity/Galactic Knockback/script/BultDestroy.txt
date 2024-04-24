@@ -1,0 +1,43 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
+
+public class BultDestroy : MonoBehaviour
+{
+    public GameObject explosion;
+    private GameController gameController;
+    
+    private void Start()
+    {
+        GameObject gameControllerObject = GameObject.FindWithTag("GameController");
+        if (gameControllerObject != null)
+        {
+            gameController = gameControllerObject.GetComponent<GameController>();
+        }
+       
+        
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "MONSTER_BIG")
+        {
+            Destroy(this.gameObject);
+            EnemyMove e = other.GetComponent<EnemyMove>();
+            if (e.moveOK == true)
+            {
+                e.hp = e.hp - 10;
+                e.bar.transform.localPosition = new Vector3((-440 + 290*(e.hp / e.max)),0.0f,0.0f);
+            if(e.hp == 0)
+            {
+                e.bar_bg.SetActive(false);
+                Destroy(other.gameObject);
+                Instantiate(explosion, transform.position, transform.rotation);
+                    
+                    gameController.Addscore(100);
+                }
+            }
+            
+        }
+    }
+}

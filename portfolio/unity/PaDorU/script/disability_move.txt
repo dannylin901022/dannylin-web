@@ -1,0 +1,54 @@
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
+
+public class disability_move : MonoBehaviour
+{
+    private float first_time;
+    public GameObject creator;
+    private bool fly = false;
+    // Start is called before the first frame update
+    void Start()
+    {
+        creator = GameObject.Find("disability");
+        first_time = creator.GetComponent<create>().first_time;
+        if (this.gameObject.name == "1(Clone)" || this.gameObject.name == "4(Clone)")
+        {
+            this.gameObject.transform.position = new Vector2(15f, -2.11f);
+        }
+        else if (this.gameObject.name == "2(Clone)" || this.gameObject.name == "5(Clone)")
+        {
+            this.gameObject.transform.position = new Vector2(15f, -1.17f);
+        }
+        else if (this.gameObject.name == "3(Clone)" || this.gameObject.name == "6(Clone)" || this.gameObject.name == "6_1(Clone)" || this.gameObject.name == "6_2(Clone)" || this.gameObject.name == "6_3(Clone)")
+        {
+            this.gameObject.transform.position = new Vector2(15f, 1.58f);
+            fly = true;
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        float time;
+        time = (Time.time - first_time) * 0.5f;
+        if(time >= 10f)
+        {
+            time = 10f;
+        }
+        if (fly)
+        {
+            this.gameObject.transform.Translate(Vector2.up * Time.deltaTime * time);
+        }
+        else
+        {
+            this.gameObject.transform.Translate(Vector2.left * Time.deltaTime * time);
+        }
+        
+        if(this.gameObject.transform.position.x <= -16f)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+}

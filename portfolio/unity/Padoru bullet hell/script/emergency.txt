@@ -1,0 +1,35 @@
+using System.Collections;
+using System.Collections.Generic;
+using Fungus;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
+using Image = UnityEngine.UI.Image;
+
+public class emergency : MonoBehaviour
+{
+    public Flowchart flowchart;
+    private Block block;
+    private float i = 0;
+    public GameObject panel;
+    private Color c1;
+    private Color c2;
+    private Image image;
+    // Start is called before the first frame update
+    void Start()
+    {
+        block = flowchart.FindBlock("New Block3");
+        image = panel.GetComponent<Image>();
+        c1 = new Color(241f/255f, 25f/255f, 25f / 255f, 70f / 255f);
+        c2 = new Color(255f / 255f, 75f / 255f, 75f / 255f, 170f / 255f);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        image.color = Color.Lerp(c2, c1, Mathf.PingPong(Time.time, 1));
+        
+
+    }
+  
+}

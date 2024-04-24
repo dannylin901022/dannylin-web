@@ -1,0 +1,37 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class SetMaterial : MonoBehaviour
+{
+    private static PhysicMaterial Material_1;
+    private static PhysicMaterial Material_2;
+    private static float time = 0;
+    private Collider collider;
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        Material_1 = Resources.Load("dontJump", typeof(PhysicMaterial)) as PhysicMaterial;
+        Material_2 = Resources.Load("Ground", typeof(PhysicMaterial)) as PhysicMaterial;
+        collider = GetComponent<Collider>();
+        collider.material = Material_1;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        collider.material = Material_1;
+        if (time > 0)
+        {
+            collider.material = Material_2;
+            time = time - 0.002f;
+        }
+    }
+    public static void jumpstart()
+    {
+        time = 30;
+    }
+    
+}

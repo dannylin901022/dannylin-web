@@ -1,0 +1,47 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class DestroyByContact : MonoBehaviour
+{
+    public GameObject explosion,playerExplosion;
+    public int score;
+    private GameController gameController;
+
+    void Start()
+    {
+        GameObject gameControllerObject = GameObject.FindWithTag("GameController");
+        if(gameControllerObject != null)
+        {
+            gameController = gameControllerObject.GetComponent<GameController>();
+        }
+    }
+    void OnTriggerEnter(Collider other){
+        if(other.tag == "Player"){
+            Instantiate(playerExplosion, transform.position,transform.rotation);
+            gameController.GameOver();
+        }
+        if (other.tag == "Boundary" || other.tag == "Enemy" || other.tag == "rock" || other.tag == "MONSTER_BIG" || other.tag == "E_B")
+        {
+            return;
+        }
+        if (explosion != null)
+        {
+            //Instantiate(explosion, transform.position, transform.rotation);
+        }
+        if (this.gameObject.tag != "MONSTER_BIG")
+        {
+            Destroy(other.gameObject);
+            Destroy(gameObject);
+            Instantiate(explosion, transform.position, transform.rotation);
+            gameController.Addscore(score);
+        }
+        if(gameController.M4 == null)
+        {
+            Destroy(gameObject);
+            Instantiate(explosion, transform.position, transform.rotation);
+        }
+        
+        
+    }
+}

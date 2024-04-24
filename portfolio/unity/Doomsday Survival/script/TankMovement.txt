@@ -1,0 +1,82 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class TankMovement : MonoBehaviour
+{
+    private Rigidbody rb;
+    private float m_MovementInputValue,m_TurnInputValue;
+    public float m_Speed, m_TurnSpeed;
+
+    public AudioSource m_MovementAudio, bullet;
+    public AudioClip m_EngineIdling, m_EngineDriving;
+    public float m_PitchRange;
+    public TankShooting ts; 
+
+    
+    private void Awake()
+    {
+        rb = gameObject.GetComponent<Rigidbody>();
+        ts = this.gameObject.GetComponent<TankShooting>();
+    }
+
+    private void OnEnable()
+    {
+        rb.isKinematic = false;
+        m_MovementInputValue = 0.0f;
+        m_TurnInputValue = 0.0f;
+    }
+
+    private void OnDisable()
+    {
+        rb.isKinematic = true;
+    }
+
+    private void FixedUpdate()
+    {
+
+        m_MovementInputValue = Input.GetAxis("Vertical");
+        Vector3 movement = transform.forward * m_MovementInputValue * m_Speed * Time.deltaTime;
+
+        rb.MovePosition(rb.position + movement);
+
+        m_TurnInputValue = Input.GetAxis("Horizontal");
+        float turn = m_TurnInputValue * m_TurnSpeed * Time.deltaTime;
+        Quaternion turnRotation = Quaternion.Euler(0.0f, turn, 0.0f);
+        rb.MoveRotation(rb.rotation * turnRotation);
+
+        EngineAudio();
+    }
+
+    private void EngineAudio()
+    {
+        if(Mathf.Abs(m_MovementInputValue) < 0.3f && Mathf.Abs(m_TurnInputValue) < 0.3f)
+        {
+            if(m_MovementAudio.clip == m_EngineDriving)
+            {
+                m_MovementAudio.clip = m_EngineIdling;
+                m_MovementAudio.pitch = Random.Range(m_MovementAudio.pitch - m_PitchRange, m_MovementAudio.pitch + m_PitchRange);
+                m_MovementAudio.Play();
+            }
+        }
+        else
+        {
+            if(m_MovementAudio.clip == m_EngineIdling)
+            {
+                m_MovementAudio.clip = m_EngineDriving;
+                m_MovementAudio.pitch = Random.Range(m_MovementAudio.pitch - m_PitchRange, m_MovementAudio.pitch + m_PitchRange);
+                m_MovementAudio.Play();
+            }
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Shell_item")
+        {
+            Destroy(other.gameObject);
+            ts.shot_count = ts.shot_count + 15;
+            bullet.Play();
+        }
+    }
+
+}

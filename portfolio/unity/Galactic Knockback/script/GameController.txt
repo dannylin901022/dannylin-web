@@ -1,0 +1,125 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System.Xml.Serialization;
+using static UnityEngine.ParticleSystem;
+
+public class GameController : MonoBehaviour
+{
+    public GameObject[] hazards;
+    public Vector3 spawnVaules;
+
+    public int hazardCount;
+    public float spawnWait, startWait, waveWait;
+
+    public Text scoreText;
+    private int score;
+
+    public Text restartText;
+    private bool gameover, restart;
+    public bool start = false;
+    public GameObject start_image,gameover_image,win_image;
+
+    public GameObject M4,M1;
+    private int audio = 0;
+    public AudioSource au;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        gameover = false;
+        restart = false;
+        restartText.text = "Press 'Button 9' Start";
+        StartCoroutine(spawnWaves());
+        M4 = GameObject.Find("M4");
+        M1 = GameObject.Find("M1");
+        au = GetComponent<AudioSource>();
+    }
+    void Update()
+    {
+        if (!start)
+        {
+            if (Input.GetButtonDown("Fire2"))
+            {
+                start = true;
+                start_image.SetActive(false);
+                restartText.text = "";
+            }
+        }
+        if (restart)
+        {
+            if (Input.GetButtonDown("Fire2"))
+            {
+                SceneManager.LoadScene("test");
+            }
+        }
+        if((M1 == null && audio == 0)|| (M4 == null && audio == 1))
+        {
+            au.Play();
+            audio++;
+        }
+        if (M4 == null)
+        {
+            Win();
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+    }
+
+    IEnumerator spawnWaves()
+    {
+        
+            yield return new WaitForSeconds(spawnWait);
+            while (true)
+            {
+                for (int i = 0; i < hazardCount; i++)
+                {
+                if (start && !gameover)
+                {
+                    GameObject hazard = hazards[Random.Range(0, hazards.Length)];
+                    Vector3 spawnPos = new Vector3(Random.Range(-spawnVaules.x, spawnVaules.x), spawnVaules.y, spawnVaules.z);
+                    Quaternion spawnRotation = Quaternion.identity;
+                    Instantiate(hazard, spawnPos, spawnRotation);
+                    yield return new WaitForSeconds(spawnWait);
+                }
+            }
+                yield return new WaitForSeconds(spawnWait);
+                if (gameover)
+                {
+                    restartText.text = "Press 'Button 9' Restart";
+                    restart = true;
+                    break;
+                }
+            }
+        
+    
+    }
+
+    public void Addscore(int new_score)
+    {
+        score += new_score;
+        updateScore();
+    }
+    public void updateScore()
+    {
+        scoreText.text = "" + score;
+    }
+    public void GameOver()
+    {
+        gameover_image.SetActive(true);
+        gameover = true;
+    }
+    public int getScore()
+    {
+        return score;
+    }
+    public void Win()
+    {
+        win_image.SetActive(true);
+        gameover = true;
+    }
+}

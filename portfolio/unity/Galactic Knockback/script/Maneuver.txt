@@ -1,0 +1,43 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Maneuver : MonoBehaviour
+{
+    private float Speed;
+    private Rigidbody rb;
+
+    public Boundary boundary;
+    public float tilt, dodge, smoothing;
+    public Vector2 startWait, maneuverTime, maneuverWait;
+
+    private float targeManeuner;
+    // Start is called before the first frame update
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        Speed = -5;
+        rb.velocity = transform.forward * Speed;
+        StartCoroutine(Evade());
+    }
+
+    IEnumerator Evade()
+    {
+        yield return new WaitForSeconds(Random.Range(startWait.x, startWait.y));
+        for(; ; )
+        {
+            targeManeuner = Random.Range(1,dodge)*-Mathf.Sign(transform.position.x);
+            yield return new WaitForSeconds(Random.Range(maneuverTime.x,maneuverTime.y));
+            targeManeuner = 0;
+            yield return new WaitForSeconds(Random.Range(maneuverWait.x, maneuverWait.y));
+        }
+    }
+
+    void FixedUpdate()
+    {
+        float newManeuver = Mathf.MoveTowards(rb.velocity.x, targeManeuner, smoothing * Time.deltaTime);
+        rb.velocity = new Vector3(newManeuver, 0, Speed);
+        rb.position = new Vector3(Mathf.Clamp(rb.position.x, boundary.xMin, boundary.xMax), 0, Mathf.Clamp(rb.position.z, boundary.zMin, boundary.zMax));
+        rb.rotation = Quaternion.Euler(0, 0, rb.velocity.x * -tilt);
+    }
+}

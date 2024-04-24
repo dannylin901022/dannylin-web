@@ -1,0 +1,82 @@
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class Total_score : MonoBehaviour
+{
+    public float total_score;
+    public Text combo_text,score;
+    public GameObject com;
+    private Vector2 vect2;
+    private float t = 0;
+    private bool combo_size_max = false;
+
+    public float perfect_s = 0, great_s = 0, good_s = 0, miss_s = 0, max_s = 0;
+    void Start()
+    {
+        total_score = 0;
+        vect2 = gameObject.transform.localScale;
+        
+    }
+    private void Update()
+    {
+        if (!combo_size_max)
+        {
+            combo_text.fontSize = (int)Mathf.Lerp(50, 70, t);
+            t += 20f * Time.deltaTime;
+        }
+
+
+        if (!combo_size_max && t >= 1)
+        {
+            combo_size_max = true;
+        }
+
+
+        if (Input.GetKey("w"))
+        {
+            combo_text.fontSize = 50;
+            test();
+        }
+
+        if(total_score > max_s)
+        {
+            max_s = total_score;
+        }
+
+        score.text = "Max Combo: " + max_s + "\r\n" + "Perfect: " + perfect_s + "\r\n" + "Great: " + great_s + "\r\n" + "Good: " + good_s + "\r\n" + "Miss: " + miss_s + "\r\n";
+
+    }
+    public void change_score()
+    {
+        //com.gameObject.transform.localScale = vect2;
+        //StopCoroutine("text_effect");
+        if (total_score == 0)
+        {
+            combo_text.text = "";
+        }
+        else
+        {
+            combo_text.text = total_score.ToString();
+        }
+        //StartCoroutine("text_effect");
+        combo_text.fontSize = 50;
+        combo_size_max = false;
+        t = 0;
+    }
+    private void test()
+    {
+        combo_size_max = false;
+        t = 0;
+    }
+    /*
+    IEnumerator text_effect()
+    {
+        combo_text.fontSize = 50;
+        yield return new WaitForSeconds(0.2f);
+        combo_text.fontSize = 70;
+    }
+    */
+}

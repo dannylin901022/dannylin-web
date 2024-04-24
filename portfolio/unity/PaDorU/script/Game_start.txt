@@ -1,0 +1,34 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class Game_start : MonoBehaviour
+{
+    public GameObject padoru, score, start;
+    private void Awake()
+    {
+        Time.timeScale = 0;
+        padoru.SetActive(false);
+        score.SetActive(false);
+        start.SetActive(true);
+    }
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+    }
+    public void game_start()
+    {
+        Time.timeScale = 1;
+        padoru.SetActive(true);
+        score.SetActive(true);
+        start.SetActive(false);
+    }
+    public void restart()
+    {
+        SceneManager.LoadScene("SampleScene");
+    }
+}

@@ -1,0 +1,85 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UI;
+
+
+public class airplane : MonoBehaviour
+{
+    public Text mytext,end_text;
+    public GameObject touch,sphere,score;
+    public Animator animator;
+    private float time = 0;
+    public AudioClip ac1,ac2;
+    private AudioSource au;
+    
+    // Start is called before the first frame update
+    void Start()
+    {
+        //sphere.SetActive(false);
+        au = this.gameObject.GetComponent<AudioSource>();
+    }
+    //public Vector3 vect;
+    // Update is called once per frame
+    public bool check=false;
+    void Update()
+    {
+        time += Time.deltaTime;
+        mytext.text = "Survival Time : " + (int)time + " s";
+        if (touch.transform.GetChild(0).gameObject.activeSelf == true)
+        {
+            gameObject.transform.position=Vector2.Lerp(gameObject.transform.position, touch.transform.GetChild(0).position, 1f * Time.deltaTime);
+            Quaternion rotation= Quaternion.LookRotation(Vector3.forward,touch.transform.GetChild(0).position - gameObject.transform.position);
+            gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation, rotation,4f * Time.deltaTime);
+        }
+
+        if (touch.transform.GetChild(1).gameObject.activeSelf == true || Input.GetKey(KeyCode.S))
+        {
+            if (check == false) 
+            {
+                check = true;
+                GameObject objcopy= GameObject.Instantiate(sphere);
+
+                /*
+                objcopy.transform.position = gameObject.transform.position;
+                objcopy.transform.rotation = gameObject.transform.rotation;
+                //objcopy.transform.Translate(0, 0, 0.25f);
+                objcopy.SetActive(true);
+                */
+                objcopy.transform.position = Vector2.Lerp(gameObject.transform.position, touch.transform.GetChild(1).transform.position, 1f * Time.deltaTime);
+                Quaternion rotation = Quaternion.LookRotation(Vector3.forward, touch.transform.GetChild(1).transform.position);
+                objcopy.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation, rotation, 4f * Time.deltaTime);
+                objcopy.SetActive(true);
+                au.PlayOneShot(ac1);
+            }
+
+        }
+        else
+        {
+            if (check == true)
+            {
+                check = false;         
+            }
+        }
+
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "rock")
+        {
+            Destroy(collision.gameObject);
+            animator.SetTrigger("destroy");
+            StartCoroutine("destroy_time");
+            au.PlayOneShot(ac2);
+        }
+    }
+
+    IEnumerator destroy_time()
+    {
+        yield return new WaitForSeconds(0.6f);
+        end_text.text = "You Survived\n" + (int)time + " s";
+        score.SetActive(false);
+        Destroy(this.gameObject);
+    }
+}

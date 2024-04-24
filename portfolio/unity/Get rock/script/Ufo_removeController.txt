@@ -1,0 +1,79 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
+public class Ufo_removeController : MonoBehaviour
+{
+    
+    public float speed;
+    
+    private Rigidbody2D rigi;
+    
+    public Text countText;
+    public Text winText;
+    public static int count;
+    public GameObject PickUP;
+    
+    public AudioClip collect;
+    private AudioSource Music;
+    private int num = 0;
+    // Stawrt is called before the first frame update
+    void Start()
+    {
+        rigi = GetComponent<Rigidbody2D>();
+        count = 0;
+        winText.text = "";
+        SetCountText();
+        Music = GetComponent<AudioSource>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis("Vertical");
+        Vector2 movement = new Vector2(moveHorizontal,moveVertical);
+        rigi.AddForce(movement*speed);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("PickUp"))
+        {
+            Destroy(collision.gameObject);
+            count = count + 1;
+            SetCountText();
+            Music.PlayOneShot(collect);
+            num = num + 1;
+        }
+        if (collision.gameObject.CompareTag("Monster"))
+        {
+            SceneManager.LoadScene("End");
+        }
+        if (collision.gameObject.CompareTag("tako_white"))
+        {
+            if(num != 0)
+            {
+                SceneManager.LoadScene("End");
+            }
+            
+        }
+        if (collision.gameObject.CompareTag("tako_black"))
+        {
+            if (num != 0)
+            {
+                SceneManager.LoadScene("End");
+            }
+            
+        }
+
+    }
+    void SetCountText(){
+     countText.text = "Count：" + count.ToString(); 
+        if(count >= 50){
+            SceneManager.LoadScene("End2");
+            
+    }
+}
+}

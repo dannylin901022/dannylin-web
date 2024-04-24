@@ -1,0 +1,225 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Drawing;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class onTrigger : MonoBehaviour
+{
+    public GameObject scoreTime;
+    public Transform scoreTextFirePoint;
+    public Rigidbody2D scoreTextPrefab;
+    public int fireInt;
+    private string scoreGet;
+
+    public float c;
+    public Image bar;
+    float x = 0;
+    float sx;
+    float tx;
+    float ty;
+    float tz;
+    float move_time = -1;
+    public Transform Point;
+
+    private bool bomb;
+    public GameObject bang;
+    private Renderer SR;
+
+    private Rigidbody2D rigi;
+
+    public GameObject g, gg, ggg;
+    ITEMMOVE g1, g2, g3;
+
+    public AudioClip[] music;
+    private AudioSource Music;
+
+    void Start()
+    {
+        bomb = false;
+        bang.SetActive(false);
+        SR = gameObject.GetComponent<SpriteRenderer>();
+        c = 0;
+        sx = bar.transform.position.x;
+        tx = bar.transform.position.x;
+        ty = bar.transform.position.y;
+        tz = bar.transform.position.z;
+        rigi = GetComponent<Rigidbody2D>();
+        Music = GetComponent<AudioSource>();
+
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "money10")
+        {
+            scoreTime.GetComponent<scoreTime>().scoreInt = scoreTime.GetComponent<scoreTime>().scoreInt + 10;
+            scoreGet = "+10";
+            scoreFirePoint();
+            Destroy(collision.gameObject);
+            c = c + 10;
+            x = x + 0.02f;
+            bar.gameObject.transform.localScale = new Vector3(x, 1, 1);
+            tx = tx + 2;
+            bar.gameObject.transform.position = new Vector3(tx, ty, tz);
+            Music.PlayOneShot(music[0]);
+        }
+        else if (collision.tag == "money50")
+        {
+            scoreTime.GetComponent<scoreTime>().scoreInt = scoreTime.GetComponent<scoreTime>().scoreInt + 50;
+            scoreGet = "+50";
+            scoreFirePoint();
+            Destroy(collision.gameObject);
+            c = c + 50;
+            x = x + 0.1f;
+            bar.gameObject.transform.localScale = new Vector3(x, 1, 1);
+            tx = tx + 9.5f;
+            bar.gameObject.transform.position = new Vector3(tx, ty, tz);
+            Music.PlayOneShot(music[0]);
+        }
+        else if (collision.tag == "money100")
+        {
+            scoreTime.GetComponent<scoreTime>().scoreInt = scoreTime.GetComponent<scoreTime>().scoreInt + 100;
+            scoreGet = "+100";
+            scoreFirePoint();
+            Destroy(collision.gameObject);
+            c = c + 100;
+            x = x + 0.2f;
+            bar.gameObject.transform.localScale = new Vector3(x, 1, 1);
+            tx = tx + 19;
+            bar.gameObject.transform.position = new Vector3(tx, ty, tz);
+            Music.PlayOneShot(music[0]);
+        }
+        else if (collision.tag == "bomb30")
+        {
+            if (scoreTime.GetComponent<scoreTime>().scoreInt - 30 <= 0)
+            {
+                scoreTime.GetComponent<scoreTime>().scoreInt = 0;
+            }
+            else
+            {
+                scoreTime.GetComponent<scoreTime>().scoreInt = scoreTime.GetComponent<scoreTime>().scoreInt - 30;
+            }
+            StartCoroutine("shakeTime");
+            scoreGet = "-30";
+            scoreFirePoint();
+            Destroy(collision.gameObject);
+            Music.PlayOneShot(music[2]);
+        }
+        else if (collision.tag == "fufu")
+        {
+            StartCoroutine("shakeTime2");
+            Destroy(collision.gameObject);
+            if(c > 0)
+            {
+                c = c - 50;
+                x = x - 0.1f;
+                bar.gameObject.transform.localScale = new Vector3(x, 1, 1);
+                tx = tx - 9.5f;
+                bar.gameObject.transform.position = new Vector3(tx, ty, tz);
+            }
+            Music.PlayOneShot(music[1]);
+        }
+        else if (collision.tag == "guda")
+        {
+            if (scoreTime.GetComponent<scoreTime>().scoreInt - 20 <= 0)
+            {
+                scoreTime.GetComponent<scoreTime>().scoreInt = 0;
+            }
+            else
+            {
+                scoreTime.GetComponent<scoreTime>().scoreInt = scoreTime.GetComponent<scoreTime>().scoreInt - 20;
+            }
+            StartCoroutine("shakeTime2");
+            scoreGet = "-20";
+            scoreFirePoint();
+            Music.PlayOneShot(music[1]);
+        }
+    }
+    void scoreFirePoint(){
+        fireInt = 1;
+    }
+    
+    void Update(){
+        if(fireInt == 1){
+            fireInt = 0;
+            Rigidbody2D clone;
+            clone = Instantiate(scoreTextPrefab, scoreTextFirePoint.transform.position,scoreTextFirePoint.transform.rotation) as Rigidbody2D;
+            clone.velocity = scoreTextFirePoint.transform.TransformDirection(Vector3.up * 4);
+            clone.gameObject.GetComponent<TextMesh>().text = scoreGet;
+        }
+        if(bomb == true)
+        {
+            StartCoroutine("Flashing");
+        }
+        if(c >= 500)
+        {
+            tx = sx;
+            bar.gameObject.transform.position = new Vector3(tx, ty, tz);
+            x = 0;
+            bar.gameObject.transform.localScale = new Vector3(x, 1, 1);
+            c = 0;
+            move_time = 3;
+        }
+        if(move_time > 0)
+        {
+            g = GameObject.Find("apple(Clone)");
+            if(g != null)
+            {
+                g1 = g.GetComponent<ITEMMOVE>();
+                g1.item_move();
+            }      
+            gg = GameObject.Find("banana(Clone)");
+            if(gg != null)
+            {
+                g2 = gg.GetComponent<ITEMMOVE>();
+                g2.item_move();
+            }
+            ggg = GameObject.Find("pear(Clone)");
+            if (ggg != null)
+            {
+                g3 = ggg.GetComponent<ITEMMOVE>();
+                g3.item_move();
+            }
+            if (move_time <= 0)
+            {
+                g1.tf = false;
+                g2.tf = false;
+                g3.tf = false;
+            }
+        }
+        move_time = move_time - 0.02f;
+        if (this.transform.position.y > -2.34f)
+        {
+            rigi.AddForce(new Vector2(0f, -1f));
+        }
+        else {
+            this.transform.position = new Vector2(this.transform.position.x, -2.34f);
+        }
+    }
+    
+    IEnumerator shakeTime()
+    {
+        bomb = true;
+        bang.SetActive(true);
+        yield return new WaitForSecondsRealtime(0.6f);
+        bomb = false;
+        bang.SetActive(false);
+    }
+    IEnumerator Flashing()
+    {
+        SR.enabled = false;
+        yield return new WaitForSeconds(0.03f);
+        SR.enabled = true;
+        StopCoroutine("Flashing");
+    }
+    IEnumerator shakeTime2()
+    {
+        bomb = true;
+        yield return new WaitForSecondsRealtime(0.6f);
+        bomb = false;
+    }
+    void OnMouseDown()
+    {
+        rigi.AddForce(new Vector2(0f, 300f));
+    }
+}

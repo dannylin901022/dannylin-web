@@ -1,0 +1,34 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class playStatus : MonoBehaviour
+{
+    public Text time_Text;
+    public Text life_Text;
+    public GameObject PlayerStart;
+    private float timeCount;
+    private int lifeCount;
+    // Start is called before the first frame update
+    void Start()
+    {
+        SetTime(0);
+        SetLife(0);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        timeCount = timeCount + Time.deltaTime;
+        SetTime((int)timeCount);
+    }
+    public void SetTime(int time){
+        time_Text.text = "經過時間：" + time + " 秒";
+    }
+    public void SetLife(int life){
+        lifeCount = lifeCount + life;
+        life_Text.text = "死亡次數：" + lifeCount + " 次";
+        this.transform.position = PlayerStart.transform.position;
+    }
+}

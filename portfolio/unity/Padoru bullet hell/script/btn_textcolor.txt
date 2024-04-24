@@ -1,0 +1,24 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class btn_textcolor : MonoBehaviour
+{
+    public Text text;
+    private Color c1;
+    private Color c2;
+
+    void Start()
+
+    {
+        c1 = new Color(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f);
+        c2 = new Color(255f / 255f, 255f / 255f, 255f / 255f, 125f / 255f);
+
+    }
+    void Update()
+    {
+        text = gameObject.GetComponent<Text>();
+        text.color = Color.Lerp(c2, c1, Mathf.PingPong(Time.time, 1));
+    }
+}

@@ -1,0 +1,571 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class create_new : MonoBehaviour
+{
+    public GameObject[] note;
+    //public Chart[] chart;
+    public AudioClip ac;
+    public AudioSource au;
+    public GameObject error;
+
+    private float get_data_sec, bpm;
+    private float first_speed, speed, dis, move_time;
+    public Data data;
+    private int chart_index = 0;
+    private bool is_ok = false, is_create = false;
+
+    void Start()
+    {
+        float s = 10f;
+        speed = s * (s * 0.05f);
+        get_data_sec = 3f; //電腦：0.8f、手機：5f
+
+        dis = Vector2.Distance(new Vector2(0f, 4.176f), new Vector2(0f, -5f));
+        Debug.Log(dis);
+
+        Invoke("get_and_set_data", get_data_sec);
+        //StartCoroutine(get_and_set_data());
+
+
+    }
+
+    private void Update()
+    {
+        float start_time = Time.time - get_data_sec;
+        if (is_ok)
+        {
+            
+            if ((60 / bpm) * this.data.chart[chart_index].beat <= start_time)
+            {
+                is_create = false;
+                Debug.Log((60 / bpm) * this.data.chart[chart_index].beat);
+            }
+            if(!is_create)
+            {
+                //bpm = this.data.chart[0].bpm;
+                if (this.data.chart[chart_index].type == "BPM")
+                {
+                    //bpm = this.data.chart[chart_index].bpm;
+                    //Debug.Log(bpm);
+                }
+                if (this.data.chart[chart_index].type == "Single")
+                {
+                    create_single(this.data.chart[chart_index]);
+                }
+                else if (this.data.chart[chart_index].type == "Long" && false)
+                {
+                    GameObject[] note_object_long = new GameObject[this.data.chart[chart_index].connections.Length];
+                    //float first_time = (60 / bpm) * this.data.chart[i].connections[0].beat - 1 - first_speed + get_data_sec;
+                    //float first_time = (60 / bpm) * this.data.chart[i].connections[0].beat - first_speed - speed * 0.1f * Time.deltaTime;
+                    float first_time = (60 / bpm) * this.data.chart[chart_index].connections[0].beat - (60 / bpm) * move_time;
+                    for (int j = 0; j < this.data.chart[chart_index].connections.Length; j++)
+                    {
+                        if (j == 0 || j == this.data.chart[chart_index].connections.Length - 1)
+                        {
+                            note_object_long[j] = create_long_note(this.data.chart[chart_index].connections[j]);
+                            note_object_long[j].SetActive(false);
+                            //float time = (60 / bpm) * this.data.chart[i].connections[j].beat - 1 - first_speed + get_data_sec;
+                            //float time = (60 / bpm) * this.data.chart[i].connections[j].beat - first_speed - speed * 0.1f * Time.deltaTime;
+                            float time = (60 / bpm) * this.data.chart[chart_index].connections[j].beat - (60 / bpm) * move_time;
+                            object[] parms = new object[2] { time, note_object_long[j] };
+                            StartCoroutine("wait_time", parms);
+                        }
+                        else
+                        {
+
+                            note_object_long[j] = create_long_mid(this.data.chart[chart_index].connections[j]);
+                            note_object_long[j].SetActive(false);
+                            //float time = (60 / bpm) * this.data.chart[i].connections[j].beat - 1 - first_speed + get_data_sec;
+                            //float time = (60 / bpm) * this.data.chart[i].connections[j].beat - first_speed - speed * 0.1f * Time.deltaTime;
+                            float time = (60 / bpm) * this.data.chart[chart_index].connections[j].beat - (60 / bpm) * move_time;
+                            object[] parms = new object[2] { time, note_object_long[j] };
+                            StartCoroutine("wait_time", parms);
+                        }
+                    }
+                    for (int n = 0; n < note_object_long.Length - 1; n++)
+                    {
+                        GameObject line = Instantiate(note[21]);
+                        line.GetComponent<G_line>().Note_set(note_object_long[n], note_object_long[n + 1]);
+                        if (n == note_object_long.Length - 2)
+                        {
+                            float ft = this.data.chart[chart_index].connections[n].beat;
+                            float et = this.data.chart[chart_index].connections[n + 1].beat;
+                            line.GetComponent<G_line>().end = true;
+                            line.GetComponent<G_line>().time_gap = Mathf.Abs(1 - ((et - ft) * (60 / bpm))) * (60 / bpm);
+                        }
+                        line.SetActive(false);
+                        object[] parms = new object[3] { first_time, line, note_object_long[n + 1] };
+                        StartCoroutine("wait_time_line", parms);
+                    }
+                }
+                else if (this.data.chart[chart_index].type == "Slide" && false)
+                {
+                    GameObject[] note_object_long = new GameObject[this.data.chart[chart_index].connections.Length];
+                    //float first_time = (60 / bpm) * this.data.chart[i].connections[0].beat - 1 - first_speed + get_data_sec;
+                    //float first_time = (60 / bpm) * this.data.chart[i].connections[0].beat - first_speed - speed * 0.1f * Time.deltaTime;
+                    float first_time = (60 / bpm) * this.data.chart[chart_index].connections[0].beat - (60 / bpm) * move_time;
+                    for (int j = 0; j < this.data.chart[chart_index].connections.Length; j++)
+                    {
+                        if (j == 0 || j == this.data.chart[chart_index].connections.Length - 1)
+                        {
+                            note_object_long[j] = create_long_note(this.data.chart[chart_index].connections[j]);
+                            note_object_long[j].SetActive(false);
+                            //float time = (60 / bpm) * this.data.chart[i].connections[j].beat - 1 - first_speed + get_data_sec;
+                            //float time = (60 / bpm) * this.data.chart[i].connections[j].beat - first_speed - speed * 0.1f * Time.deltaTime;
+                            float time = (60 / bpm) * this.data.chart[chart_index].connections[j].beat - (60 / bpm) * move_time;
+                            object[] parms = new object[2] { time, note_object_long[j] };
+                            StartCoroutine("wait_time", parms);
+                        }
+                        else
+                        {
+
+                            note_object_long[j] = create_long_mid(this.data.chart[chart_index].connections[j]);
+                            note_object_long[j].SetActive(false);
+                            //float time = (60 / bpm) * this.data.chart[i].connections[j].beat - 1 - first_speed + get_data_sec;
+                            //float time = (60 / bpm) * this.data.chart[i].connections[j].beat - first_speed - speed * 0.1f * Time.deltaTime;
+                            float time = (60 / bpm) * this.data.chart[chart_index].connections[j].beat - (60 / bpm) * move_time;
+                            object[] parms = new object[2] { time, note_object_long[j] };
+                            StartCoroutine("wait_time", parms);
+                        }
+                    }
+                    for (int n = 0; n < note_object_long.Length - 1; n++)
+                    {
+                        GameObject line = Instantiate(note[21]);
+                        line.GetComponent<G_line>().Note_set(note_object_long[n], note_object_long[n + 1]);
+                        float ft = this.data.chart[chart_index].connections[n].beat;
+                        float et = this.data.chart[chart_index].connections[n + 1].beat;
+                        line.GetComponent<G_line>().time_gap = Mathf.Abs(1 - ((et - ft) * (60 / bpm))) * (60 / bpm);
+                        if (n == note_object_long.Length - 2)
+                        {
+                            line.GetComponent<G_line>().end = true;
+                        }
+                        line.SetActive(false);
+                        object[] parms = new object[3] { first_time, line, note_object_long[n + 1] };
+                        StartCoroutine("wait_time_line", parms);
+                    }
+                }
+                chart_index += 1;
+                is_create = true;
+            }
+        }
+        
+    }
+
+    void get_and_set_data()
+    {
+        try
+        {
+            data = gameObject.GetComponent<chart_read>().Get_chart();
+            string music_id;
+            if (gameObject.GetComponent<chart_read>().check_bandori())
+            {
+                bpm = this.data.chart[0].bpm;
+                music_id = this.data.chart[1].data.Substring(3, 3);
+            }
+            else
+            {
+                bpm = this.data.chart[0].bpm;
+                music_id = gameObject.GetComponent<chart_read>().id.ToString();
+            }
+
+            dis = dis / speed;
+            move_time = dis * (60 / bpm);
+
+            Debug.Log(dis);
+            Debug.Log(move_time);
+
+
+            ac = Resources.Load<AudioClip>("Music/bgm" + music_id);
+            au = gameObject.GetComponent<AudioSource>();
+            au.clip = ac;
+            au.Play();
+
+            is_ok = true;
+            chart_index += 1;
+        }
+        catch (Exception e)
+        {
+            error.SetActive(true);
+            Debug.Log(e);
+        }
+        
+
+        /*
+        for (int i = 2; i < this.data.chart.Length; i++)
+        {
+            //bpm = this.data.chart[0].bpm;
+            if (this.data.chart[i].type == "BPM")
+            {
+                //bpm = this.data.chart[i].bpm;
+                //Debug.Log(bpm);
+            }
+            if (this.data.chart[i].type == "Single")
+            {
+                StartCoroutine("create_single", this.data.chart[i]);
+            }
+            else if (this.data.chart[i].type == "Long" && false)
+            {
+                GameObject[] note_object_long = new GameObject[this.data.chart[i].connections.Length];
+                //float first_time = (60 / bpm) * this.data.chart[i].connections[0].beat - 1 - first_speed + get_data_sec;
+                //float first_time = (60 / bpm) * this.data.chart[i].connections[0].beat - first_speed - speed * 0.1f * Time.deltaTime;
+                float first_time = (60 / bpm) * this.data.chart[i].connections[0].beat - (60 / bpm) * move_time;
+                for (int j = 0; j < this.data.chart[i].connections.Length; j++)
+                {
+                    if (j == 0 || j == this.data.chart[i].connections.Length - 1)
+                    {
+                        note_object_long[j] = create_long_note(this.data.chart[i].connections[j]);
+                        note_object_long[j].SetActive(false);
+                        //float time = (60 / bpm) * this.data.chart[i].connections[j].beat - 1 - first_speed + get_data_sec;
+                        //float time = (60 / bpm) * this.data.chart[i].connections[j].beat - first_speed - speed * 0.1f * Time.deltaTime;
+                        float time = (60 / bpm) * this.data.chart[i].connections[j].beat - (60 / bpm) * move_time;
+                        object[] parms = new object[2] { time, note_object_long[j] };
+                        StartCoroutine("wait_time", parms);
+                    }
+                    else
+                    {
+
+                        note_object_long[j] = create_long_mid(this.data.chart[i].connections[j]);
+                        note_object_long[j].SetActive(false);
+                        //float time = (60 / bpm) * this.data.chart[i].connections[j].beat - 1 - first_speed + get_data_sec;
+                        //float time = (60 / bpm) * this.data.chart[i].connections[j].beat - first_speed - speed * 0.1f * Time.deltaTime;
+                        float time = (60 / bpm) * this.data.chart[i].connections[j].beat - (60 / bpm) * move_time;
+                        object[] parms = new object[2] { time, note_object_long[j] };
+                        StartCoroutine("wait_time", parms);
+                    }
+                }
+                for (int n = 0; n < note_object_long.Length - 1; n++)
+                {
+                    GameObject line = Instantiate(note[21]);
+                    line.GetComponent<G_line>().Note_set(note_object_long[n], note_object_long[n + 1]);
+                    if (n == note_object_long.Length - 2)
+                    {
+                        float ft = this.data.chart[i].connections[n].beat;
+                        float et = this.data.chart[i].connections[n + 1].beat;
+                        line.GetComponent<G_line>().end = true;
+                        line.GetComponent<G_line>().time_gap = Mathf.Abs(1 - ((et - ft) * (60 / bpm))) * (60 / bpm);
+                    }
+                    line.SetActive(false);
+                    object[] parms = new object[3] { first_time, line, note_object_long[n + 1] };
+                    StartCoroutine("wait_time_line", parms);
+                }
+            }
+            else if (this.data.chart[i].type == "Slide" && false)
+            {
+                GameObject[] note_object_long = new GameObject[this.data.chart[i].connections.Length];
+                //float first_time = (60 / bpm) * this.data.chart[i].connections[0].beat - 1 - first_speed + get_data_sec;
+                //float first_time = (60 / bpm) * this.data.chart[i].connections[0].beat - first_speed - speed * 0.1f * Time.deltaTime;
+                float first_time = (60 / bpm) * this.data.chart[i].connections[0].beat - (60 / bpm) * move_time;
+                for (int j = 0; j < this.data.chart[i].connections.Length; j++)
+                {
+                    if (j == 0 || j == this.data.chart[i].connections.Length - 1)
+                    {
+                        note_object_long[j] = create_long_note(this.data.chart[i].connections[j]);
+                        note_object_long[j].SetActive(false);
+                        //float time = (60 / bpm) * this.data.chart[i].connections[j].beat - 1 - first_speed + get_data_sec;
+                        //float time = (60 / bpm) * this.data.chart[i].connections[j].beat - first_speed - speed * 0.1f * Time.deltaTime;
+                        float time = (60 / bpm) * this.data.chart[i].connections[j].beat - (60 / bpm) * move_time;
+                        object[] parms = new object[2] { time, note_object_long[j] };
+                        StartCoroutine("wait_time", parms);
+                    }
+                    else
+                    {
+
+                        note_object_long[j] = create_long_mid(this.data.chart[i].connections[j]);
+                        note_object_long[j].SetActive(false);
+                        //float time = (60 / bpm) * this.data.chart[i].connections[j].beat - 1 - first_speed + get_data_sec;
+                        //float time = (60 / bpm) * this.data.chart[i].connections[j].beat - first_speed - speed * 0.1f * Time.deltaTime;
+                        float time = (60 / bpm) * this.data.chart[i].connections[j].beat - (60 / bpm) * move_time;
+                        object[] parms = new object[2] { time, note_object_long[j] };
+                        StartCoroutine("wait_time", parms);
+                    }
+                }
+                for (int n = 0; n < note_object_long.Length - 1; n++)
+                {
+                    GameObject line = Instantiate(note[21]);
+                    line.GetComponent<G_line>().Note_set(note_object_long[n], note_object_long[n + 1]);
+                    float ft = this.data.chart[i].connections[n].beat;
+                    float et = this.data.chart[i].connections[n + 1].beat;
+                    line.GetComponent<G_line>().time_gap = Mathf.Abs(1 - ((et - ft) * (60 / bpm))) * (60 / bpm);
+                    if (n == note_object_long.Length - 2)
+                    {
+                        line.GetComponent<G_line>().end = true;
+                    }
+                    line.SetActive(false);
+                    object[] parms = new object[3] { first_time, line, note_object_long[n + 1] };
+                    StartCoroutine("wait_time_line", parms);
+                }
+            }
+            //StartCoroutine("create", this.data.chart);
+        }
+        */
+
+    }
+
+    void create_single(Chart chart)
+    {
+
+        GameObject note_object_single;
+        //float time = (60 / bpm) * chart.beat - 1 - first_speed + get_data_sec;
+        //float time = (60 / bpm) * chart.beat - first_speed - speed * 0.1f * Time.deltaTime;
+        float time = (60 / bpm) * chart.beat - (60 / bpm) * move_time;
+        switch (chart.lane)
+        {
+            case 0:
+                if (chart.flick)
+                {
+                    note_object_single = Instantiate(note[14]);
+                }
+                else
+                {
+                    note_object_single = Instantiate(note[0]);
+                }
+                /*    
+                note_object_single.SetActive(false);
+                    note_object_single.GetComponent<note_move>().set_speed(speed);
+                    yield return new WaitForSeconds(time);
+                    note_object_single.SetActive(true);
+                */
+                note_object_single.GetComponent<note_move>().set_speed(speed);
+                break;
+
+            case 1:
+                
+                if (chart.flick)
+                {
+                    note_object_single = Instantiate(note[15]);
+                }
+                else
+                {
+                    note_object_single = Instantiate(note[1]);
+                }
+                /*
+                note_object_single.SetActive(false);
+                    note_object_single.GetComponent<note_move>().set_speed(speed);
+                    yield return new WaitForSeconds(time);
+                    note_object_single.SetActive(true);
+                */
+                note_object_single.GetComponent<note_move>().set_speed(speed);
+                break;
+
+            case 2:
+                
+                if (chart.flick)
+                {
+                    note_object_single = Instantiate(note[16]);
+                }
+                else
+                {
+                    note_object_single = Instantiate(note[2]);
+                }
+                /*
+                note_object_single.SetActive(false);
+                    note_object_single.GetComponent<note_move>().set_speed(speed);
+                    yield return new WaitForSeconds(time);
+                    note_object_single.SetActive(true);
+                */
+                note_object_single.GetComponent<note_move>().set_speed(speed);
+                break;
+
+            case 3:
+                
+                if (chart.flick)
+                {
+                    note_object_single = Instantiate(note[17]);
+                }
+                else
+                {
+                    note_object_single = Instantiate(note[3]);
+                }
+                /*
+                note_object_single.SetActive(false);
+                    note_object_single.GetComponent<note_move>().set_speed(speed);
+                    yield return new WaitForSeconds(time);
+                    note_object_single.SetActive(true);
+                */
+                note_object_single.GetComponent<note_move>().set_speed(speed);
+                break;
+
+            case 4:
+                
+                if (chart.flick)
+                {
+                    note_object_single = Instantiate(note[18]);
+                }
+                else
+                {
+                    note_object_single = Instantiate(note[4]);
+                }
+                /*
+                note_object_single.SetActive(false);
+                    note_object_single.GetComponent<note_move>().set_speed(speed);
+                    yield return new WaitForSeconds(time);
+                    note_object_single.SetActive(true);
+                */
+                note_object_single.GetComponent<note_move>().set_speed(speed);
+                break;
+
+            case 5:
+               
+                if (chart.flick)
+                {
+                    note_object_single = Instantiate(note[19]);
+                }
+                else
+                {
+                    note_object_single = Instantiate(note[5]);
+                }
+                /*
+                note_object_single.SetActive(false);
+                    note_object_single.GetComponent<note_move>().set_speed(speed);
+                    yield return new WaitForSeconds(time);
+                    note_object_single.SetActive(true);
+                */
+                note_object_single.GetComponent<note_move>().set_speed(speed);
+                break;
+
+            case 6:
+                
+                if (chart.flick)
+                {
+                    note_object_single = Instantiate(note[20]);
+                }
+                else
+                {
+                    note_object_single = Instantiate(note[6]);
+                }
+                /*
+                note_object_single.SetActive(false);
+                    note_object_single.GetComponent<note_move>().set_speed(speed);
+                    yield return new WaitForSeconds(time);
+                    note_object_single.SetActive(true);
+                */
+                note_object_single.GetComponent<note_move>().set_speed(speed);
+                break;
+        }
+
+
+    }
+
+    IEnumerator wait_time(object[] prams)
+    {
+        yield return new WaitForSeconds((float)prams[0]);
+        GameObject note = (GameObject)prams[1];
+        note.SetActive(true);
+        note.GetComponent<note_move>().set_speed(speed);
+    }
+    IEnumerator wait_time_line(object[] prams)
+    {
+        yield return new WaitForSeconds((float)prams[0]);
+        GameObject note = (GameObject)prams[2];
+        note.SetActive(true);
+        GameObject line = (GameObject)prams[1];
+        line.SetActive(true);
+    }
+
+    GameObject create_long_note(Chart chart)
+    {
+
+        GameObject note_object_lone;
+
+        switch (chart.lane)
+        {
+            case 0:
+                note_object_lone = Instantiate(note[7]);
+                break;
+
+            case 1:
+                note_object_lone = Instantiate(note[8]);
+                break;
+
+            case 2:
+                note_object_lone = Instantiate(note[9]);
+                break;
+
+            case 3:
+                note_object_lone = Instantiate(note[10]);
+                break;
+
+            case 4:
+                note_object_lone = Instantiate(note[11]);
+                break;
+
+            case 5:
+                note_object_lone = Instantiate(note[12]);
+                break;
+
+            case 6:
+                note_object_lone = Instantiate(note[13]);
+                break;
+
+            default:
+                note_object_lone = null;
+                break;
+        }
+        return note_object_lone;
+
+
+    }
+    GameObject create_long_mid(Chart chart)
+    {
+
+        GameObject note_object_lone;
+
+        switch (chart.lane)
+        {
+            case 0:
+                note_object_lone = Instantiate(note[22]);
+                break;
+
+            case 1:
+                note_object_lone = Instantiate(note[23]);
+                break;
+
+            case 2:
+                note_object_lone = Instantiate(note[24]);
+                break;
+
+            case 3:
+                note_object_lone = Instantiate(note[25]);
+                break;
+
+            case 4:
+                note_object_lone = Instantiate(note[26]);
+                break;
+
+            case 5:
+                note_object_lone = Instantiate(note[27]);
+                break;
+
+            case 6:
+                note_object_lone = Instantiate(note[28]);
+                break;
+
+            default:
+                note_object_lone = null;
+                break;
+        }
+        return note_object_lone;
+
+
+    }
+
+
+
+
+
+
+
+
+    /*
+    IEnumerator create(float time)
+    {
+        GameObject note_object = Instantiate(note[(int)Random.Range(7, 13)]);
+        note_object.SetActive(false);
+        yield return new WaitForSeconds(time);
+        note_object.SetActive(true);
+    }
+    */
+}

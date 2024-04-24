@@ -1,0 +1,189 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
+
+public class BallControl : MonoBehaviour
+{
+    public float speed;
+    private Rigidbody rigi;
+    public GameObject camera;
+    private AudioSource audio_collision;
+    public ReloadGame reloadGame, reloadGame1, reloadGame2, reloadGame3, reloadGame4;
+    public static int collectCount = 0;
+    public int goalCount;
+    public GameObject goal;
+    private bool b = true;
+    private Vector3 movement;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        collectCount = 0;
+        Time.timeScale = 1;
+        rigi = GetComponent<Rigidbody>();
+        audio_collision = GetComponent<AudioSource>();
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+    void FixedUpdate()
+    {
+        float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis("Vertical");
+        movement = new Vector3(-moveVertical, 0, moveHorizontal);
+
+
+        float ballX = transform.position.x;
+        float ballZ = transform.position.z;
+        float rotationY = moveHorizontal * 0.7f;
+        
+        while (b)
+        {
+            movement = new Vector3(-moveVertical, 0, moveHorizontal);
+            camera.transform.position = new Vector3(ballX + 7.64f, 5.0f, ballZ);
+            //camera.transform.Rotate(0, 30 * Time.deltaTime * moveHorizontal, 0);
+            break;
+        }
+        while (!b)
+        {
+            movement = new Vector3(moveVertical, 0, moveHorizontal);
+            camera.transform.position = new Vector3(-ballX - 7.64f, 5.0f, -ballZ);
+            //camera.transform.Rotate(0, -30 * Time.deltaTime * moveHorizontal, 0);
+            break;
+        }
+        if(b && Input.GetKey(KeyCode.W))
+        {
+            //b = false;
+        }
+        if (!b && Input.GetKey(KeyCode.W))
+        {
+            //b = true;
+        }
+        rigi.AddForce(movement * speed);
+
+
+        if (transform.position.y > 5){
+            GetComponent<Camera>().transform.position = new Vector3(ballX + 7.64f, transform.position.y, ballZ);
+        }
+        if(Input.GetKeyDown(KeyCode.Space)){
+            rigi.AddForce(0,100,0);
+        }
+        if(reloadGame.force == true){
+            rigi.velocity = new Vector3(0,0,0);
+            reloadGame.force = false;
+        }
+        if (reloadGame1.force == true)
+        {
+            rigi.velocity = new Vector3(0, 0, 0);
+            reloadGame1.force = false;
+        }
+        if (reloadGame2.force == true)
+        {
+            rigi.velocity = new Vector3(0, 0, 0);
+            reloadGame2.force = false;
+        }
+        if (reloadGame3.force == true)
+        {
+            rigi.velocity = new Vector3(0, 0, 0);
+            reloadGame3.force = false;
+        }
+        if (reloadGame4.force == true)
+        {
+            rigi.velocity = new Vector3(0, 0, 0);
+            reloadGame4.force = false;
+        }
+
+
+
+
+    }
+    
+    private void OnCollisionEnter(Collision collision){
+        if(collision.gameObject.CompareTag("Ground")){
+            audio_collision.Play();
+        }
+        if (collision.gameObject.CompareTag("jump_item"))
+        {
+            Destroy(GameObject.FindWithTag("jump_item"));
+            this.transform.position = new Vector3(transform.position.x,4.77f,transform.position.z);
+            SetMaterial.jumpstart();  
+        }
+        if (collision.gameObject.CompareTag("jump_item1"))
+        {
+            Destroy(GameObject.FindWithTag("jump_item1"));
+            this.transform.position = new Vector3(transform.position.x, 4.77f, transform.position.z);
+            SetMaterial.jumpstart();
+        }
+        if (collision.gameObject.CompareTag("stop_item"))
+        {
+            Destroy(GameObject.FindWithTag("stop_item"));
+            Move.setMove();
+            Move2.setMove();
+        }
+        if (collision.gameObject.CompareTag("1"))
+        {
+            collectCount++;
+            Destroy(GameObject.FindWithTag("1"));
+            if (collectCount >= goalCount)
+            {
+                goal.SetActive(true);
+            }
+        }
+        if (collision.gameObject.CompareTag("2"))
+        {
+            collectCount++;
+            Destroy(GameObject.FindWithTag("2"));
+            if (collectCount >= goalCount)
+            {
+                goal.SetActive(true);
+            }
+        }
+        if (collision.gameObject.CompareTag("3"))
+        {
+            collectCount++;
+            Destroy(GameObject.FindWithTag("3"));
+            if (collectCount >= goalCount)
+            {
+                goal.SetActive(true);
+            }
+        }
+        if (collision.gameObject.CompareTag("4"))
+        {
+            collectCount++;
+            Destroy(GameObject.FindWithTag("4"));
+            if (collectCount >= goalCount)
+            {
+                goal.SetActive(true);
+            }
+        }
+    }
+    private void OnTriggerEnter(Collider other){
+        if(other.gameObject.CompareTag("collection")){
+            collectCount++;
+            Destroy(other.gameObject);
+            if(collectCount >= goalCount){
+                goal.SetActive(true);
+            }
+        }
+        if (other.gameObject.CompareTag("1"))
+        {
+            collectCount++;
+            Destroy(other.gameObject);
+            if (collectCount >= goalCount)
+            {
+                goal.SetActive(true);
+            }
+        }
+       
+    }
+    
+        
+       
+        
+    
+}

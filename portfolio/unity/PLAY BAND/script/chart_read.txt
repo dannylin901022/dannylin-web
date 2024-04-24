@@ -1,0 +1,138 @@
+using JetBrains.Annotations;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using UnityEditor;
+using UnityEngine;
+using UnityEngine.Networking;
+using UnityEngine.UI;
+
+[System.Serializable]
+public class Chart
+{
+    public string type;
+    public float beat;
+    public int lane;
+    public float bpm;
+    public string data;
+    public bool skill;
+    public bool flick;
+    public Chart[] connections;
+}
+
+[System.Serializable]
+public class Data
+{
+    public Chart[] chart;
+}
+[System.Serializable]
+
+
+public class chart_read : MonoBehaviour
+{
+    public int id;
+    public string difficulty;
+    public static Data data;
+    public string json_test;
+    public Text text;
+    public static bool bandori;
+    public bool dontconnect = false;
+    void Awake()
+    {
+        //string json = Read_json(id, difficulty);
+        //this.data = JsonUtility.FromJson<Data>(json);
+        GameObject[] obj = GameObject.FindGameObjectsWithTag("Get_chart");
+        for(int i = 0; i < obj.Length; i++)
+        {
+            if (obj[i] != this.gameObject)
+            {
+                Destroy(obj[i]);
+            }
+        }
+        DontDestroyOnLoad(this.gameObject);
+    }
+
+    /*public string Read_json(int id,string difficulty)
+    {
+        string readData;
+        
+        
+        string fileUrl = "";
+
+        fileUrl = Application.streamingAssetsPath + "/ID_" + id + "_" + difficulty + ".json";
+
+        using (StreamReader sr = File.OpenText(fileUrl))
+        {
+            readData = sr.ReadToEnd();
+            readData = "{" + "\"chart\":" + readData + "}";
+            sr.Close();
+        }
+        
+
+            return readData;
+    }
+*/
+    public bool check_bandori()
+    {
+        return bandori;
+    }
+    public void set_bandori(bool b)
+    {
+        bandori = b;
+    }
+    public Data Get_chart()
+    {
+        return data;
+    }
+
+    public void get_data()
+    {
+        StartCoroutine(FetchData());
+    }
+
+    public IEnumerator FetchData()
+    {
+        string url;
+        if (bandori)
+        {
+            url = "https://bestdori.com/api/charts/" + id + "/" + difficulty + ".json";
+        }
+        else
+        {
+            url = "https://bestdori.com/api/post/details?id=" + id;
+        }
+
+        using (UnityWebRequest request = UnityWebRequest.Get(url))
+        {
+            yield return request.SendWebRequest();
+            if (request.result == UnityWebRequest.Result.ConnectionError)
+            {
+                Debug.Log(request.error);
+                dontconnect = true;
+            }
+            else if(bandori)
+            {
+                //Debug.Log(request.downloadHandler.text);
+                json_test = request.downloadHandler.text;
+                json_test = "{" + "\"chart\":" + json_test + "}";
+                /*using (StreamReader sr = File.OpenText(request.downloadHandler.text))
+                {
+                    json_test = sr.ReadToEnd();
+                    json_test = "{" + "\"chart\":" + json_test + "}";
+                    sr.Close();
+                }*/
+            }
+            else
+            {
+                json_test = request.downloadHandler.text;
+                json_test = json_test.Substring(json_test.IndexOf("song"), json_test.Length-json_test.IndexOf("song"));
+                json_test = json_test.Substring(json_test.IndexOf("chart")-1, json_test.IndexOf("content")-1- json_test.IndexOf("chart"));
+                json_test = "{" +  json_test + "}";
+                Debug.Log(json_test);
+            }
+        }
+        data = JsonUtility.FromJson<Data>(json_test);
+        //text.text = json_test;
+    }
+}

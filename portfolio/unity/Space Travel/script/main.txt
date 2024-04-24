@@ -1,0 +1,80 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class main : MonoBehaviour
+{
+
+    public GameObject sphere,touch, airplane, panel;
+    // Start is called before the first frame update
+    void Start()
+    {
+        //Time.timeScale = 1;
+        sphere.SetActive(false);
+        
+        for (int i = 0; i < 10; i++)
+        {
+            GameObject objcopy;
+            objcopy = GameObject.Instantiate(sphere);
+            objcopy.transform.position = new Vector2((float)i / 2, 1);
+            objcopy.transform.parent = touch.transform;
+            //GameObject.Instantiate(sphere).transform.parent = touch.transform;
+        }
+
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+
+        if (Input.touchCount > 0)
+        {
+            //開啟
+            for (int i = 0; i < Input.touchCount; i++)
+            {
+                int fid = Input.GetTouch(i).fingerId;
+                if (Input.GetTouch(i).phase == TouchPhase.Began)
+                {
+                    Vector2 vect = Input.GetTouch(i).position;
+                    touch.transform.GetChild(fid).position = Camera.main.ScreenToWorldPoint(vect);
+                    touch.transform.GetChild(fid).gameObject.SetActive(true);
+                }
+            }
+
+            //關閉
+            for (int i = 0; i < Input.touchCount; i++)
+            {
+                int fid = Input.GetTouch(i).fingerId;//fingerId的精神，他可以固定這個點是第幾個進來，而不是按照gettouch的順序
+                if (Input.GetTouch(i).phase == TouchPhase.Ended || Input.GetTouch(i).phase == TouchPhase.Canceled)
+                {
+                    touch.transform.GetChild(fid).gameObject.SetActive(false);
+                }
+            }
+
+            //位置更新
+            for (int i = 0; i < Input.touchCount; i++)
+            {
+                int fid = Input.GetTouch(i).fingerId;
+                if (Input.GetTouch(i).phase == TouchPhase.Moved || Input.GetTouch(i).phase == TouchPhase.Stationary)
+                {                   
+                    Vector2 vect = Input.GetTouch(i).position;
+                    touch.transform.GetChild(fid).position = Camera.main.ScreenToWorldPoint(vect);
+                }
+            }
+
+        }
+        if (airplane == null)
+        {
+            StartCoroutine("destroy_time");
+        }
+    }
+    IEnumerator destroy_time()
+    {
+        yield return new WaitForSeconds(1.6f);
+        panel.SetActive(true);
+        Time.timeScale = 0;
+    }
+}

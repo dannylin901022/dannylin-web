@@ -1,0 +1,81 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
+
+public class AIZombie : MonoBehaviour
+{
+   
+    public Transform m_FireTransform;
+    private GameObject m_PlayerTank;
+    private float AIReadyDistance = 16.5f;
+    private AudioSource m_ExplosionAudio;
+    private ParticleSystem m_ExplosionParticles;
+    private Rigidbody rb;
+    public Animator a;
+    private bool move = false,touch = false;
+    private float Speed;
+    private AudioSource adsu;
+
+    private void Start()
+    {
+        m_PlayerTank = GameObject.Find("Tank");
+        rb = gameObject.GetComponent<Rigidbody>();
+        a = gameObject.GetComponent<Animator>();
+        a.SetBool("is_walk", false);
+        Speed = 0.8f;
+        adsu = this.GetComponent<AudioSource>();
+    }
+    private void Update()
+    {
+        Speed = Speed + 0.005f;
+        transform.LookAt(m_PlayerTank.transform);
+        float distance = Vector3.Distance(m_PlayerTank.transform.position, transform.position);
+
+        if((distance <= AIReadyDistance) && (Speed <= 1f))
+        {
+            a.SetBool("is_walk", true);
+            move = true;   
+        }
+        else if((distance <= AIReadyDistance) && (Speed >= 1f))
+        {
+            a.SetBool("is_run", true); 
+        }
+        else
+        {
+            a.SetBool("is_walk", false);
+            a.SetBool("is_run", false);
+            Speed = 0.8f;
+            move = false;
+
+        }
+        if(move == true)
+        {
+            Vector3 movement = transform.forward * Speed * Time.deltaTime;
+            rb.MovePosition(rb.position + movement);
+        }
+        
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Shell"))
+        {
+            Destroy(this.gameObject);
+        }
+        if (other.gameObject.CompareTag("Player"))
+        {
+            a.SetBool("is_death", true);
+            a.Play("Z_FallingBack");
+            adsu.Play();
+            StartCoroutine("death");
+            move = false;
+        }
+    }
+    IEnumerator death()
+    {
+        yield return new WaitForSeconds(3);
+        Destroy(gameObject);
+    }
+}

@@ -1,0 +1,32 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class DisappearPlane : MonoBehaviour
+{
+    private float timeCount;
+    private bool flag = true;
+    public int second;
+    private Renderer Rd;
+    private Collider Cd;
+    // Start is called before the first frame update
+    void Start()
+    {
+        Rd = GetComponent<Renderer>();
+        Rd.enabled = false;
+        Cd = GetComponent<Collider>();
+        Cd.enabled = false;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        timeCount = timeCount + Time.deltaTime;
+        if(timeCount >= second){
+            flag = !flag;
+            timeCount = 0;
+        }
+        Rd.enabled = flag;
+        Cd.enabled = flag;
+    }
+}

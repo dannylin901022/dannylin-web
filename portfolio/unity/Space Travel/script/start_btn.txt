@@ -1,0 +1,21 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class start_btn : MonoBehaviour
+{
+    public GameObject player, score,title;
+
+    public void Start()
+    {
+        Time.timeScale = 0;
+    }
+    public void game_start()
+    {
+        Time.timeScale = 1;
+        player.SetActive(true);
+        score.SetActive(true);
+        title.SetActive(false);
+        this.gameObject.SetActive(false);
+    }
+}

@@ -1,0 +1,44 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class rock : MonoBehaviour
+{
+    public GameObject[] rock_obj;
+    private bool[] obj_bo;
+    // Start is called before the first frame update
+    void Start()
+    {
+        obj_bo = new bool[rock_obj.Length];
+        for (int i = 0; i < rock_obj.Length; i++)
+        {
+            obj_bo[i] = false;
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        for(int i = 0; i < rock_obj.Length; i++)
+        {
+            if(rock_obj[i].active == false)
+            {
+                if (obj_bo[i] == false)
+                {
+                  StartCoroutine(rock_active(rock_obj[i],i));
+                  obj_bo[i] = true;
+                }
+                
+            }
+        }
+    }
+
+    IEnumerator rock_active(GameObject obj,int i)
+    {
+            print("aaa");
+        yield return new WaitForSeconds(10);
+        obj.SetActive(true);
+        obj_bo[i] = false;
+    }
+
+    }

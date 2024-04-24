@@ -1,0 +1,39 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class start : MonoBehaviour
+{
+    public GameObject start_b, quit;
+    private bool sq = true;
+    private float i = 1;
+    // Update is called once per frame
+    void Update()
+    {
+        i = Input.GetAxisRaw("Vertical");
+        if (i > 0)
+        {
+            start_b.SetActive(true);
+            quit.SetActive(false);
+            sq = true;
+        }
+        else if (i < 0)
+        {
+            start_b.SetActive(false);
+            quit.SetActive(true);
+            sq = false;
+        }
+        if (Input.GetButton("Fire3")||Input.GetKey(KeyCode.Return))
+        {
+            if (sq)
+            {
+                SceneManager.LoadScene("SampleScene");
+            }
+            else
+            {
+                Application.Quit();
+            }
+        }
+    }
+}

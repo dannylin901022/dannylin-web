@@ -1,0 +1,29 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class inject : MonoBehaviour
+{
+    public Rigidbody2D[] money;
+    public Transform itemRotObj;
+    // Start is called before the first frame update
+    void Start()
+    {
+        StartCoroutine("fruitRandom");
+    }
+
+    // Update is called once per frame
+    IEnumerator fruitRandom(){
+        for(;;){
+            this.transform.position = new Vector3(Random.Range(-7,7),14,0);
+            Rigidbody2D clone;
+            clone = Instantiate(money[Random.Range(0,money.Length)],this.transform.localPosition,itemRotObj.transform.localRotation) as Rigidbody2D;
+            clone.velocity = itemRotObj.TransformDirection(Vector3.down * 10);
+            if(clone.gameObject.tag == "fufu")
+            {
+                clone.transform.Rotate(0, 0, 75);
+            }
+            yield return new WaitForSeconds(Random.Range(0.5f,1.5f));
+        }
+    }
+}

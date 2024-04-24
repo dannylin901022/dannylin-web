@@ -1,0 +1,18 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Image = UnityEngine.UI.Image;
+
+public class change_color : MonoBehaviour
+{
+    public Image ima;
+    private void Start()
+    {
+         
+    }
+    void update()
+    {
+        //ima.gameObject.GetComponent<Image>().color = Color.Lerp(new Color(0f / 255f, 0f / 255f, 0f / 255f, 0f / 255), new Color(0f / 255f, 0f / 255f, 0f / 255f, 255f / 255f), Mathf.PingPong(Time.time * 2, 1));
+        ima.GetComponent<Image>().color = new Color(0f / 255f, 0f / 255f, 0f / 255f, 255f / 255f);
+    }
+}

@@ -1,0 +1,36 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class SpawnManager : MonoBehaviour
+{
+    public Transform[] SpawnPoint;
+    public int TankSize;
+    public GameObject AITank;
+    private bool ins = false;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        ins = true;
+    }
+    private void Update()
+    {
+        if (ins)
+        {
+            StartCoroutine("zombie");
+            ins = false;
+        }
+    }
+
+    IEnumerator zombie()
+    {
+        
+        for (int i = 0; i < TankSize; i++)
+        {
+            Instantiate(AITank, SpawnPoint[i].position, SpawnPoint[i].rotation);
+        }
+        yield return new WaitForSeconds(30);
+        ins = true;
+    }
+}

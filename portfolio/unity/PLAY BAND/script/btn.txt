@@ -1,0 +1,151 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
+public class btn : MonoBehaviour
+{
+    public GameObject on_load_gameobj;
+    private GameObject[] obj;
+    private GameObject loading, error;
+    private Image foreground;
+    private bool selected = false;
+    private float foreground_fade_time = 0;
+
+    private bool stopped = false;
+
+    private void Awake()
+    {
+        error = GameObject.Find("error");
+        foreground = GameObject.Find("foreground").GetComponent<Image>();
+        loading = GameObject.Find("Loading");
+        obj = GameObject.FindGameObjectsWithTag("Get_chart");
+    }
+    private void Start()
+    {
+        if(error != null)
+        {
+            error.SetActive(false);
+        }
+        if (foreground != null)
+        {
+            foreground.gameObject.SetActive(false);
+        }
+        if (loading != null)
+        {
+            loading.SetActive(false);
+        }
+    }
+    private void Update()
+    {
+        if (selected)
+        {
+            foreground.gameObject.SetActive(true);
+            foreground.color = new Color(0f, 0f, 0f, foreground_fade_time);
+            if (foreground_fade_time >= 1)
+            {
+                foreground_fade_time = 1;
+                if(loading != null)
+                {
+                    loading.gameObject.SetActive(true);
+                }
+            }
+            else
+            {
+                foreground_fade_time += Time.deltaTime;
+            }
+        }
+        else if (!selected)
+        {
+            foreground.color = new Color(0f, 0f, 0f, foreground_fade_time);
+            if (foreground_fade_time <= 0)
+            {
+                foreground_fade_time = 0;
+                if (loading != null)
+                {
+                    loading.gameObject.SetActive(false);
+                }
+                foreground.gameObject.SetActive(false);
+            }
+            else
+            {
+                foreground_fade_time -= Time.deltaTime;
+            }
+        }
+
+
+    }
+    public void game_start()
+    {
+        SceneManager.LoadScene("change_music");
+    }
+
+    public void game_play()
+    {
+        for(int i = 0; i < obj.Length; i++)
+        {
+            if (obj[i] != null)
+            {
+                on_load_gameobj = obj[i];
+            }
+        }
+        on_load_gameobj.GetComponent<chart_read>().get_data();
+
+        StartCoroutine("change_scene", "SampleScene");
+        //SceneManager.LoadScene("SampleScene");
+    }
+
+    IEnumerator change_scene(string scene_name)
+    {
+        for (int i = 0; i < obj.Length; i++)
+        {
+            if (obj[i] != null)
+            {
+                on_load_gameobj = obj[i];
+            }
+        }
+        selected = true;
+        foreground_fade_time = 0;
+        yield return new WaitForSeconds(5);
+        if (on_load_gameobj.GetComponent<chart_read>().dontconnect)
+        {
+            error.SetActive(true);
+            selected = false;
+            foreground_fade_time = 1;
+        }
+        else
+        {
+            SceneManager.LoadScene(scene_name);
+        }
+        
+    }
+
+    public void cancel()
+    {
+        error.SetActive(false);
+    }
+
+    public void change_scene_2()
+    {
+        StartCoroutine("change_scene", "change_music");
+    }
+
+    public void stop()
+    {
+        if (stopped)
+        {
+            GameObject.Find("Main Camera").GetComponent<AudioSource>().Play();
+            Time.timeScale = 1;
+            stopped = false;
+        }
+        else
+        {
+            GameObject.Find("Main Camera").GetComponent<AudioSource>().Pause();
+            Time.timeScale = 0;
+            stopped = true;
+        }
+        
+    }
+
+}

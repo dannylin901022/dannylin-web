@@ -1,0 +1,36 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ITEMMOVE : MonoBehaviour
+{
+    public GameObject player;
+    private Vector3 move;
+    public bool tf = false;
+    // Start is called before the first frame update
+    void Start()
+    {
+        //InvokeRepeating("SpawnCoroutine", 0, 1);
+        player = GameObject.Find("player");
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (tf)
+        {
+            transform.position += (move - transform.position) * 5 * Time.deltaTime;
+        }
+    }
+    void SpawnCoroutine()
+    {
+        move = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
+    }
+    public void item_move()
+    {
+        tf = true;
+
+        InvokeRepeating("SpawnCoroutine", 0, 1);
+    }
+}

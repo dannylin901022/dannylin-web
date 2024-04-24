@@ -1,0 +1,99 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class select_music : MonoBehaviour
+{
+    public GameObject on_load_gameobj;
+    public Image Thumbnail;
+    public Text music_name;
+    public AudioSource au;
+    public GameObject[] japanese_name;
+
+    public void set()
+    {
+        for(int i = 0;i< japanese_name.Length; i++)
+        {
+            japanese_name[i].SetActive(false);
+        }
+        switch (this.gameObject.name)
+        {
+            case "Five Letters":
+                on_load_gameobj.GetComponent<chart_read>().id = 469;
+                on_load_gameobj.GetComponent<chart_read>().difficulty = "expert";
+                on_load_gameobj.GetComponent<chart_read>().set_bandori(true);
+                Thumbnail.gameObject.SetActive(true);
+                Thumbnail.sprite = Resources.Load<Sprite>("image/Thumbnail/Five_Letters");
+                music_name.text = "Five Letters";
+                music_name.gameObject.GetComponent<play_music>().music_name = "bgm469";
+                music_name.gameObject.GetComponent<play_music>().music();
+                break;
+
+            case "D-tecnoLife":
+                on_load_gameobj.GetComponent<chart_read>().id = 535;
+                on_load_gameobj.GetComponent<chart_read>().difficulty = "expert";
+                on_load_gameobj.GetComponent<chart_read>().set_bandori(true);
+                Thumbnail.gameObject.SetActive(true);
+                Thumbnail.sprite = Resources.Load<Sprite>("image/Thumbnail/D_tecnoLife");
+                music_name.text = "D-tecnoLife";
+                music_name.gameObject.GetComponent<play_music>().music_name = "bgm535";
+                music_name.gameObject.GetComponent<play_music>().music();
+                break;
+
+            case "Ал":
+                on_load_gameobj.GetComponent<chart_read>().id = 131693;
+                on_load_gameobj.GetComponent<chart_read>().set_bandori(false);
+                Thumbnail.gameObject.SetActive(true);
+                Thumbnail.sprite = Resources.Load<Sprite>("image/Thumbnail/Ал");
+                music_name.text = "Ал";
+                music_name.gameObject.GetComponent<play_music>().music_name = "bgm131693";
+                music_name.gameObject.GetComponent<play_music>().music();
+                break;
+
+            case "Dried Flowers":
+                on_load_gameobj.GetComponent<chart_read>().id = 35415;
+                on_load_gameobj.GetComponent<chart_read>().set_bandori(false);
+                Thumbnail.gameObject.SetActive(true);
+                Thumbnail.sprite = Resources.Load<Sprite>("image/Thumbnail/Dried Flowers");
+                music_name.text = "";
+                japanese_name[0].gameObject.SetActive(true);
+                music_name.gameObject.GetComponent<play_music>().music_name = "bgm35415";
+                music_name.gameObject.GetComponent<play_music>().music();
+                break;
+
+            case "idol":
+                on_load_gameobj.GetComponent<chart_read>().id = 130953;
+                on_load_gameobj.GetComponent<chart_read>().set_bandori(false);
+                Thumbnail.gameObject.SetActive(true);
+                Thumbnail.sprite = Resources.Load<Sprite>("image/Thumbnail/idol");
+                music_name.text = "";
+                japanese_name[1].gameObject.SetActive(true);
+                music_name.gameObject.GetComponent<play_music>().music_name = "bgm130953";
+                music_name.gameObject.GetComponent<play_music>().music();
+                break;
+
+            case "Whistle":
+                on_load_gameobj.GetComponent<chart_read>().id = 136288;
+                on_load_gameobj.GetComponent<chart_read>().set_bandori(false);
+                Thumbnail.gameObject.SetActive(true);
+                Thumbnail.sprite = Resources.Load<Sprite>("image/Thumbnail/Whistle");
+                music_name.text = "Whistle";
+                music_name.gameObject.GetComponent<play_music>().music_name = "bgm136288";
+                music_name.gameObject.GetComponent<play_music>().music();
+                break;
+
+            case "Never_Gonna_Give_You_Up":
+                on_load_gameobj.GetComponent<chart_read>().id = 34236;
+                on_load_gameobj.GetComponent<chart_read>().set_bandori(false);
+                Thumbnail.gameObject.SetActive(true);
+                Thumbnail.sprite = Resources.Load<Sprite>("image/Thumbnail/Never Gonna Give You Up");
+                music_name.text = "Never Gonna Give...";
+                music_name.gameObject.GetComponent<play_music>().music_name = "bgm34236";
+                music_name.gameObject.GetComponent<play_music>().music();
+                break;
+
+
+        }
+    }
+}

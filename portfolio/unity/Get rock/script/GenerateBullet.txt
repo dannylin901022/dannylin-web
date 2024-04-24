@@ -1,0 +1,29 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class GenerateBullet : MonoBehaviour
+{
+    public GameObject bullet;
+    public static GameObject O;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        InvokeRepeating("SpawnCoroutine", 0, 1);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+    void SpawnCoroutine()
+    {
+        O = Instantiate(bullet, this.transform.position, this.transform.rotation);
+        Destroy(O,2);
+    }
+    
+
+}

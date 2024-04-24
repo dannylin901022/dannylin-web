@@ -1,0 +1,39 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class BACKGROUND_MOVE : MonoBehaviour
+{
+    private Vector3 first;
+    private int time = 0;
+    private GameController gameController;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        first = this.transform.position;
+        GameObject gameControllerObject = GameObject.FindWithTag("GameController");
+        if (gameControllerObject != null)
+        {
+            gameController = gameControllerObject.GetComponent<GameController>();
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (gameController.start)
+        {
+            time++;
+            if (time % 100 == 0)
+            {
+                Vector3 pos = new Vector3(first.x, first.y, this.transform.position.z - 1);
+                this.gameObject.transform.position = pos;
+            }
+            if (this.gameObject.transform.position.z < -3.9f)
+            {
+                this.transform.position = first;
+            }
+        }
+    }
+}

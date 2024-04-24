@@ -1,0 +1,40 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class nekoMove : MonoBehaviour
+{
+    public GameObject player;
+    private Vector3 move;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        InvokeRepeating("SpawnCoroutine", 0, 1);
+        player = GameObject.Find("player");
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+        
+        transform.position += (move - transform.position )* 0.2f*Time.deltaTime;
+
+        
+    }
+    void SpawnCoroutine()
+    {
+        move = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
+
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "bullet")
+        {
+            Destroy(this.gameObject);
+            Destroy(collision.gameObject);
+        }
+    }
+}

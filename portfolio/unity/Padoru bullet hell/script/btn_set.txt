@@ -1,0 +1,16 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class btn_set : MonoBehaviour
+{
+    // Start is called before the first frame update
+    void OnMouseEnter()
+    {
+        this.gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(450f, 250f);
+    }
+    void OnMouseExit()
+    {
+        this.gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(500f, 300f);
+    }
+}

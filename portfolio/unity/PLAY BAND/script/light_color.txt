@@ -1,0 +1,35 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
+
+public class light_color : MonoBehaviour
+{
+    public float fadeTime;
+    public float fadeStart = 0;
+    // Start is called before the first frame update
+    void Start()
+    {
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255f, 255f, 255f, 0f);
+        fadeTime = 5f;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        change_color();
+        if (Input.GetKey("w"))
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255f, 255f, 255f, 180f);
+        }
+    }
+    void change_color()
+    {
+        this.gameObject.GetComponent<SpriteRenderer>().color = Color.Lerp(this.gameObject.GetComponent<SpriteRenderer>().color, new Color(255f, 255f, 255f, 0f), fadeStart);
+        if (fadeStart < 0.5f)
+        {
+            fadeStart += Time.deltaTime / fadeTime;
+        }
+    }
+}

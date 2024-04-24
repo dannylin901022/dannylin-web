@@ -1,0 +1,30 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class play_music : MonoBehaviour
+{
+    public AudioClip[] ac;
+    public AudioSource au;
+    public string music_name;
+    private int index;
+
+    public void Start()
+    {
+        au = gameObject.GetComponent<AudioSource>();
+    }
+    public void music()
+    {
+        au.Stop();
+        for(int i = 0; i < ac.Length; i++)
+        {
+            if (ac[i].name == music_name)
+            {
+                index = i;
+            }
+        }
+        au.clip = ac[index];
+        au.Play();
+    }
+}

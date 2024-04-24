@@ -1,0 +1,37 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class btn : MonoBehaviour
+{
+    // Start is called before the first frame update
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+    }
+    public void BtnStartPlay(){
+        GameObject music;
+        music = GameObject.Find("Music");
+        if (music)
+        {
+            Destroy(music);
+        }
+        SceneManager.LoadScene("SampleScene");
+    }
+    public void BtnQuitpress(){
+        Application.Quit();
+    }
+    public void BtnReStart()
+    {
+        SceneManager.LoadScene("SampleScene");
+    }
+    public void BtnInformation()
+    {
+        SceneManager.LoadScene("infomation");
+    }
+    
+}

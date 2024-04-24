@@ -1,0 +1,27 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class ReloadGame : MonoBehaviour
+{
+    public GameObject Player_ref;
+    private playStatus PS_ref;
+    public bool force = false;
+    // Start is called before the first frame update
+    void Start()
+    {
+        PS_ref = Player_ref.GetComponent<playStatus>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+    void OnTriggerEnter(Collider other){
+        //SceneManager.LoadScene("SampleScene");
+        PS_ref.SetLife(1);
+        force = true;
+    }
+}

@@ -1,0 +1,46 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class final : MonoBehaviour
+{
+    public GameObject item;
+    public GameObject btn1;
+    public GameObject btn2;
+    private Vector3 pos,pos1,pos2;
+    private bool b = false;
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (item.transform.position.y > 2.33f)
+        {
+            pos = new Vector3(0, -10f * Time.deltaTime, 0);
+            item.transform.Translate(pos);
+        }
+        if(item.transform.position.y <= 2.33f)
+        {
+            b = true;
+        }
+        if (b)
+        {
+            if (btn1.transform.position.x < 9.96f)
+            {
+                pos1 = new Vector3(30f * Time.deltaTime, 0, 0);
+                btn1.transform.Translate(pos1);
+            }
+            if (btn2.transform.position.x < 9.96f)
+            {
+                pos2 = new Vector3(30f * Time.deltaTime, 0, 0);
+                btn2.transform.Translate(pos2);
+            }
+        }
+        
+
+    }
+}

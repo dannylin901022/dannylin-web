@@ -1,0 +1,161 @@
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
+
+public class G_line : MonoBehaviour
+{
+    public GameObject BegainClickGameObject;
+    public GameObject EndClickGameObject;
+    public GameObject[] Lane;
+    public GameObject click_bar;
+
+    public bool end = false;
+    public float time_gap;
+    private int start_lane;
+
+    private float Line_size = 1.5f / 9.176f;
+    private float t = 0, time = 0;
+
+    private Vector2 pos = new Vector2(0, -4f);
+
+    [SerializeField]
+    private LineRenderer Line;
+
+    void Start()
+    {
+        Line = this.GetComponent<LineRenderer>();
+        Line.startWidth = 0.2f;
+        Line.endWidth = 0.2f;
+        click_bar = GameObject.Find("¾î±ø");
+        t = 0;
+
+
+    }
+    void Update()
+    {
+        if(BegainClickGameObject == null && EndClickGameObject.transform.position.y <= -4f)
+        {
+            Destroy(this.gameObject);
+        }
+        else if (EndClickGameObject == null)
+        {
+            Destroy(this.gameObject);
+            Destroy(BegainClickGameObject.gameObject);
+        }
+        else if (EndClickGameObject.transform.position.y <= -4f && BegainClickGameObject.transform.position.y <= -4f)
+        {
+            if (!end)
+            {
+                Destroy(this.gameObject);
+                EndClickGameObject.GetComponent<SpriteRenderer>().sprite = BegainClickGameObject.GetComponent<SpriteRenderer>().sprite;
+                EndClickGameObject.gameObject.GetComponent<note_move>().G_touch_bar = true;
+                EndClickGameObject.gameObject.transform.localScale = new Vector2(3.5f, 3.5f);
+                EndClickGameObject.GetComponent<CircleCollider2D>().radius = 0.2f;
+                Destroy(BegainClickGameObject);
+            }
+
+            //Destroy(BegainClickGameObject);
+            ////Destroy(EndClickGameObject);
+            //Destroy(this.gameObject);
+            click_bar.GetComponent<Get_touch_pos>().hold_touch = true;
+            if (end && EndClickGameObject.transform.position.y <= -5f)
+            {
+                Destroy(EndClickGameObject);
+            }
+        }
+        else if (BegainClickGameObject.transform.position.y <= -4f)
+        {
+            if(BegainClickGameObject.tag != EndClickGameObject.tag)
+            {
+                float move_time = 0;
+                t += Time.deltaTime;
+                move_time = t / time_gap;
+                if (move_time >= 1.0f)
+                {
+                    move_time = 1.0f;
+                }
+                //Debug.Log(move_time);
+                BegainClickGameObject.transform.position = Vector2.Lerp(new Vector2(BegainClickGameObject.transform.position.x,-4f), pos, move_time);
+                
+            }
+            LinkLine();
+        }
+        else
+        {
+            LinkLine();
+        }
+    }
+
+    public void LinkLine()
+    {
+        Line.SetPosition(0, BegainClickGameObject.transform.position);
+        Line.SetPosition(1, EndClickGameObject.transform.position);
+
+        
+        //Line.startWidth = 0.2f + Line_size * (4.176f - BegainClickGameObject.transform.position.y);
+        //Line.endWidth = 0.2f + Line_size * (4.176f - EndClickGameObject.transform.position.y);
+
+    }
+    public void Note_set(GameObject a,GameObject b)
+    {
+        BegainClickGameObject = a;
+        EndClickGameObject = b;
+        switch (BegainClickGameObject.tag)
+        {
+            case "Lane1":
+                start_lane = 1;
+                break;
+
+            case "Lane2":
+                start_lane = 2;
+                break;
+
+            case "Lane3":
+                start_lane = 3;
+                break;
+
+            case "Lane4":
+                start_lane = 4;
+                break;
+
+            case "Lane5":
+                start_lane = 5;
+                break;
+
+            case "Lane6":
+                start_lane = 6;
+                break;
+
+            case "Lane7":
+                start_lane = 7;
+                break;
+        }
+
+
+        switch (EndClickGameObject.tag)
+        {
+            case "Lane1":
+                pos = new Vector2(-6.16f, -4f);
+                break;
+            case "Lane2":
+                pos = new Vector2(-4f, -4f);
+                break;
+            case "Lane3":
+                pos = new Vector2(-2.04f, -4f);
+                break;
+            case "Lane4":
+                pos = new Vector2(0f, -4f);
+                break;
+            case "Lane5":
+                pos = new Vector2(2.04f, -4f);
+                break;
+            case "Lane6":
+                pos = new Vector2(4f, -4f);
+                break;
+            case "Lane7":
+                pos = new Vector2(6.16f, -4f);
+                break;
+        }
+    }
+}

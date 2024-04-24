@@ -1,0 +1,26 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class setTime : MonoBehaviour
+{
+    public float time = 0;
+    public Text time_text;
+    public GameObject ab;
+    // Start is called before the first frame update
+    void Start()
+    {
+        time_text.text = "Time : ";
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(ab.gameObject.active == true)
+        {
+            time += Time.deltaTime;
+            time_text.text = "Time : " + (int)time;
+        }
+    }
+}

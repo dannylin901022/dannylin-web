@@ -1,0 +1,23 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Fine_ab : MonoBehaviour
+{
+    public GameObject ab,sur;
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(ab.gameObject.active == false)
+        {
+            StartCoroutine(End());
+        }
+    }
+    IEnumerator End()
+    {
+        yield return new WaitForSeconds(2);
+        sur.SetActive(true);
+        Time.timeScale = 0;
+    }
+}

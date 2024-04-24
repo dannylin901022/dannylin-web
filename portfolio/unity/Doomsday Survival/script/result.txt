@@ -1,0 +1,20 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class result : MonoBehaviour
+{
+    public Text sur;
+    public GameObject can;
+    public setTime st;
+
+    private void Start()
+    {
+        st = can.GetComponent<setTime>();
+    }
+    void Update()
+    {
+        sur.text = "you survived for " + (int)st.time + " second";
+    }
+}

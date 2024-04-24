@@ -1,0 +1,120 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
+using static Unity.Collections.AllocatorManager;
+
+
+public class Get_touch_pos : MonoBehaviour
+{
+    public Text text_test,click_object;
+    public GameObject ps;
+    public GameObject Lanes;
+    public AudioSource au;
+    public AudioClip click;
+    public bool hold_touch = true;
+
+    private void Start()
+    {
+        au = this.gameObject.GetComponent<AudioSource>();
+    }
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.touchCount > 0)
+        {
+            for (int i = 0; i < Input.touchCount; i++)
+            {
+                int fid = Input.GetTouch(i).fingerId;
+                if (Input.GetTouch(i).phase == TouchPhase.Began)
+                {
+                    Vector2 vect_ps = Input.GetTouch(i).position;
+                    GameObject particle_system = Instantiate(ps);
+                    particle_system.transform.position = new Vector3(Camera.main.ScreenToWorldPoint(vect_ps).x, Camera.main.ScreenToWorldPoint(vect_ps).y,0f);
+                    StartCoroutine("close_ps", particle_system);
+
+                    RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position), Vector2.zero);
+                    if (hit.collider != null)
+                    {
+                        if (Regex.IsMatch(hit.transform.gameObject.name, @"^Lane[1-7]{1}"))
+                        {
+                            GameObject child = hit.transform.gameObject.transform.GetChild(0).gameObject;
+                            child.gameObject.GetComponent<SpriteRenderer>().color = new Color(255f, 255f, 255f, 180f);
+                            hit.transform.gameObject.GetComponent<note_click>().touch = true;
+                        }
+                        
+                           
+
+                    }
+
+
+
+                }
+            }
+
+            for (int i = 0; i < Input.touchCount; i++)
+            {
+                int fid = Input.GetTouch(i).fingerId;
+                if (Input.GetTouch(i).phase == TouchPhase.Ended || Input.GetTouch(i).phase == TouchPhase.Canceled)
+                {
+                    
+                    for(int n = 0;n < Lanes.transform.childCount; n++)
+                    {
+                        GameObject child = Lanes.transform.gameObject.transform.GetChild(n).gameObject;
+                        if (child.GetComponent<note_click>().touch == true)
+                        {
+                            au.PlayOneShot(click);
+                        }
+                        child.GetComponent<note_click>().touch = false;
+                        child.GetComponent<note_click>().R_touch = false;
+                        hold_touch = true;
+                    }
+                    
+                }
+            }
+
+            for (int i = 0; i < Input.touchCount; i++)
+            {
+                if (Input.GetTouch(i).phase == TouchPhase.Moved || Input.GetTouch(i).phase == TouchPhase.Stationary)
+                {
+
+                    RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position), Vector2.zero);
+
+                    if (hit.collider != null)
+                    {
+                        if (Regex.IsMatch(hit.transform.gameObject.name, @"^Lane[1-7]{1}"))
+                        {
+                            text_test.text = hit.transform.gameObject.name;
+                            hit.transform.gameObject.GetComponent<note_click>().R_touch = true;
+                            //hit.transform.gameObject.GetComponent<note_click>().touch = true;
+                        }
+
+                        if (hold_touch)
+                        {
+                            if (Regex.IsMatch(hit.transform.gameObject.name, @"^Lane[1-7]{1}"))
+                            {
+                                text_test.text = hit.transform.gameObject.name;
+                                hold_touch = false;
+                                //hit.transform.gameObject.GetComponent<note_click>().touch = true;
+                            }
+                        }
+                        
+                    }
+
+                }
+
+            }
+        }
+    }
+    
+    IEnumerator close_ps(GameObject particle_system)
+    {
+        yield return new WaitForSeconds(2f);
+        Destroy(particle_system);
+    }
+
+}

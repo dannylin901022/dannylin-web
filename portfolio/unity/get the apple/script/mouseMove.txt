@@ -1,0 +1,25 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class mouseMove : MonoBehaviour
+{
+    public Vector3 tran;
+    public Vector3 check;
+    
+    void Update()
+    {
+        if(Time.timeScale != 0){
+            tran = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y,1));
+            this.transform.position = new Vector3(tran.x, this.transform.position.y, this.transform.position.z);
+        }
+        if(tran.x - check.x > 0){
+            this.transform.localScale = new Vector3(0.5f,0.5f,1);
+            check.x = tran.x;
+        }
+        else if(tran.x - check.x < 0){
+            this.transform.localScale = new Vector3(-0.5f,0.5f,1);
+            check.x = tran.x;
+        }
+    }
+}

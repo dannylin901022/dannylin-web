@@ -1,0 +1,29 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class E_BDestroy : MonoBehaviour
+{
+    public GameObject explosion, playerExplosion;
+
+    private GameController gameController;
+
+    private void Start()
+    {
+        GameObject gameControllerObject = GameObject.FindWithTag("GameController");
+        if (gameControllerObject != null)
+        {
+            gameController = gameControllerObject.GetComponent<GameController>();
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            Destroy(other.gameObject);
+            Destroy(this.gameObject);
+            Instantiate(playerExplosion, transform.position, transform.rotation);
+            gameController.GameOver();
+        }
+    }
+}

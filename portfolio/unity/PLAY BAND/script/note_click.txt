@@ -1,0 +1,182 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using Unity.Burst.CompilerServices;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class note_click : MonoBehaviour
+{
+    public bool touch = false, R_touch = false;
+    public Text judge,click_score,test;
+    public GameObject click_bar,Lanes,Lanes_light;
+    public AudioSource au;
+    public AudioClip click, perfect, great, good,flick;
+
+    private float t = 0;
+
+    private bool combo_size_max = false,long_in = false;
+
+    private void Start()
+    {
+        au = this.gameObject.GetComponent<AudioSource>();
+        click_score.color = new Color(0, 0, 0, 0);
+    }
+    private void Update()
+    {
+        click_score.color = Color.Lerp(click_score.color, new Color(click_score.color.r, click_score.color.g, click_score.color.b, 0f), Time.deltaTime * 0.1f);
+        if (!combo_size_max)
+        {
+            click_score.fontSize = (int)Mathf.Lerp(40, 50, t);
+            t += 20f * Time.deltaTime;
+        }
+
+
+        if (!combo_size_max && t >= 1)
+        {
+            combo_size_max = true;
+        }
+        
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(Regex.IsMatch(collision.tag, @"^Lane[1-7]{1}") && Regex.IsMatch(collision.name, @"^G[1-7]{1}") || Regex.IsMatch(collision.name, @"^G_gap_L[1-7]{1}"))
+        {
+            long_in = true;
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (touch == true && Regex.IsMatch(collision.tag, @"^Lane[1-7]{1}") && (Regex.IsMatch(collision.name, @"^B[1-7]{1}.Clone.")))
+        {
+            float y = Mathf.Abs(collision.gameObject.transform.position.y - click_bar.transform.position.y);
+
+            click_score.fontSize = 50;
+            combo_size_max = false;
+            t = 0;
+
+            Lanes_light.GetComponent<SpriteRenderer>().color = new Color(255f, 255f, 255f, 40f/255f);
+
+            if (y <= 1.5f)
+            {
+                judge.text = collision.gameObject.transform.position.y.ToString() + "\r\n" + click_bar.transform.position.y.ToString() + "\r\n" + y.ToString();
+                Destroy(collision.gameObject);
+                au.Stop();
+                au.PlayOneShot(perfect);
+
+                Lanes.GetComponent<Total_score>().total_score += 1;
+                Lanes.GetComponent<Total_score>().change_score();
+                Lanes.GetComponent<Total_score>().perfect_s += 1;
+                click_score.color = new Color(0f / 255f, 71f / 255f, 125f / 255f, 255f / 255f);
+                click_score.text = "Perfect";
+                touch = false;
+            }
+            else if (y <= 3.5f)
+            {
+                judge.text = collision.gameObject.transform.position.y.ToString() + "\r\n" + click_bar.transform.position.y.ToString() + "\r\n" + y.ToString();
+                au.Stop();
+                au.PlayOneShot(great);
+
+                Lanes.GetComponent<Total_score>().total_score += 1;
+                Lanes.GetComponent<Total_score>().change_score();
+                Lanes.GetComponent<Total_score>().great_s += 1;
+                click_score.color = new Color(125f / 255f, 0f / 255f, 206f / 255f, 125f / 255f);
+                click_score.text = "Great";
+                Destroy(collision.gameObject);
+                touch = false;
+            }
+            else
+            {
+                judge.text = collision.gameObject.transform.position.y.ToString() + "\r\n" + click_bar.transform.position.y.ToString() + "\r\n" + y.ToString();
+                au.Stop();
+                au.PlayOneShot(good);
+
+                Lanes.GetComponent<Total_score>().total_score += 1;
+                Lanes.GetComponent<Total_score>().change_score();
+                Lanes.GetComponent<Total_score>().good_s += 1;
+                click_score.color = new Color(0f / 255f, 126f / 255f, 29f / 255f, 255f / 255f);
+                click_score.text = "Good";
+                Destroy(collision.gameObject);
+                touch = false;
+            }
+
+
+
+
+
+            /*else
+            {
+                judge.text = collision.gameObject.transform.position.y.ToString() + "\r\n" + click_bar.transform.position.y.ToString() + "\r\n" + y.ToString();
+                au.PlayOneShot(click);
+
+                Lanes.GetComponent<Total_score>().total_score = 0;
+                Lanes.GetComponent<Total_score>().change_score();
+                click_score.color = new Color(0f, 0f, 0f, 255f);
+                click_score.text = "Miss";
+                Destroy(collision.gameObject);
+                touch = false;
+            }*/
+        }
+
+        if (R_touch == true && Regex.IsMatch(collision.tag, @"^Lane[1-7]{1}") && (Regex.IsMatch(collision.name, @"^R[1-7]{1}.Clone.")))
+        {
+            float y = Mathf.Abs(collision.gameObject.transform.position.y - click_bar.transform.position.y);
+
+            Lanes_light.GetComponent<SpriteRenderer>().color = new Color(255f, 255f, 255f, 40f / 255f);
+
+            click_score.fontSize = 50;
+            combo_size_max = false;
+            t = 0;
+
+            judge.text = collision.gameObject.transform.position.y.ToString() + "\r\n" + click_bar.transform.position.y.ToString() + "\r\n" + y.ToString();
+            Destroy(collision.gameObject);
+            au.Stop();
+            au.PlayOneShot(flick);
+
+            Lanes.GetComponent<Total_score>().total_score += 1;
+            Lanes.GetComponent<Total_score>().change_score();
+            Lanes.GetComponent<Total_score>().perfect_s += 1;
+            click_score.color = new Color(0f / 255f, 71f / 255f, 125f / 255f, 255f / 255f);
+            click_score.text = "Perfect";
+            R_touch = false;
+
+        }
+
+            if (long_in == true && (Regex.IsMatch(collision.tag, @"^Lane[1-7]{1}") && Regex.IsMatch(collision.name, @"^G[1-7]{1}") || Regex.IsMatch(collision.name, @"^G_gap_L[1-7]{1}")))
+            {
+                if (collision.gameObject.transform.position.y <= click_bar.transform.position.y)
+                {
+
+                    if (!collision.gameObject.GetComponent<slide_check>().is_touch)
+                    {
+                        judge.text = collision.gameObject.transform.position.y.ToString() + "\r\n" + click_bar.transform.position.y.ToString();
+                        au.Stop();
+                        au.PlayOneShot(perfect);
+
+                        Lanes_light.GetComponent<SpriteRenderer>().color = new Color(255f, 255f, 255f, 40f / 255f);
+
+                        Lanes.GetComponent<Total_score>().total_score += 1;
+                        Lanes.GetComponent<Total_score>().change_score();
+                        Lanes.GetComponent<Total_score>().perfect_s += 1;
+                        click_score.color = new Color(0f / 255f, 71f / 255f, 125f / 255f, 255f / 255f);
+                        click_score.text = "Perfect";
+                        long_in = false;
+                        collision.gameObject.GetComponent<slide_check>().is_touch = true;
+                    }
+                }
+            }
+        }
+    
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+        if (Regex.IsMatch(collision.tag, @"^Lane[1-7]{1}") && (Regex.IsMatch(collision.name, @"^B[1-7]{1}.Clone.") || Regex.IsMatch(collision.name, @"^R[1-7]{1}.Clone.")))
+        {
+            Destroy(collision.gameObject);
+        }
+        if (Regex.IsMatch(collision.tag, @"^Lane[1-7]{1}") && Regex.IsMatch(collision.name, @"^G[1-7]{1}") || Regex.IsMatch(collision.name, @"^G_gap_L[1-7]{1}"))
+        {
+            long_in = false;
+        }
+    }
+}

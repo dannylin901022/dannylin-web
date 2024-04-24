@@ -1,0 +1,32 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class playBtn4 : MonoBehaviour
+{
+    //public GameObject scoreTime;
+    //private scoreTime scoretime_ref;
+    //public GameObject gameStart;
+    
+    // Start is called before the first frame update
+    void Start()
+    {
+        //scoretime_ref = scoreTime.GetComponent<scoreTime>();
+    }
+
+    void OnMouseEnter()
+    {
+        this.gameObject.transform.localScale = new Vector3(0.18f, 0.18f, 0.18f);
+    }
+    void OnMouseExit()
+    {
+        this.gameObject.transform.localScale = new Vector3(0.2f,0.2f,0.2f);
+    }
+    void OnMouseDown()
+    {
+        Application.Quit();
+    }
+    
+    
+}

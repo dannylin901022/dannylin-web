@@ -1,0 +1,48 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Generate_tako : MonoBehaviour
+{
+    public GameObject PickUP;
+    public GameObject player;
+    public static bool b = false;
+    private double[] random_x = new double[10];
+    private double[] random_y = new double[10];
+
+    void Start()
+    {
+        double x, y;
+
+        for (int i = 0; i < 1; i++)
+        {
+            x = transform.position.x - 10.7 + 3.5 * Random.Range(0, 7);
+            random_x[i] = x;
+            y = transform.position.y - 10.8 + 3.5 * Random.Range(0, 7);
+            random_y[i] = y;
+            for (int j = 0; j < 1; j++)
+            {
+                if ((x == random_x[j] && y == random_y[j]) || (x == player.transform.position.x && y == player.transform.position.y))
+                {
+                    b = true;
+                }
+                while (b)
+                {
+                    x = transform.position.x - 10.7 + 3.5 * Random.Range(0, 7);
+                    random_x[i] = x;
+                    y = transform.position.y - 9.8 + 3.5 * Random.Range(0, 7);
+                    random_y[i] = y;
+                    for (int n = 0; n <= 1; n++)
+                    {
+                        if (x != random_x[n] || y != random_y[n])
+                        {
+                            b = false;
+                        }
+                    }
+                }
+
+            }
+            Instantiate(PickUP, new Vector3((float)x, (float)y, 0), new Quaternion(0, 0, 0, 0));
+        }
+    }
+}
