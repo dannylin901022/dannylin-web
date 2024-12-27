@@ -1,0 +1,38 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.UI;
+
+public class padoruMove : MonoBehaviour
+{
+    public GameObject player;
+    private bool isReset = false;
+    public Text distance;
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        Vector3 pos = this.gameObject.transform.position;
+        if(Vector3.Distance(pos, player.transform.position) < 15.0)
+        {
+            GetComponent<NavMeshAgent>().SetDestination(player.transform.position);
+            distance.enabled = true;
+            distance.text = "Distance: " + Mathf.Floor(Vector3.Distance(pos, player.transform.position));
+        }
+        else if(!isReset)
+        {
+            StartCoroutine(newPath());
+        }
+    }
+
+    IEnumerator newPath()
+    {
+        isReset = true;
+        distance.enabled = false;
+        yield return new WaitForSeconds(10);
+        Vector3 newPos = new Vector3(Random.Range(-150f, 350f), this.transform.position.y, Random.Range(-150f, 350f));
+        GetComponent<NavMeshAgent>().SetDestination(newPos);
+        isReset = false;
+    }
+}

@@ -1,0 +1,17 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class playerStatus : MonoBehaviour
+{
+    private int socre = 0;
+
+    public int getScore()
+    {
+        return socre;
+    }
+    public void setScore(int num)
+    {
+        socre = num;
+    }
+}

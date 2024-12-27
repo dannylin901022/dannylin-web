@@ -1,0 +1,28 @@
+#image1_size {
+    width: 7vw;
+    height: 14vh;
+    border: 3px solid black;
+    padding: 1px;
+}
+
+#image2_size {
+    width: 7vw;
+    height: 14vh;
+    border: 3px solid black;
+    padding: 1px;
+}
+
+.image3_size {
+    width: 5vw;
+    height: 10vh;
+    border: 3px solid black;
+    padding: 1px;
+    margin-left: 10px;
+}
+
+#image4_size {
+    width: 7vw;
+    height: 14vh;
+    border: 3px solid black;
+    padding: 1px;
+}

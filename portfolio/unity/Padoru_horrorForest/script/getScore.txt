@@ -1,0 +1,31 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
+public class getScore : MonoBehaviour
+{
+    public Text scoreText;
+    public GameObject presentAudio;
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag.Equals("present"))
+        {
+            this.gameObject.GetComponent<playerStatus>().setScore(this.gameObject.GetComponent<playerStatus>().getScore() + 1);
+            scoreText.text = this.gameObject.GetComponent<playerStatus>().getScore().ToString() + " / 10";
+            AudioSource audioSource = presentAudio.gameObject.GetComponent<AudioSource>();
+            audioSource.Play();
+            Destroy(other.gameObject);
+
+            if(this.gameObject.GetComponent<playerStatus>().getScore() >= 10)
+            {
+                SceneManager.LoadScene("HE");
+            }
+        }
+        if (other.tag.Equals("padoru"))
+        {
+            SceneManager.LoadScene("BE");
+        }
+    }
+}

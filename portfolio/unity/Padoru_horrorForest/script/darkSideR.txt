@@ -1,0 +1,32 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class darkSideR : MonoBehaviour
+{
+    private float time = 0f;
+    private bool darkSideActive = true;
+    // Start is called before the first frame update
+    void Start()
+    {
+        StartCoroutine(setDarkSideActive());
+    }
+
+    IEnumerator setDarkSideActive()
+    {
+        yield return new WaitForSeconds(2);
+        darkSideActive = false;
+        this.gameObject.SetActive(false);
+    }
+        // Update is called once per frame
+    void Update()
+    {
+        if (darkSideActive)
+        {
+            time += Time.deltaTime;
+            Image darkSide = this.GetComponent<Image>();
+            darkSide.color = Color.Lerp(new Color(0, 0, 0, 1), new Color(0, 0, 0, 0), time);
+        }
+    }
+}

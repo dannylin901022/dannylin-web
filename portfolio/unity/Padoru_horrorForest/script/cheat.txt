@@ -1,0 +1,20 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class cheat : MonoBehaviour
+{
+    private int times = 0;
+    void Update()
+    {
+        if (Input.GetKey("r"))
+        {
+            times++;
+        }
+        if(times >= 5)
+        {
+            SceneManager.LoadScene("HE");
+        }
+    }
+}

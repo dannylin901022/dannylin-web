@@ -1,0 +1,37 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class padoru_sound : MonoBehaviour
+{
+    private AudioSource au;
+    private bool played = false;
+    public Text t;
+    // Start is called before the first frame update
+    void Start()
+    {
+        au = GetComponent<AudioSource>();
+        t.enabled = false;
+        InvokeRepeating("play_time", 1, 30);
+    }
+    void play_time()
+    {
+        if (!played)
+        {
+            StartCoroutine(play(Random.Range(10, 20)));
+        }
+        
+    }
+
+    IEnumerator play(float time)
+    {
+        played = true;
+        yield return new WaitForSeconds(time);
+        au.Play();
+        t.enabled = true;
+        played = false;
+        yield return new WaitForSeconds(10f);
+        t.enabled = false;
+    }
+}
