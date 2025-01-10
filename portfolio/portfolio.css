@@ -19,3 +19,21 @@
 .card-text{
     height: 100px;
 }
+
+
+@media only screen and (max-width:1200px){
+    .card{
+        width: 70vw;
+        margin-top: 10px;
+    }
+    .d-flex{
+        flex-direction: column;
+    }
+    .my-3{
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .col-12{
+        margin-top: 50px;
+    }
+}

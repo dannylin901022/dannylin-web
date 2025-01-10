@@ -47,3 +47,16 @@ div hr {
 #title_hr{
     border-top: 5px solid #000000;
 }
+
+@media only screen and (max-width: 1280px){
+    #main_area{
+        flex-direction: column;
+    }
+    #infoArea{
+        width: 100%;
+    }
+    #info{
+        flex-direction: column;
+        align-items: center;
+    }
+}
