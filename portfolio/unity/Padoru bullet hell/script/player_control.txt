@@ -1,0 +1,161 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Runtime.ExceptionServices;
+using UnityEngine;
+
+public class player_control : MonoBehaviour
+{
+    private float playerspeed = 0.09f;
+    public GameObject bullet,clear_obj;
+    private int counter = 0;
+    public int HP = 1;
+    public GameObject stop,clear_image,life_image,padoru;
+    public Vector3 inti_pos = new Vector3(0, -3.76f, 0);
+    public bool player_bool = true;
+    private bool clear = true;
+
+    //object pool¹ê§@
+    public static List<List<GameObject>> gameObjectsPool = new List<List<GameObject>>();
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(stop.active == false && player_bool == true)
+        {
+            counter++;
+            if (counter % 10 == 0 && padoru.gameObject.GetComponent<padoru_control>().move == false)
+            {
+                {
+                    if(gameObjectsPool.Count <= 0)
+                    {
+                        List<GameObject> objectList = new List<GameObject>();
+                        objectList.Add(Instantiate(bullet, new Vector2(this.transform.position.x, this.transform.position.y + 1f), new Quaternion(0, 0, 0, 0)));
+                        objectList.Add(Instantiate(bullet, new Vector2(this.transform.position.x + 0.25f, this.transform.position.y + 1f), new Quaternion(0, 0, 0, 0)));
+                        objectList.Add(Instantiate(bullet, new Vector2(this.transform.position.x - 0.25f, this.transform.position.y + 1f), new Quaternion(0, 0, 0, 0)));
+                        objectList.Add(Instantiate(bullet, new Vector2(this.transform.position.x + 0.5f, this.transform.position.y + 1f), new Quaternion(0, 0, 0, 0)));
+                        objectList.Add(Instantiate(bullet, new Vector2(this.transform.position.x - 0.5f, this.transform.position.y + 1f), new Quaternion(0, 0, 0, 0)));
+                        for(int i = 0;i < objectList.Count; i++)
+                        {
+                            objectList[i].SetActive(false);
+                        }
+                        gameObjectsPool.Add(objectList);
+
+                        getObjectInPool();
+                    }
+                    else
+                    {
+                        Debug.Log("Pool size¡G" + gameObjectsPool.Count);
+                        getObjectInPool();
+                    }
+                    
+                }
+            }
+            else if(padoru == null)
+            {
+
+            }
+            if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W) && this.transform.position.y < 4.5f)
+            {
+                transform.Translate(new Vector2(0, playerspeed));
+            }
+            else if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S) && this.transform.position.y > -4.5f)
+            {
+                transform.Translate(new Vector2(0, -playerspeed));
+            }
+            else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A) && this.transform.position.x > -8.5f)
+            {
+                transform.Translate(new Vector2(-playerspeed, 0));
+            }
+            else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D) && this.transform.position.x < 8.5f)
+            {
+                transform.Translate(new Vector2(playerspeed, 0));
+            }
+            else if(Input.GetKey(KeyCode.Space) && clear == true)
+            {
+                clear = false;
+                clear_image.SetActive(false);
+                Instantiate(clear_obj, new Vector2(this.transform.position.x, this.transform.position.y), new Quaternion(0, 0, 0, 0));
+            }
+            if (clear == true)
+            {
+                clear_image.SetActive(true);
+            }
+        }
+        
+        
+    }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "padoru_bullet")
+        {
+            Destroy(collision.gameObject);
+            HP = 0;
+        }
+        if (collision.gameObject.tag == "padoru")
+        {
+            HP = 0;
+        }
+    }
+    void LateUpdate()
+    {
+        if (HP <= 0)
+        {
+            if (_public_.debug)
+            {
+                HP = 1;
+            }
+            else
+            {
+                gameObjectsPool.Clear();
+                Destroy(this.gameObject);
+            }
+            if (_public_.first)
+            {
+                _public_.sr_set = true;
+                life_image.SetActive(false);
+                Destroy(this.gameObject);
+                _public_.first = false;
+            }
+
+        }
+    }
+
+    List<GameObject> getObjectInPool()
+    {
+        List<GameObject> objectList = new List<GameObject>(gameObjectsPool[0]);
+
+        float posX = -0.5f;
+        for (int i = 0; i < objectList.Count; i++)
+        {
+            if (objectList[i].activeInHierarchy == false)
+            {
+                objectList[i].transform.position = new Vector2(this.transform.position.x + posX, this.transform.position.y + 1f);
+                posX += 0.25f;
+            }
+            objectList[i].SetActive(true);
+        }
+        gameObjectsPool.RemoveAt(0);
+        return objectList;
+    }
+
+    static List<GameObject> recycleObjectList = new List<GameObject>();
+    public void recycleObject(GameObject bullet)
+    {
+        if (recycleObjectList.Count <= 5)
+        {
+            recycleObjectList.Add(bullet);
+            bullet.SetActive(false);
+        }
+        else
+        {
+            gameObjectsPool.Add(recycleObjectList.GetRange(0,5));
+            recycleObjectList.RemoveRange(0, 5);
+        }
+    }
+}

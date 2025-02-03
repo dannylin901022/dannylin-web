@@ -1,0 +1,99 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class _public_ : MonoBehaviour
+{
+    // Start is called before the first frame update
+    public static Vector3 player_pos;
+    public static bool debug = false, first = false;
+    public GameObject[] player;
+    private int i = 0;
+    private bool flash = false;
+    public static bool sr_set = false;
+    private Renderer SR;
+    public GameObject padoru,flowchart, flowchart1, bomb;
+    private Vector3 pos;
+    void Start()
+    {
+        debug = false;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        pos = player[i].transform.position;
+        try {
+            if (player[i].GetComponent<player_control>().HP == 0 && debug == false)
+            {
+                i = i + 1;
+                StartCoroutine(bombTime());
+                sr_set = true;
+                if (sr_set)
+                {
+                    SR = player[i].gameObject.GetComponent<SpriteRenderer>();
+                    sr_set = false;
+                }  
+                first = true;
+                StartCoroutine(Start_Flashing());
+            }
+        }
+        catch(IndexOutOfRangeException e)
+        {
+            padoru.gameObject.GetComponent<AudioSource>().mute = true;
+            debug = true;
+            Destroy(player[i - 1]);
+            flowchart1.SetActive(true);
+        }
+        
+
+        if (player[i])
+        {
+            player_pos = player[i].transform.position;
+        }
+        if (flash)
+        {
+            StartCoroutine(Flashing());
+        }
+        if(padoru == null)
+        {
+            flowchart.SetActive(true);
+        }
+
+
+    }
+    IEnumerator Start_Flashing()
+    {
+        flash = true;
+        debug = true;
+        yield return new WaitForSeconds(10f);
+        debug = false;
+        flash = false;
+
+    }
+    IEnumerator Flashing()
+    {
+        SR.enabled = false;
+        yield return new WaitForSeconds(0.03f);
+        SR.enabled = true;
+        StopCoroutine("Flashing");
+    }
+    IEnumerator bombTime()
+    {
+        bomb.transform.position = pos;
+        bomb.SetActive(true);
+        yield return new WaitForSeconds(1);
+        bomb.SetActive(false);
+        StopCoroutine(bombTime());
+    }
+    void restart()
+    {
+        SceneManager.LoadScene("battle");
+    }
+    void dont_restart()
+    {
+        SceneManager.LoadScene("start");
+    }
+}

@@ -1,0 +1,52 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class bullet : MonoBehaviour
+{
+    private float speed = 0.09f;
+    public int attack = 1;
+
+    private GameObject player;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        player = GameObject.FindWithTag("player");
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        transform.Translate(new Vector2(0,speed));
+        if(transform.position.y >= 7)
+        {
+            if(player == null)
+            {
+                player = GameObject.FindWithTag("player");
+            }
+            player.GetComponent<player_control>().recycleObject(this.gameObject);
+            //Destroy(this.gameObject);
+        }
+    }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "padoru")
+        {
+            if (collision.gameObject.GetComponent<padoru_control>().move == false)
+            {
+                collision.gameObject.GetComponent<padoru_control>().HP -= attack;
+                collision.gameObject.GetComponent<padoru_control>().health_bar.transform.localPosition = new Vector3(-530f + 501f * ((float)collision.gameObject.GetComponent<padoru_control>().HP / (float)collision.gameObject.GetComponent<padoru_control>().Max_HP), 0.7f, 0);
+                //collision.gameObject.GetComponent<padoru_control>().health_bar.transform.Translate(-264.7f + 255.6f*(collision.gameObject.GetComponent<padoru_control>().HP/ collision.gameObject.GetComponent<padoru_control>().Max_HP),0,0); 
+                player.GetComponent<player_control>().recycleObject(this.gameObject);
+                //Destroy(this.gameObject);
+            }
+            else
+            {
+                player.GetComponent<player_control>().recycleObject(this.gameObject);
+                //Destroy (this.gameObject);
+            }
+            
+        }
+    }
+}
